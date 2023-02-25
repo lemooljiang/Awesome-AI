@@ -13,13 +13,15 @@
 
 
 ## AI社区
-[Hugging Face ](https://huggingface.co)
+[Hugging Face ](https://huggingface.co) 机器学习的开源社区
 
 [All Things AI ](https://allthingsai.com)
 
 [GPT案例 ](https://gpt3demo.com/)  
 
 [Futuretools ](https://www.futuretools.io/)
+
+[Tools Arena](https://aitoolsarena.com/)
 
 ## 绘图
 [Midjourney ](https://midjourney.com/) 效果极佳的AI制图工具。
@@ -28,11 +30,13 @@
 
 [Stable Diffusion ](https://huggingface.co/spaces/stabilityai/stable-diffusion)
 
+[Run Diffusion](https://rundiffusion.com/) 运行Stable Diffusion各种版本的云端
+
 [Lexica ](https://lexica.art/)
 
 [Astria ](https://www.astria.ai/)
 
-[Blue Willow ](https://www.bluewillow.ai/)
+[Blue Willow ](https://www.bluewillow.ai/) midjourney的同类产品，免费
 
 [Dall-E](https://labs.openai.com/) OpenAI出品的制图工具。
 
@@ -50,21 +54,23 @@
 
 [Pai ](https://artpai.xyz/#/) 国产的AI绘图工具。
 
+[Leonardo ](https://leonardo.ai/)
+
 ## 修图
 [Lensa APP ](https://prisma-ai.com/lensa)
 
 [Clipdrop ](https://clipdrop.co/) 
 
-[Clean UP ](https://cleanup.pictures/) 一键去图。
+[Clean UP ](https://cleanup.pictures/) 一键去图
 
-[图片放大 ](https://ai.nero.com/)
+[nero ](https://ai.nero.com/) 图片放大
 
 ## 写作
 [Jasper AI ](https://www.jasper.ai/)
 
 [Copy AI ](https://www.copy.ai/) 多种功能调优的写作助手。
 
-[Tome ](https://beta.tome.app/)
+[Tome ](https://beta.tome.app/) 一键生成PPT
 
 [Wordtune ](https://www.wordtune.com/)
 
@@ -75,7 +81,7 @@
 ## 虚拟角色
 [D-ID ](https://www.d-id.com/) 可以制作虚拟3D人物视频。
 
-[Synthesia ](https://www.synthesia.io/)
+[Synthesia ](https://www.synthesia.io/) 通过文本生成视频
 
 [Leia Pix ](https://convert.leiapix.com/)
 
@@ -87,7 +93,9 @@
 
 [Prompts ](https://prompts.chat/)
 
-[Midjourney Prompt](https://prompt.noonshot.com/midjourney)
+[Midjourney Prompt](https://prompt.noonshot.com/midjourney) 
+
+[Midjourney Prompt2](https://github.com/willwulfken/MidJourney-Styles-and-Keywords-Reference)
 
 [Huggingface ](huggingface.co/spaces/doevent/prompt-generator)
 
@@ -99,15 +107,19 @@
 
 [Fliki ](https://fliki.ai/)
 
-[Descript ](https://www.descript.com/)
+[Kaiber ](https://www.kaiber.ai/) 图片动画
+
+[Descript ](https://www.descript.com/) 视频编辑，添加/去除视频背景，合成
 
 [AssemblyAI ](https://www.assemblyai.com/)
 
-[BHuman ](https://www.bhuman.ai/)
+[BHuman ](https://www.bhuman.ai/) 克隆视频中的人脸和声音
 
-[剪映 ](https://www.capcut.cn)
+[剪映 ](https://www.capcut.cn) 智能剪辑软件
 
 [一帧秒创 ](https://aigc.yizhentv.com/) 国产视频制作工具。
+
+[万兴喵影 ](https://miao.wondershare.cn/) 视频剪辑
 
 [Fspy tool ](https://fspy.io/)
 
@@ -115,9 +127,15 @@
 
 [Clipchamp ](https://clipchamp.com/)
 
+[VidIQ ](https://vidiq.com)  YouTube SEO 工具
+
 ## 音频
+[Elevenlabs](https://beta.elevenlabs.io/)  声音克隆
+
 [Resemble ](https://www.resemble.ai/)
 
 [Murf.ai ](https://murf.ai)
 
 [Mubert ](https://mubert.com/)
+
+[Play.ht ](https://play.ht/) 文本转音频
