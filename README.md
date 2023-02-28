@@ -5,9 +5,13 @@
 
 [AI·Joe ](https://ai.ilark.io/)  基于OpenAI Api开发，对具体的应用场景和参数都做了调优。
 
-[Notion AI ](https://www.notion.so/) 非常有用的写作助手
+[Notion AI ](https://www.notion.so/) 偏重工作空间，笔记，文档
 
 [QuillBot ](https://quillbot.com/)
+
+[Perplexity ](https://www.perplexity.ai/) 为复杂问题提供准确答案的答案引擎
+
+[Writesonic](https://app.writesonic.com/) 文案写作工具
 
 [AI律师 ](https://donotpay.com/)
 
@@ -24,25 +28,31 @@
 [Tools Arena](https://aitoolsarena.com/)
 
 ## 绘图
-[Midjourney ](https://midjourney.com/) 效果极佳的AI制图工具。
+[Midjourney ](https://midjourney.com/) 效果极佳的AI制图工具，使用discord
+
+[Midjourney prompt ](./prompt/midjourney.md) Midjourney关键词技巧
+
+[Blue Willow ](https://www.bluewillow.ai/) midjourney的同类产品，免费
 
 [Stability AI ](https://stability.ai/) 
+
+[Leonardo ](https://leonardo.ai/) 
+
+[Astria ](https://www.astria.ai) 虚拟人物，产品广告，视频制作
 
 [Stable Diffusion ](https://huggingface.co/spaces/stabilityai/stable-diffusion)
 
 [Run Diffusion](https://rundiffusion.com/) 运行Stable Diffusion各种版本的云端
 
-[Lexica ](https://lexica.art/)
+[Stable Diffusion Webui)](https://github.com/AUTOMATIC1111/stable-diffusion-webui) 适合本地安装的diffusion网页端
 
-[Astria ](https://www.astria.ai/)
+[Lexica ](https://lexica.art/)  带绘图和搜索功能
 
-[Blue Willow ](https://www.bluewillow.ai/) midjourney的同类产品，免费
+[Dall-E](https://labs.openai.com/) OpenAI出品的制图工具
 
-[Dall-E](https://labs.openai.com/) OpenAI出品的制图工具。
+[Playground AI ](https://playgroundai.com)  免费额度较大
 
-[Playground AI ](https://playgroundai.com)
-
-[Dreamlike ](https://dreamlike.art)
+[Dreamlike ](https://dreamlike.art) 11
 
 [mage.space ](https://www.mage.space)
 
@@ -50,20 +60,23 @@
 
 [Dream ](https://dream.ai/)
 
-[6pen ](https://6pen.art/) 国产的AI绘图工具。
+[6pen ](https://6pen.art/) 国产的AI绘图工具
 
-[Pai ](https://artpai.xyz/#/) 国产的AI绘图工具。
+[Pai ](https://artpai.xyz/#/) 国产的AI绘图工具
 
-[Leonardo ](https://leonardo.ai/)
+[Brandmark ](https://brandmark.io/) 专做logo
 
 ## 修图
 [Lensa APP ](https://prisma-ai.com/lensa)
 
-[Clipdrop ](https://clipdrop.co/) 
+[Clipdrop ](https://clipdrop.co/) 打光
 
 [Clean UP ](https://cleanup.pictures/) 一键去图
 
 [nero ](https://ai.nero.com/) 图片放大
+
+## 设计
+[鹿班设计 ](https://luban.aliyun.com/) 阿里推出的智能设计平台
 
 ## 写作
 [Jasper AI ](https://www.jasper.ai/)
@@ -76,7 +89,7 @@
 
 
 ## 编程
-[GitHub Copilot](https://github.com/features/copilot)
+[GitHub Copilot](https://github.com/features/copilot) 需要信用卡
 
 ## 虚拟角色
 [D-ID ](https://www.d-id.com/) 可以制作虚拟3D人物视频。
@@ -89,25 +102,35 @@
 [methexis-inc](https://replicate.com/methexis-inc/img2prompt)
 
 ## 关键词助手
-[PromptHero ](https://prompthero.com/) 
+[Chat GPT Prompts ](https://prompts.chat/) Chat GPT代入角色
 
-[Prompts ](https://prompts.chat/)
+[Lexica ](https://lexica.art/)  图库和搜索功能
 
-[Midjourney Prompt](https://prompt.noonshot.com/midjourney) 
+[PromptHero ](https://prompthero.com/) 大量的案例和关键词
 
-[Midjourney Prompt2](https://github.com/willwulfken/MidJourney-Styles-and-Keywords-Reference)
+[Midjourney Prompt ](https://prompt.noonshot.com/midjourney) 
 
-[Huggingface ](huggingface.co/spaces/doevent/prompt-generator)
+[Midjourney Prompt2 ](https://github.com/willwulfken/MidJourney-Styles-and-Keywords-Reference)
+
+[Huggingface prompt ](huggingface.co/spaces/doevent/prompt-generator)
 
 [Prompt Muse ](https://promptmuse.com/)
 
 
 ## 视频
+[剪映 ](https://www.capcut.cn) 抖音出品的智能剪辑软件
+
+[一帧秒创 ](https://aigc.yizhentv.com/) 智能视频创作平台，一键文章转视频、图文转视频
+
 [Runway ](https://runwayml.com/)
 
-[Fliki ](https://fliki.ai/)
+[Fliki ](https://fliki.ai/) 文本生成视频
 
 [Kaiber ](https://www.kaiber.ai/) 图片动画
+
+[Pictory ](https://pictory.ai/) 文本生成视频
+
+[Genmo](https://alpha.genmo.ai/) 文本生成视频
 
 [Descript ](https://www.descript.com/) 视频编辑，添加/去除视频背景，合成
 
@@ -115,15 +138,11 @@
 
 [BHuman ](https://www.bhuman.ai/) 克隆视频中的人脸和声音
 
-[剪映 ](https://www.capcut.cn) 智能剪辑软件
-
-[一帧秒创 ](https://aigc.yizhentv.com/) 国产视频制作工具。
-
 [万兴喵影 ](https://miao.wondershare.cn/) 视频剪辑
 
 [Fspy tool ](https://fspy.io/)
 
-[Make-A-Video ](https://makeavideo.studio/)
+[Make-A-Video ](https://makeavideo.studio/) 从文本创建视频
 
 [Clipchamp ](https://clipchamp.com/)
 
@@ -139,3 +158,5 @@
 [Mubert ](https://mubert.com/)
 
 [Play.ht ](https://play.ht/) 文本转音频
+
+[Audacity ](https://www.audacityteam.org/) 免费音频工具
