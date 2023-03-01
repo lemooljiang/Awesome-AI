@@ -3,6 +3,10 @@
 ## AI助手
 [ChatGPT ](https://chat.openai.com) OpenAI研发的聊天机器人程序 人工智能技术驱动的自然语言处理工具。
 
+[ChatGPT关键词 ｜](./openai/catgpt.md) 关键词技巧及角色代入
+
+[Openai API｜](./openai/openai.md) 关键词技巧及开发
+
 [AI·Joe ](https://ai.ilark.io/)  基于OpenAI Api开发，对具体的应用场景和参数都做了调优。
 
 [Notion AI ](https://www.notion.so/) 偏重工作空间，笔记，文档
@@ -30,7 +34,7 @@
 ## 绘图
 [Midjourney ](https://midjourney.com/) 效果极佳的AI制图工具，使用discord
 
-[Midjourney prompt ](./prompt/midjourney.md) Midjourney关键词技巧
+[Midjourney prompt ](./midjourney/midjourney.md) Midjourney关键词技巧
 
 [Blue Willow ](https://www.bluewillow.ai/) midjourney的同类产品，免费
 
