@@ -11,9 +11,11 @@
 
 [Notion AI ](https://www.notion.so/) 偏重工作空间，笔记，文档
 
+[Notion简介](./notion/notion.md)
+
 [QuillBot ](https://quillbot.com/)
 
-[Perplexity ](https://www.perplexity.ai/) 为复杂问题提供准确答案的答案引擎
+[Perplexity ](https://www.perplexity.ai/) 为复杂问题提供准确答案的引擎
 
 [Writesonic](https://app.writesonic.com/) 文案写作工具
 
@@ -83,7 +85,7 @@
 [鹿班设计 ](https://luban.aliyun.com/) 阿里推出的智能设计平台
 
 ## 写作
-[Jasper AI ](https://www.jasper.ai/)
+[Jasper AI ](https://www.jasper.ai/) 需要信用卡
 
 [Copy AI ](https://www.copy.ai/) 多种功能调优的写作助手。
 
@@ -134,7 +136,7 @@
 
 [Pictory ](https://pictory.ai/) 文本生成视频
 
-[Genmo](https://alpha.genmo.ai/) 文本生成视频
+[Genmo ](https://alpha.genmo.ai/) 文本生成视频
 
 [Descript ](https://www.descript.com/) 视频编辑，添加/去除视频背景，合成
 
@@ -164,3 +166,6 @@
 [Play.ht ](https://play.ht/) 文本转音频
 
 [Audacity ](https://www.audacityteam.org/) 免费音频工具
+
+## 三维化
+[Luma AI ](https://lumalabs.ai) 通过手机生成逼真3D效果

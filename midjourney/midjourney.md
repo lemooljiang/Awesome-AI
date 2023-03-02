@@ -63,6 +63,10 @@
 18.Stained glass window --- 被物体覆盖的窗户 eg: flower Stained glass window <br>
 19.Blender 3D --- 3D效果 eg: a wood horse Blender 3D<br>
 20.Explode_____by Nychos -- 爆炸性街头艺术 eg: Explode planet by Nychos
+21.logo for __
+  Logo design for a copany called H.M modern design
+  Design a logo for travel agency, in the style of paul rand
+  Piza, symmertical flat icon design
 
 ## 分割关键词
 用 :: 分割关键词，例如： hot:: dog both concepts are considered separately, creating a picture of a dog that is warm. 
