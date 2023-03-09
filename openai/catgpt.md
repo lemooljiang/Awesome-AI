@@ -2,10 +2,11 @@
 
 ## 下载与资源
 [官网 |](https://chat.openai.com/)
+[API说明 ｜](https://openai.com/blog/introducing-chatgpt-and-whisper-apis)
 [ChatGPT API |](https://github.com/transitive-bullshit/chatgpt-api)
 [微信聊天机器人 |](https://github.com/zhayujie/chatgpt-on-wechat)
 [代入角色(英) ｜](https://github.com/f/awesome-chatgpt-prompts)
-
+[ChatGPT API使用 ｜](https://zhuanlan.zhihu.com/p/610810300)
 
 ## 登录问题
 [login](https://github.com/yehx1/chatgpt-login)<br>
@@ -37,5 +38,90 @@ ChatGPT可以记住上下文的关系。代入角色有利于挖掘AI的潜能�
 
 //担任机器学习工程师
 我想让你担任机器学习工程师。我会写一些机器学习的概念，你的工作就是用通俗易懂的术语来解释它们。这可能包括提供构建模型的分步说明、使用视觉效果演示各种技术，或建议在线资源以供进一步研究。我的第一个建议请求是“我有一个没有标签的数据集。我应该使用哪种机器学习算法？”
+```
+
+
+## ChatGPT API
+```js
+const completion = await openai.createChatCompletion({
+  model: "gpt-3.5-turbo",
+  messages: [{role: "user", content: "Hello world"}],
+});
+console.log(completion.data.choices[0].message)
+//parameters
+model="gpt-3.5-turbo",
+messages=[
+      {"role": "system", "content": "You are a helpful assistant."},
+      {"role": "user", "content": "Who won the world series in 2020?"},
+      {"role": "assistant", "content": "The Los Angeles Dodgers won the World Series in 2020."},
+      {"role": "user", "content": "Where was it played?"}
+  ]
+
+//curl调用
+this.axios.request({
+  method: 'post',
+  url: 'https://api.openai.com/v1/chat/completions',
+  headers: {
+    'X-Requested-With': 'XMLHttpRequest',
+    'Authorization': 'Bearer your openai api key'
+    },
+  data:{
+    model: "gpt-3.5-turbo",
+    messages: [{"role": "user", "content": this.prompt}]
+  }
+})
+.then(arg => {
+  this.answer = JSON.parse(arg.request.response).choices[0].message.content
+})
+```
+
+
+## 创建上下文
+post提交数据的时候, 把之前所有的对话都提交上去, AI就会读取上传的内容, 以此上下文环境。
+```js
+messages: [{"role": "user", "content": this.prompt}] 
+//只有一条是没有上下文环境的
+
+messages =  [
+	{ 'role': 'user', 'content': '你好。 今天是多云天气' },
+	{ 'role': 'assistant', 'content': '你好。 我很抱歉听到不幸的天气' },
+	{ 'role': 'user', 'content': '是的，是这样。 不过我很好。' },
+	{ 'role': 'assistant', 'content': '我希望如此。 让我们继续今天的工作吧！' },
+	{ 'role': 'user', 'content': '是的。 哦，顺便问一下，我是怎么说今天的天气的？' },
+	{ 'role': 'assistant', 'content': '今天是阴天' }
+] 
+//把以前的对话数据组成数组格式，传给ChatGPT即可！
+
+//text-davinci-003模型的参数格式略有不同。它只能传入字符串。
+const response = await openai.createCompletion({
+    model: "text-davinci-003",
+    prompt: `${prompt}`,
+    temperature: temperature, 
+    max_tokens: 4000, 
+    top_p: 1, 
+    frequency_penalty: 0, 
+    presence_penalty: 0, 
+})
+messages =  [
+	{ 'role': 'user', 'content': '你好。 今天是多云天气' },
+	{ 'role': 'assistant', 'content': '你好。 我很抱歉听到不幸的天气' },
+	{ 'role': 'user', 'content': '是的，是这样。 不过我很好。' },
+	{ 'role': 'assistant', 'content': '我希望如此。 让我们继续今天的工作吧！' },
+	{ 'role': 'user', 'content': '是的。 哦，顺便问一下，我是怎么说今天的天气的？' },
+	{ 'role': 'assistant', 'content': '今天是阴天' }
+] 
+// 把数组里面的元素用`\n\n`连接
+function getPreviousConversationContent(data) {
+    let len = data.length
+    let arr = [];
+    for (var i = 0; i < len; i++) {
+      let item = data[i]
+      arr.push(item.content)
+    }
+    console.log(123, arr, "arr")
+    return arr.join("\n\n")
+  }
+let s =  getPreviousConversationContent(messages)  
+console.log(s, typeof s)
 ```
 

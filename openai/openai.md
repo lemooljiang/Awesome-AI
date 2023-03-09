@@ -4,12 +4,17 @@
 [官网 |](https://openai.com/)
 [Openai文档 |](https://platform.openai.com/docs/introduction)
 [手机接码平台 |](https://sms-activate.org/cn)
+[开发参考 ｜](https://github.com/adrianhajdin/project_openai_codex)
 
 ## 计费说明
-$0.0200/1000tokens <br>
-1个token是一个英文单词，一个汉字2个token，即￥0.136/500字
-
+$0.0200/1000tokens(约750英文单词)，1个token对应约4个字符。 <br>
 图片生成是每张消耗 $0.016 
+
+ChatGPT API<br>
+$0.002/1000tokens(约750英文单词)
+
+Whisper API  <br>
+$0.006/分钟
 
 ## prompt
 1. 翻译
@@ -32,12 +37,12 @@ $0.0200/1000tokens <br>
 
 ## Openai API
 ```js
-npm install openai --save
+npm install openai --save  //"openai": "^3.2.1"
 npm install express cors --save
 
-let express = require('express')
-let cors = require('cors')
-let { Configuration, OpenAIApi } = require('openai')
+import express from 'express'
+import cors from 'cors'
+import { Configuration, OpenAIApi } from 'openai'
 
 
 const configuration = new Configuration({
@@ -127,50 +132,5 @@ app.post('/image', async (req, res) => {
 })
 
 app.listen(6200, () => console.log('AI server started on http://localhost:6200'))
-```
-
-## ChatGPT API
-[npm ](https://www.npmjs.com/package/chatgpt)
-```js
-npm install chatgpt --save
-
-import { ChatGPTAPI } from 'chatgpt'
-
-const api = new ChatGPTAPI({
-  apiKey: process.env.OPENAI_API_KEY
-})
-
-const res = await api.sendMessage('Hello World!')
-console.log(res.text)
-
-//If you want to track the conversation, you'll need to pass the parentMessageid and conversationid:
-const api = new ChatGPTAPI({ apiKey: process.env.OPENAI_API_KEY })
-
-// send a message and wait for the response
-let res = await api.sendMessage('What is OpenAI?')
-console.log(res.text)
-
-// send a follow-up
-res = await api.sendMessage('Can you expand on that?', {
-  conversationId: res.conversationId,
-  parentMessageId: res.id
-})
-console.log(res.text)
-
-// send another follow-up
-res = await api.sendMessage('What were we talking about?', {
-  conversationId: res.conversationId,
-  parentMessageId: res.id
-})
-console.log(res.text)
-
-//You can add streaming via the onProgress handler:
-const res = await api.sendMessage('Write a 500 word essay on frogs.', {
-  // print the partial response as the AI is "typing"
-  onProgress: (partialResponse) => console.log(partialResponse.text)
-})
-
-// print the full text at the end
-console.log(res.text)
 ```
 
