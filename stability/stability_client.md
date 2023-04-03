@@ -4,6 +4,7 @@
 [官网 ｜](https://stability.ai/) 
 [文档 ｜](https://platform.stability.ai)
 [API参数 ｝](./parameter.md)
+[REST-API |](https://api.stability.ai/docs)
 
 ## API
 ```js
