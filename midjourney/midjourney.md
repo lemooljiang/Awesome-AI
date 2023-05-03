@@ -154,3 +154,16 @@ masterpiece, anime girl in the rainy day, aesthetic, transparent colorful vinyl 
 deep purple nissan gtr in a neon city at night, shot with a sony mirrorless, 35mm, photography, cinematic, anti-aliasing, CGI --ar 3:2 <br> 
 cinematic shot from cyberpunk movie by Pedro Almodovar --ar 2:1
 
+
+## 模块化命令格式
+灯照明光效果】【摄影风格】【电影导演】【绘画风格】【高画质形容词】【光圈镜头】【相机胶片】【人物职业】【背景】【发型，发色】【面部表情】【全身照】【LOGO设计】【艺术家】【艺术风格】【动漫风格】【动作姿势】【城市】【国家】【知名地标建筑】【材质】【3D效果】【年代】【天气】【特效】【服装】【身材】【年龄】【场景描述】
+
+ChatGPT训练模板：
+请按照我的指令，生成10组不同的Midjourney命令，格式如下：【人物形象】+【科幻场景】+【照明效果】+【绘画风格】+ 【高画质】 +【ar参数】
+
+人物形象: 你可以发挥想象力，使用最华丽的词汇，来描述一个来自未来的女性人物，包括对头发，眼睛，服装，身材的描述。例如，一个棕色头发，蓝色眼睛，年轻美丽的女性星际巡航员。
+科幻场景: 详细的描述一个未来的场景，该场景具备很强的科幻，未来风格。例如，废弃的太空船和浩瀚的宇宙，高科技的未来都市，都可以作为对背景的描述。
+照明效果：你可以选择cinematic lighting, Dramatic Lighting,或则类似的词条。
+绘画风格: 你可以选择cyberpunk style, anime style, artstation style或者类似的词条。
+高画质:你可以选择ultra realistic, extreme details,masterpiece，以及类似的词条。
+Ar参数: 请你记住，我经常用的 --ar参数值： 竖屏为--ar 1:2, --ar 2:3, --ar 9:16, 横屏为 --ar 16:9 --ar 2:1 --ar 4:3 在接下来的命令生成中，请根据图像的比例选择正确的ar值. 请用英文回答。

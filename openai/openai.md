@@ -8,16 +8,6 @@
 [手机接码平台 |](https://sms-activate.org/cn)
 [开发参考 ｜](https://github.com/adrianhajdin/project_openai_codex)
 
-## 计费说明
-$0.0200/1000tokens(约750英文单词)，1个token对应约4个字符。 <br>
-图片生成是每张消耗 $0.016 
-
-ChatGPT API<br>
-$0.002/1000tokens(约750英文单词)
-
-Whisper API  <br>
-$0.006/分钟
-
 ## prompt
 1. 翻译
 在段落前加上`Translate this into English: \n\n`，后面再加上你要翻译的段落。你要翻译成哪国语言，就把‘English’换成其它语种，比如'Japanese'、'Chinese'这些。不过因为最近chatgpt爆火，服务器繁忙，翻译过程太费时间，用户体验不是很理想。
@@ -87,6 +77,33 @@ app.post('/word', async (req, res) => {
   } catch (error) {
     console.error(error)
     res.status(500).send(error || 'Something went wrong');
+  }
+})
+
+//chatgpt api 
+//模型是 gpt-3.5-turbo，性价比最高的模型
+app.post('/gpt', async (req, res) => {
+  try {
+    const query = req.body.query
+    const temperature = req.body.temperature
+
+    const response = await openai.createChatCompletion({
+      model: "gpt-3.5-turbo",
+      messages: query,
+      temperature: temperature, 
+      max_tokens: 4000, 
+      top_p: 1, 
+      frequency_penalty: 0, 
+      presence_penalty: 0, 
+    })
+
+    res.status(200).send({
+      message: response.data.choices[0].message
+    });
+
+  } catch (error) {
+    console.error(111, error)
+    res.status(500).send('Something went wrong')
   }
 })
 
@@ -327,3 +344,49 @@ let getStream = function (reader) {
 }
 getStream(response.body.getReader())  
 ```
+
+## count-tokens
+[npm ｜](https://www.npmjs.com/package/gpt-3-encoder)
+[openai测试 ｜](https://platform.openai.com/tokenizer)
+
+GPT系列模型使用Token处理文本，Token是文本中发现的常见字符序列。这些模型了解这些Token之间的统计关系，并擅长在一个Token序列中产生下一个Token。
+
+一个有用的经验法则是，对于普通英语文本来说，一个Token通常对应于~4个字符的文本。这大约相当于一个单词的3/4, 所以100个Token~=75个英文单词。
+以中文统计的话，100个Token~=50个汉字。
+```js
+cnpm install gpt-3-encoder --save  //"^1.1.4"
+
+import {encode, decode} from 'gpt-3-encoder'
+
+const str = '看了山和海，也看了人山和人海。'
+const encoded = encode(str)
+console.log(11, 'Encoded this string looks like: ', encoded) 
+/*[
+    40367,   233, 12859,   228,   161,
+    109,   109,   161,   240,   234,
+  38184,   115,   171,   120,   234,
+  20046,   253, 40367,   233, 12859,
+    228, 21689,   161,   109,   109,
+    161,   240,   234, 21689, 38184,
+    115, 16764
+] */
+console.log(12, 'Encoded lenght', encoded.length)  //32
+
+console.log('We can look at each token and what it represents')
+for(let token of encoded){
+  console.log({token, string: decode([token])})
+}
+
+const decoded = decode(encoded)
+console.log(22, 'We can decode it back into:\n', decoded)
+```
+
+## 计费说明
+$0.0200/1000tokens(约750英文单词)，1个token对应约4个字符。 <br>
+图片生成是每张消耗 $0.016 
+
+ChatGPT API<br>
+$0.002/1000tokens(约750英文单词)
+
+Whisper API  <br>
+$0.006/分钟

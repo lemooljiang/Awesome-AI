@@ -15,11 +15,15 @@
 
 [Notion简介](./notion/notion.md)
 
+[HuggingChat](https://huggingface.co/chat/) 开源免费的聊天助手
+
+[open-assistan](https://open-assistant.io)  开源免费的聊天助手
+
 [QuillBot](https://quillbot.com/)
 
 [Perplexity](https://www.perplexity.ai/) 为复杂问题提供准确答案的引擎
 
-[Writesonic](https://app.writesonic.com/) 文案写作工具
+[Writesonic](https://writesonic.com/) 文案写作工具
 
 [AI律师](https://donotpay.com/)
 
@@ -31,10 +35,18 @@
 
 [ChatPDF](https://www.chatpdf.com/) 读PDF文档，提取关键内容
 
+[Pandagpt](https://www.pandagpt.io/) 阅读文档
+
+[Chat2doc](https://chat2doc.cn) 阅读文档
+
 [佛祖AI](https://hotoke.ai/)  机器佛
 
 ## ChatGPT插件
 [AIPRM](https://chrome.google.com/webstore/detail/aiprm-for-chatgpt/ojnbohmppadfgpejeebfnmnknjdlckgj?hl=en) 众多功能 
+
+[Bardeen](https://www.bardeen.ai/)  谷歌插件， 自动化社交媒体
+
+[Axiom](https://axiom.ai/) 谷歌插件，自动化的网页工具
  
 [Personality-Selector](https://chrome.google.com/webstore/detail/chatgpt-personality-selec/jdmpccdlifdkhniemenfmieffkdblahk?hl=en) 语音功能
 
@@ -54,6 +66,8 @@
 
 [Tools Arena](https://aitoolsarena.com/) AI工具集
 
+[PaddleHub](https://github.com/PaddlePaddle/PaddleHub) 多个预训练模型
+
 ## 绘图
 [Midjourney](https://midjourney.com/) 效果极佳的AI制图工具，使用discord
 
@@ -61,7 +75,7 @@
 
 [Blue Willow](https://www.bluewillow.ai/) midjourney的同类产品，免费
 
-[Stability AI](https://stability.ai/) 
+[Stability AI](https://stability.ai/) Stable Diffusion较好的版本
 
 [Stability API](./stability/stability_client.md)  API开发
 
@@ -93,7 +107,7 @@
 
 [Pai](https://artpai.xyz/#/) 国产的AI绘图工具
 
-[Brandmark](https://brandmark.io/) 专做logo
+[AI绘画资料合集](https://github.com/hua1995116/awesome-ai-painting) AI绘画资料合集
 
 ## 修图
 [Cutout](https://www.cutout.pro/zh-CN) 修图工具，去除背景，放大图片等
@@ -112,14 +126,26 @@
 
 [nero](https://ai.nero.com/) 图片放大
 
+[Upscayl](https://github.com/upscayl/upscayl) 图片放大
+
+[AI图像增强工具](https://deep-image.ai/)
+
 ## 设计
 [Canva](https://www.canva.com/zh_cn/) 在线设计平台，图像，短视频，动画，电子书，二维码
+
+[Looka](https://looka.com) 商标设计
+
+[Uizard](https://uizard.io) 可视化界面设计
 
 [Roomgpt](https://www.roomgpt.io/) 室内装饰，开源
 
 [鹿班设计](https://luban.aliyun.com/) 阿里推出的智能设计平台
 
 [Autodraw](https://www.autodraw.com/) 图像识别和补全
+
+[Designs](https://designs.ai/) 综合性在线设计网站  
+
+[Brandmark](https://brandmark.io/) 专做logo
 
 ## 写作
 [Copy AI](https://www.copy.ai/) 多种功能调优的写作助手
@@ -130,13 +156,19 @@
 
 [Wordtune](https://www.wordtune.com/)
 
+[PPT制作](https://www.beautiful.ai/)
+
 
 ## 编程
-[CodeGPT](https://www.codegpt.co) 免费的vs code插件
+[Codegeex](https://codegeex.cn/zh-CN) 免费的AI编程助手
+
+[Codeium](https://codeium.com) 免费的编程助手
 
 [GitHub Copilot](https://github.com/features/copilot) 需要信用卡
 
 ## 虚拟角色
+[Heygen](https://www.heygen.com/) 虚拟3D人物视频, 虚拟人物播报
+
 [D-ID](https://www.d-id.com/) 虚拟3D人物视频，5分钟的免费额度
 
 [Movio](https://www.movio.la) 虚拟人物播报
@@ -179,6 +211,8 @@
 
 [Kaiber](https://www.kaiber.ai/) 图片动画
 
+[Artflow](https://www.app.artflow.ai/) 动画制作
+
 [Pictory](https://pictory.ai/) 文本生成视频
 
 [Genmo](https://alpha.genmo.ai/) 文本生成视频
@@ -201,6 +235,8 @@
 
 [一帧秒创](https://aigc.yizhentv.com/) 智能视频创作平台，一键文章转视频（关联度低）、图文转视频
 
+[Aimages](https://aimages.ai/) 图像视频画质提升
+
 ## 音频
 [Fliki](https://fliki.ai) 音频视频，每个月有5分钟的免费时长
 
@@ -222,5 +258,15 @@
 
 [Audacity](https://www.audacityteam.org/) 免费音频工具
 
+[Buzz](https://github.com/chidiwilliams/buzz) 在你的个人电脑上离线转录和翻译音频。由OpenAI的Whisper提供技术支持。
+
 ## 三维化
+[Spline](https://spline.design/ai) 生成3D物体
+
+[Blockade Labs](https://www.blockadelabs.com/index.html) 三级场景等
+
 [Luma AI](https://lumalabs.ai) 通过手机生成逼真3D效果
+
+
+
+
