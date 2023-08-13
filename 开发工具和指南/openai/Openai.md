@@ -8,26 +8,8 @@
 [手机接码平台 |](https://sms-activate.org/cn)
 [开发参考 ｜](https://github.com/adrianhajdin/project_openai_codex)
 
-## prompt
-1. 翻译
-在段落前加上`Translate this into English: \n\n`，后面再加上你要翻译的段落。你要翻译成哪国语言，就把‘English’换成其它语种，比如'Japanese'、'Chinese'这些。不过因为最近chatgpt爆火，服务器繁忙，翻译过程太费时间，用户体验不是很理想。
-
-2. 编程
-在段首加上`用JavaScript实现以下需求：\n\n`，后面接上需求即可。
-
-3. 解释代码
-在代码片段后加上`\n\n\"\"\"\n 用中文解释以上代码功能:`即可帮你解读代码。
-
-4. 模拟面试
-`为面试"job"创建一张10个问题的清单`, 把job替换成你想面试的职位即可。
-
-5. 续写文本
-在需要续写的文本后加上`\n\n 请按照以上风格续写`即可。
-
-6. 摘要功能
-在需要生成摘要的文本后加上`\n\nTl;dr`即可。
-
 ## Openai API
+[参数 ｜](https://platform.openai.com/docs/api-reference/chat/create)
 ```js
 npm install openai --save  //"openai": "^3.2.1"
 npm install express cors --save
@@ -61,7 +43,7 @@ app.post('/word', async (req, res) => {
     const temperature = req.body.temperature
 
     const response = await openai.createCompletion({
-      model: "text-davinci-003",
+      model: "text-davinci-003", 
       prompt: `${prompt}`,
       temperature: temperature, // Higher values means the model will take more risks.
       max_tokens: 1500, // The maximum number of tokens to generate in the completion. Most models have a context length of 2048 tokens (except for the newest models, which support 4096).
@@ -79,6 +61,7 @@ app.post('/word', async (req, res) => {
     res.status(500).send(error || 'Something went wrong');
   }
 })
+//特别注意：这里的max_tokens是指输出的最大token值，不是指模型的max_tokens值！比如gpt-3.5-turbo的max_tokens是4096，但这里的max_tokens却只能填1500！
 
 //chatgpt api 
 //模型是 gpt-3.5-turbo，性价比最高的模型
@@ -91,7 +74,7 @@ app.post('/gpt', async (req, res) => {
       model: "gpt-3.5-turbo",
       messages: query,
       temperature: temperature, 
-      max_tokens: 4000, 
+      max_tokens: 1500, 
       top_p: 1, 
       frequency_penalty: 0, 
       presence_penalty: 0, 
@@ -107,57 +90,88 @@ app.post('/gpt', async (req, res) => {
   }
 })
 
-//AI的代码功能，模型是code-davinci-002
-app.post('/code', async (req, res) => {
-  try {
-    const prompt = req.body.prompt;
-    const response = await openai.createCompletion({
-      model: "code-davinci-002",
-      prompt: `${prompt}`,
-      temperature: 0,
-      max_tokens: 1200,
-      top_p: 1.0,
-      frequency_penalty: 0.0,
-      presence_penalty: 0.0,
-      stop: ["\"\"\""],
-    });
-    res.status(200).send({
-      bot: response.data.choices[0].text
-    });
-
-  } catch (error) {
-    console.error(error)
-    res.status(500).send(error || 'Something went wrong');
-  }
-})
-
-//AI的图片功能，模型是dall-e 2
-app.post('/image', async (req, res) => {
-  try {
-    const prompt = req.body.prompt;
-    let response = await openai.createImage({
-      prompt: `${prompt}`,
-      n: 1,
-      size: "512x512",
-    });
-    res.status(200).send({
-      image_url: response.data.data[0].url
-    });
-
-  } catch (error) {
-    console.error(error)
-    res.status(500).send(error || 'Something went wrong');
-  }
-})
-
 app.listen(6200, () => console.log('AI server started on http://localhost:6200'))
 ```
+
+## python版本
+[参考](https://platform.openai.com/docs/api-reference/chat/create?lang=python)
+```py
+pip install openai  # 0.27.8
+
+import os
+import openai
+
+openai.api_key = "YOUR API-KEY"
+# os.environ['HTTP_PROXY'] = "xxx"
+# os.environ['HTTPS_PROXY'] = "xxx"
+
+completion = openai.ChatCompletion.create(
+  model="gpt-3.5-turbo",
+  messages=[
+    {"role": "system", "content": "You are a helpful assistant."},
+    {"role": "user", "content": "Hello!"}
+  ]
+)
+print(completion.choices[0].message)
+
+# 流传输
+def openaiStreaming(query, temperature):
+    response = openai.ChatCompletion.create(
+        model = "gpt-3.5-turbo",
+        messages = query,
+        temperature = temperature,
+        max_tokens = 2000,
+        stream = True
+    )
+    for trunk in response:
+        # print(56, trunk)
+        if trunk['choices'][0]['finish_reason'] is not None:
+            data = '[DONE]'
+            return 'ok', 200
+        else:
+            data = trunk['choices'][0]['delta'].get('content','')
+        # yield "data: %s\n\n" % data.replace("\n","<br>")
+        yield data
+        # return flask.Response(stream(),mimetype="text/event-stream")
+///
+56 {
+  "id": "chatcmpl-7gPI3f8yPerbCv1HzmC41UY4GpXAB",
+  "object": "chat.completion.chunk",
+  "created": 1690341347,
+  "model": "gpt-3.5-turbo-0613",
+  "choices": [
+    {
+      "index": 0,
+      "delta": {
+        "content": "\u4e3a"
+      },
+      "finish_reason": null
+    }
+  ]
+}
+.........
+56 {
+  "id": "chatcmpl-7gPI3f8yPerbCv1HzmC41UY4GpXAB",
+  "object": "chat.completion.chunk",
+  "created": 1690341347,
+  "model": "gpt-3.5-turbo-0613",
+  "choices": [
+    {
+      "index": 0,
+      "delta": {},
+      "finish_reason": "stop"
+    }
+  ]
+}
+```
+
 
 ## Embeddings
 [youtube-gpt |](https://github.com/davila7/youtube-gpt)
 [Chatbot |](https://github.com/FaustoNisida/Chatbot-Long-Short-Term-Memory)
 [chatpdf |](https://github.com/postor/chatpdf-minimal-demo)
-[Code a Project like ChatPDF](https://postor.medium.com/how-to-code-a-project-like-chatpdf-e40441cb4168)
+[Code a Project like ChatPDF |](https://postor.medium.com/how-to-code-a-project-like-chatpdf-e40441cb4168)
+[构建一个智能文档查询 |](https://mp.weixin.qq.com/s/bYxFySJEWPUHd2591jVHEQ)
 
 嵌入（Embeddings）是文本的一种数字表示，可以用来衡量两段文本之间的关系。我们的第二代嵌入模型，text-embedding-ada-002，嵌入对于搜索、聚类、推荐、异常检测和分类任务都很有用。
 
@@ -248,7 +262,8 @@ const response = await openai.createCompletion({
 
 ## streaming
 边看边输的方式就是现在的推流(streaming)模式，像现在的视频站、直播等，肯定都是用的数据流，都是边看边播的。ChatGPT API也是可以实现同样的功能的。前端得到第一个字就开始输出，这让用户体验更佳。
-[参考](https://github.com/openai/openai-node/issues/18)
+[参考 |](https://github.com/openai/openai-node/issues/18)
+[node stream |](https://github.com/node-fetch/node-fetch#streams)
 ```js
 // 服务器端实现
 try {
@@ -274,7 +289,6 @@ try {
               if (message === '[DONE]') {
                 // console.log(996, "done")
                   res.end()
-                  return
               }
               let strTemp = getReg(message)
               if(strTemp != null){
@@ -288,7 +302,7 @@ try {
 //输出的结果是这样：
 data: {"id":"chatcmpl-6tolky9FdPyKCKiXbjF7rcWS1QeaA","object":"chat.completion.chunk","created":1678761216,"model":"gpt-3.5-turbo-0301","choices":[{"delta":{"content":"有"},"index":0,"finish_reason":null}]}
 data: {"id":"chatcmpl-6tolky9FdPyKCKiXbjF7rcWS1QeaA","object":"chat.completion.chunk","created":1678761216,"model":"gpt-3.5-turbo-0301","choices":[{"delta":{"content":"关"},"index":0,"finish_reason":null}]}  
-//使用正则提取中间的字符串，清洗openai字符串
+//使用正则提取中间的字符串，清洗得到的字符串
 function getReg(text){
   //"content":"我是中"},"index"  提取中间的字符串
   let reg = /(?<=\"content\"\:\")[\s\S]*?(?=\"\}\,\"index\")/g
@@ -307,7 +321,7 @@ let dataObj = {
           'Content-Type': 'application/json',
      },
      body: JSON.stringify({
-          query: query,
+          query
           })
 }
 
@@ -381,8 +395,52 @@ const decoded = decode(encoded)
 console.log(22, 'We can decode it back into:\n', decoded)
 ```
 
+## Dall-E
+```js
+const { Configuration, OpenAIApi } = require("openai");
+const configuration = new Configuration({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+const openai = new OpenAIApi(configuration)
+let response = await openai.createImage({
+  prompt: "A cute baby sea otter",
+  n: 1,
+  size: "512x512",
+  response_format: "b64_json"
+})
+//response.data.data[0].b64_json
+
+const response = await openai.createImage({
+  prompt: "A cute baby sea otter",
+  n: 2,
+  size: "1024x1024",
+})
+//response_format不设置，则默认返回 url
+//response.data.data[0]..url
+
+//参数：
+n： integer Optional  Defaults to 1,  Must be between 1 and 10.
+size： string  Optional Defaults to 1024x1024,  Must be one of 256x256, 512x512, or 1024x1024.
+response_format： string Optional Defaults to url , Must be one of url or b64_json
+```
+
+## 图片上传到IPFS
+```js
+//response.data.data[0].b64_json
+let imgurls = []
+let img_length = response.data.data.length
+for(let i = 0; i < img_length; i++){
+  let content = Buffer.from(response.data.data[i].b64_json, 'base64')
+  let resX = await ipfs.add(content)
+  let imgHash = resX.path
+  // console.log(88, resX, 456, imgHash)
+  imgurls.push(ipfs_host+imgHash)
+}
+```
+
 ## 计费说明
-$0.0200/1000tokens(约750英文单词)，1个token对应约4个字符。 <br>
+[pricing](https://openai.com/pricing)
+$0.0200/1000tokens(约750英文单词)，1个token对应约4个字符。<br>
 图片生成是每张消耗 $0.016 
 
 ChatGPT API<br>
@@ -390,3 +448,4 @@ $0.002/1000tokens(约750英文单词)
 
 Whisper API  <br>
 $0.006/分钟
+

@@ -1,4 +1,4 @@
-# <center>Hugging Face</center>
+# <center>HuggingFace</center>
 
 ## 下载与资源
 [官网 ｜](https://huggingface.co)

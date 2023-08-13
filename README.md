@@ -1,33 +1,64 @@
 # <center>Awesome AI</center>
 
+<!-- TOC -->
+
+- [<center>Awesome AI</center>](#centerawesome-aicenter)
+    - [AI助手](#ai助手)
+    - [大语言模型LLMs](#大语言模型llms)
+    - [AutoGPT](#autogpt)
+    - [ChatGPT工具](#chatgpt工具)
+    - [AI社区](#ai社区)
+    - [绘图](#绘图)
+    - [修图](#修图)
+    - [设计](#设计)
+    - [写作](#写作)
+    - [编程](#编程)
+    - [虚拟角色](#虚拟角色)
+    - [图像生成关键词](#图像生成关键词)
+    - [关键词助手](#关键词助手)
+    - [视频](#视频)
+    - [音频](#音频)
+    - [三维化](#三维化)
+    - [AI专用语言](#ai专用语言)
+
+<!-- /TOC -->
+
 ## AI助手
-[ChatGPT](https://chat.openai.com) OpenAI研发的聊天机器人程序 人工智能技术驱动的自然语言处理工具。
+[ChatGPT](https://chat.openai.com) OpenAI研发的聊天机器人程序，人工智能技术驱动的自然语言处理工具。
 
-[ChatGPT关键词](./openai/catgpt.md) 关键词技巧及角色代入
+[Google Bard](https://bard.google.com) LaMDA 模型驱动，谷歌出品
 
-[Openai API](./openai/openai.md) 关键词技巧及开发
+[Claude](https://claude.ai/chats) 强劲的AI助手
 
-[Openai Cookbook](https://github.com/openai/openai-cookbook) Openai开发指南(python)
+[Claudeai](https://www.claudeai.ai/zh-CN/) Claude国内镜像网站
 
-[AI·Joe](https://ai.ilark.io/)  基于OpenAI Api开发，对具体的应用场景和参数都做了调优
+[AI·Joe](https://ai.ilark.io/) 基于多个语言模型和开发框架，对具体的应用场景和参数都做了调优
+
+[LLaMA2 Chatbot](https://www.llama2.ai/) 基于LLaMA2的AI助手
+
+[Llama2 ChatBot](https://chinese.llama.family) 基于Llama2的在线对话机器人
 
 [Notion AI](https://www.notion.so/) 偏重工作空间，团队合作，笔记，文档
 
-[Notion简介](./notion/notion.md)
+[Cohere](https://cohere.com/) 打造人类与机器之间没有语言障碍的未来
+
+[Inflection AI](https://inflection.ai/) 为每个人创建个人人工智能
 
 [HuggingChat](https://huggingface.co/chat/) 开源免费的聊天助手
 
-[open-assistan](https://open-assistant.io)  开源免费的聊天助手
+[open-assistant](https://open-assistant.io)  开源免费的聊天助手
 
-[QuillBot](https://quillbot.com/)
+[QuillBot](https://quillbot.com/) 主要功能是重写文章
 
 [Perplexity](https://www.perplexity.ai/) 为复杂问题提供准确答案的引擎
 
 [Writesonic](https://writesonic.com/) 文案写作工具
 
-[AI律师](https://donotpay.com/)
+[AI律师](https://donotpay.com/) 
 
-[Character](https://beta.character.ai/)  角色AI
+[Casetext](https://casetext.com) 法律助手
+
+[Character](https://beta.character.ai/)  模拟角色对话，一众名人都在其中
 
 [Chatbase](https://www.chatbase.co/#demo) 构建一个基于特点数据和文档的聊天机器人
 
@@ -41,7 +72,74 @@
 
 [佛祖AI](https://hotoke.ai/)  机器佛
 
-## ChatGPT插件
+[GPTZero](https://gptzero.me) 对抗 AI, 检测文本是不是由 AI 生成的
+
+[GirlfriendGPT](https://github.com/EniasCailliau/GirlfriendGPT) 私人情感AI
+
+[DB-GPT](https://github.com/eosphoros-ai/DB-GPT)  用私有化LLM技术定义数据库下一代交互方式
+
+
+## 大语言模型LLMs
+[LLaMA](https://github.com/facebookresearch/llama) Meta开源的LLaMA
+
+[Llama2-Chinese](https://github.com/FlagAlpha/Llama2-Chinese) 中文Llama大模型
+
+[llama-2-13b-chat](https://replicate.com/a16z-infra/llama13b-v2-chat) 来自Meta的130亿参数语言模型，针对聊天完成度进行了微调
+
+[Alpaca](https://github.com/tatsu-lab/stanford_alpaca) 斯坦福羊驼,遵循指令的LLaMA模型
+
+[Alpaca-Lora](https://github.com/tloen/alpaca-lora) LLaMA-7B模型上微调, 轻量级羊驼
+
+[BELLE](https://github.com/LianjiaTech/BELLE) 基于斯坦福的Alpaca, 并进行了中文优化
+
+[PandaLLM](https://github.com/dandelionsllm/pandallm) 海外中文开源大语言模型,基于Llama-7B, -13B, -33B, -65B
+
+[Cornucopia](https://github.com/jerry1993-tech/Cornucopia-LLaMA-Fin-Chinese) 基于中文金融知识的LLaMA微调模型
+
+[骆驼](https://github.com/LC1332/Luotuo-Chinese-LLM) 开源中文大语言模型
+
+[ChatGLM2](https://github.com/THUDM/ChatGLM2-6B) 国产开源的、支持中英双语的对话语言模型
+
+[DoctorGLM](https://github.com/xionghonglin/DoctorGLM) 基于ChatGLM-6B的中文问诊模型
+
+[明医(MING)](https://github.com/MediaBrain-SJTU/MING) 基于ChatGLM-6B微调的中文医疗通用模型
+
+[gpt4all](https://github.com/nomic-ai/gpt4all) 迷你版GPT，可以在消费级CPU上本地运行
+
+[OpenLLM](https://github.com/bentoml/OpenLLM)  在生产中运行大型语言模型 (LLM) 的开放式平台
+
+[ChatLaw](https://github.com/PKU-YuanGroup/ChatLaw) 北大团队发布法律大模型, 致力于提供普惠的法律服务
+
+[BianQue](http://github.com/scutcyr/BianQue) 中文医疗对话模型扁鹊
+
+
+## AutoGPT
+[官网 |](https://news.agpt.co/)
+
+[MetaGPT](https://github.com/geekan/MetaGPT) 使GPT以软件公司的形式工作，协作处理更复杂的任务
+
+[github |](https://github.com/Significant-Gravitas/Auto-GPT)
+
+[文档 ｜](https://docs.agpt.co/)
+
+[中文版 ｜](https://github.com/RealHossie/Auto-GPT-Chinese)
+
+[中文安装文档 ｜](https://hossie.notion.site/828a0874e1c2472887859437eaf9cf00)
+
+[Ggodmode](https://godmode.space)  AutoGPT + BabyAGI
+
+[AutoGPT.js](https://autogptjs.com) 自动化AI的浏览器
+
+[AgentGPT](https://agentgpt.reworkd.ai)
+
+[Agent Colab](https://colab.research.google.com/drive/1QpvUHQzpHPvlMgBElwd5NJQ6qpryVeWE?usp=sharing)
+
+
+## ChatGPT工具
+[Openai Cookbook](https://github.com/openai/openai-cookbook) Openai开发指南(python)
+
+[Monica](https://monica.im/) 谷歌插件, AI智能助理
+
 [AIPRM](https://chrome.google.com/webstore/detail/aiprm-for-chatgpt/ojnbohmppadfgpejeebfnmnknjdlckgj?hl=en) 众多功能 
 
 [Bardeen](https://www.bardeen.ai/)  谷歌插件， 自动化社交媒体
@@ -52,11 +150,17 @@
 
 [Awesome Chatgpt](https://github.com/humanloop/awesome-chatgpt) 项目集
 
+[OpenRouter](https://openrouter.ai/) 提供多个大模型的API接口
+
 
 ## AI社区
 [Hugging Face](https://huggingface.co) 机器学习的开源社区
 
 [Hugging Face API](./huggingface/HuggingFace.md) Hugging Face API开发
+
+[PaddleHub](https://github.com/PaddlePaddle/PaddleHub) 多个预训练模型
+
+[魔搭社区](https://www.modelscope.cn/home) 多场景任务开源模型资源
 
 [All Things AI](https://allthingsai.com) AI工具集
 
@@ -66,18 +170,18 @@
 
 [Tools Arena](https://aitoolsarena.com/) AI工具集
 
-[PaddleHub](https://github.com/PaddlePaddle/PaddleHub) 多个预训练模型
+[Topapps](http://Topapps.ai) AI工具集
+
+[Learnprompting](learnprompting.org) 吴恩达开源的免费机器学习课程，讲的是如何与 AI 沟通。
 
 ## 绘图
 [Midjourney](https://midjourney.com/) 效果极佳的AI制图工具，使用discord
 
-[Midjourney prompt](./midjourney/midjourney.md) Midjourney关键词技巧
+[Blue Willow](https://www.bluewillow.ai/) midjourney的同类产品，免费 
 
-[Blue Willow](https://www.bluewillow.ai/) midjourney的同类产品，免费
+[Stable Foundation](https://discord.com/channels/1002292111942635562/1100170312106127410) Stable Foundation的同类产品，免费  
 
-[Stability AI](https://stability.ai/) Stable Diffusion较好的版本
-
-[Stability API](./stability/stability_client.md)  API开发
+[Stability AI](https://stability.ai/) 号称Stable Diffusion后面的公司
 
 [Leonardo](https://leonardo.ai/) 免费，多个模型
 
@@ -88,6 +192,8 @@
 [Run Diffusion](https://rundiffusion.com/) 运行Stable Diffusion各种版本的云端
 
 [Stable Diffusion Webui)](https://github.com/AUTOMATIC1111/stable-diffusion-webui) 适合本地安装的diffusion网页端
+
+[Stable Diffusion Colab](https://github.com/camenduru/stable-diffusion-webui-colab) google Colab 版本
 
 [Lexica](https://lexica.art/)  带绘图和搜索功能
 
@@ -102,6 +208,10 @@
 [Instantart](https://instantart.io/)
 
 [Dream](https://dream.ai/)
+
+[DeepFloyd](https://deepfloyd.ai)
+
+[DeepFloyd Hugging Face Space](https://huggingface.co/spaces/DeepFloyd/IF)
 
 [6pen](https://6pen.art/) 国产的AI绘图工具
 
@@ -131,7 +241,7 @@
 [AI图像增强工具](https://deep-image.ai/)
 
 ## 设计
-[Canva](https://www.canva.com/zh_cn/) 在线设计平台，图像，短视频，动画，电子书，二维码
+[Canva](https://www.canva.com) 在线设计平台，品牌设计，网站设计，短视频，动画，电子书，二维码
 
 [Looka](https://looka.com) 商标设计
 
@@ -146,6 +256,12 @@
 [Designs](https://designs.ai/) 综合性在线设计网站  
 
 [Brandmark](https://brandmark.io/) 专做logo
+
+[Durable](http://Durable.co)  建网站
+
+[10web](https://10web.io/) 网站搭建
+
+[Kickresume](http://Kickresume.com) AI简历生成器
 
 ## 写作
 [Copy AI](https://www.copy.ai/) 多种功能调优的写作助手
@@ -164,10 +280,10 @@
 
 [Codeium](https://codeium.com) 免费的编程助手
 
-[GitHub Copilot](https://github.com/features/copilot) 需要信用卡
+[GitHub Copilot](https://github.com/features/copilot) 编程助手，需要信用卡
 
 ## 虚拟角色
-[Heygen](https://www.heygen.com/) 虚拟3D人物视频, 虚拟人物播报
+[Heygen](https://www.heygen.com/) 虚拟3D人物视频, 虚拟人物播报。制作专属数字人，并在短视频、直播和带货等多种场景中使用 
 
 [D-ID](https://www.d-id.com/) 虚拟3D人物视频，5分钟的免费额度
 
@@ -181,7 +297,7 @@
 [methexis-inc](https://replicate.com/methexis-inc/img2prompt)
 
 ## 关键词助手
-[Chat GPT Prompts](https://prompts.chat/) Chat GPT代入角色
+[Chat GPT Prompts](https://prompts.chat/) ChatGPT代入角色
 
 [Lexica](https://lexica.art/)  图库和搜索功能
 
@@ -194,6 +310,8 @@
 [Huggingface prompt](huggingface.co/spaces/doevent/prompt-generator)
 
 [Prompt Muse](https://promptmuse.com/)
+
+[Replicate](https://replicate.com) 海量的提示词
 
 
 ## 视频
@@ -252,7 +370,7 @@
 
 [Speechify](https://speechify.com/) 文本转音频
 
-[Mubert](https://mubert.com/)
+[Mubert](https://mubert.com/) 生成音乐 
 
 [Play.ht](https://play.ht/) 文本转音频
 
@@ -267,6 +385,8 @@
 
 [Luma AI](https://lumalabs.ai) 通过手机生成逼真3D效果
 
+[Kaedim3d](Kaedim: https://www.kaedim3d.com/) 3D模型自动生成
 
 
-
+## AI专用语言
+[Mojo](https://docs.modular.com/mojo/get-started.html)
