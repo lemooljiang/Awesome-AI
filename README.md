@@ -136,6 +136,8 @@
 
 
 ## ChatGPT工具
+[OpenRouter](https://openrouter.ai/) 提供多个大模型的API接口
+
 [Openai Cookbook](https://github.com/openai/openai-cookbook) Openai开发指南(python)
 
 [Monica](https://monica.im/) 谷歌插件, AI智能助理
@@ -150,13 +152,9 @@
 
 [Awesome Chatgpt](https://github.com/humanloop/awesome-chatgpt) 项目集
 
-[OpenRouter](https://openrouter.ai/) 提供多个大模型的API接口
-
 
 ## AI社区
 [Hugging Face](https://huggingface.co) 机器学习的开源社区
-
-[Hugging Face API](./huggingface/HuggingFace.md) Hugging Face API开发
 
 [PaddleHub](https://github.com/PaddlePaddle/PaddleHub) 多个预训练模型
 
@@ -179,7 +177,7 @@
 
 [Blue Willow](https://www.bluewillow.ai/) midjourney的同类产品，免费 
 
-[Stable Foundation](https://discord.com/channels/1002292111942635562/1100170312106127410) Stable Foundation的同类产品，免费  
+[Stable Foundation](https://discord.com/channels/1002292111942635562/1100170312106127410) Stable Diffusion的同类产品，免费  
 
 [Stability AI](https://stability.ai/) 号称Stable Diffusion后面的公司
 
@@ -187,11 +185,9 @@
 
 [Astria](https://www.astria.ai) 虚拟人物，产品广告，视频制作
 
-[Stable Diffusion](https://huggingface.co/spaces/stabilityai/stable-diffusion)
-
 [Run Diffusion](https://rundiffusion.com/) 运行Stable Diffusion各种版本的云端
 
-[Stable Diffusion Webui)](https://github.com/AUTOMATIC1111/stable-diffusion-webui) 适合本地安装的diffusion网页端
+[Stable Diffusion Webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui) 本地安装的diffusion网页端
 
 [Stable Diffusion Colab](https://github.com/camenduru/stable-diffusion-webui-colab) google Colab 版本
 
@@ -201,7 +197,7 @@
 
 [Playground AI](https://playgroundai.com)  免费，多个模型
 
-[Dreamlike](https://dreamlike.art) 11
+[Dreamlike](https://dreamlike.art) 
 
 [mage.space](https://www.mage.space)
 
@@ -218,6 +214,8 @@
 [Pai](https://artpai.xyz/#/) 国产的AI绘图工具
 
 [AI绘画资料合集](https://github.com/hua1995116/awesome-ai-painting) AI绘画资料合集
+
+[MiniGPT](https://github.com/Vision-CAIR/MiniGPT-4) 图像识别模型
 
 ## 修图
 [Cutout](https://www.cutout.pro/zh-CN) 修图工具，去除背景，放大图片等
@@ -360,6 +358,8 @@
 
 [Elevenlabs](https://beta.elevenlabs.io/)  声音克隆
 
+[Singing Voice Conversion](https://github.com/svc-develop-team/so-vits-svc) 歌声音色转化的模型
+
 [lovo](https://lovo.ai/)
 
 [Voicemod](https://www.voicemod.net/) 变声器
@@ -379,13 +379,15 @@
 [Buzz](https://github.com/chidiwilliams/buzz) 在你的个人电脑上离线转录和翻译音频。由OpenAI的Whisper提供技术支持。
 
 ## 三维化
+[Shap-E](https://github.com/openai/shap-e) 从文字或图片生成3D物体
+
 [Spline](https://spline.design/ai) 生成3D物体
 
 [Blockade Labs](https://www.blockadelabs.com/index.html) 三级场景等
 
 [Luma AI](https://lumalabs.ai) 通过手机生成逼真3D效果
 
-[Kaedim3d](Kaedim: https://www.kaedim3d.com/) 3D模型自动生成
+[Kaedim3d](https://www.kaedim3d.com/) 3D模型自动生成
 
 
 ## AI专用语言
