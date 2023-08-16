@@ -4,6 +4,7 @@
 
 - [<center> Chroma  </center>](#center-chroma--center)
     - [向量数据库 Chroma](#向量数据库-chroma)
+    - [bug](#bug)
     - [基本使用](#基本使用)
     - [Chroma embedding](#chroma-embedding)
     - [Chroma docker](#chroma-docker)
@@ -34,6 +35,12 @@ pip install chromadb   # 0.4.3
 # chromadb有一堆预先的依赖。如果已经安装了langchain，就不用安装别的。否则要先安装torch
 pip install torch -i https://pypi.tuna.tsinghua.edu.cn/simple    //2.0.1  一堆 nvidia-cublas
 //pip install torch
+```
+
+## bug
+```py
+1. 使用`delete`函数后，经常会出现如下错误，暂未修复：
+Delete of nonexisting embedding ID: 77d25c18-3774-11ee-a7f1-fb75c83274a1
 ```
 
 ## 基本使用

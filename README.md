@@ -100,6 +100,8 @@
 
 [ChatGLM2](https://github.com/THUDM/ChatGLM2-6B) 国产开源的、支持中英双语的对话语言模型
 
+[Qwen](https://github.com/QwenLM/Qwen-7B) 通义千问-7B, 阿里云出品
+
 [DoctorGLM](https://github.com/xionghonglin/DoctorGLM) 基于ChatGLM-6B的中文问诊模型
 
 [明医(MING)](https://github.com/MediaBrain-SJTU/MING) 基于ChatGLM-6B微调的中文医疗通用模型
