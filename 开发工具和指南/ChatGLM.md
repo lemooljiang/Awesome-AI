@@ -14,6 +14,10 @@
 [安装 |](https://baijiahao.baidu.com/s?id=1769236478823582890&wfr=spider&for=pc)
 [ChatGLM-6B 部署与 P-Tuning 微调实战](https://baijiahao.baidu.com/s?id=1765123631287305087)
 [视频链接](https://www.bilibili.com/video/BV1414y1m7mE)
+[用Langchain-ChatGLM解析小说 |](https://mp.weixin.qq.com/s/6TckgOO3ZKS9lDhHOq5h0A)
+[Langchain-ChatGLM中间件的深度学习 |](https://mp.weixin.qq.com/s/m6JZvUPU2lzRSPlbKtXABA)
+[集成进LangChain |](https://juejin.cn/post/7226157821708681277)
+[LLM实现QA问答中的一些细节笔记 |](https://zhuanlan.zhihu.com/p/627439522)
 
 ChatGLM-6B模型是一个62亿参数规模的中英双语对话语言模型，它使用了清华大学KEG实验室与智谱AI公司共同构建的一个包含超过1000亿词汇量的中英双语数据集进行预训练。该数据集涵盖了各种类型和领域的文本数据，包括新闻、百科、社交媒体、小说、电影剧本等，并且特别增加了大量的对话数据，如电视剧台词、聊天记录、问答平台等。通过这样一个丰富多样的数据集，ChatGLM-6B模型可以学习到更加全面和深入的语言知识，并且可以更好地适应不同风格和主题的对话场景
 

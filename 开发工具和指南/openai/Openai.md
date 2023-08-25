@@ -7,6 +7,7 @@
 [工具指南(python) |](https://github.com/openai/openai-cookbook)   
 [手机接码平台 |](https://sms-activate.org/cn)
 [开发参考 ｜](https://github.com/adrianhajdin/project_openai_codex)
+[微调模型 |](https://openai.com/blog/gpt-3-5-turbo-fine-tuning-and-api-updates)
 
 ## Openai API
 [参数 ｜](https://platform.openai.com/docs/api-reference/chat/create)
@@ -22,6 +23,8 @@ import { Configuration, OpenAIApi } from 'openai'
 const configuration = new Configuration({
   apiKey: "your openai api key",
 })
+// 如果希望通过代理来访问, 加上
+basePath: "https://example.com/v1"
 
 const openai = new OpenAIApi(configuration)
 
@@ -35,25 +38,28 @@ app.get('/', async (req, res) => {
   })
 })
 
-//AI的文本功能，模型是text-davinci-003
+
+// 模型是 gpt-3.5-turbo，性价比最高的模型
 //temperature 取0-1之间，值越高，相关度越低
-app.post('/word', async (req, res) => {
+app.post('/gpt', async (req, res) => {
   try {
     const prompt = req.body.prompt
     const temperature = req.body.temperature
 
-    const response = await openai.createCompletion({
-      model: "text-davinci-003", 
-      prompt: `${prompt}`,
-      temperature: temperature, // Higher values means the model will take more risks.
-      max_tokens: 1500, // The maximum number of tokens to generate in the completion. Most models have a context length of 2048 tokens (except for the newest models, which support 4096).
-      top_p: 1, // alternative to sampling with temperature, called nucleus sampling
-      frequency_penalty: 0, // Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.
-      presence_penalty: 0, // Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.
-    });
+    const response = await openai.createChatCompletion({
+        model: "gpt-3.5-turbo", 
+        messages: query,
+        temperature: 0.2, // Higher values means the model will take more risks.
+        max_tokens: 1500, // The maximum number of tokens to generate in the completion. Most models have a context length of 2048 tokens (except for the newest models, which support 4096).
+        top_p: 1, // alternative to sampling with temperature, called nucleus sampling
+        frequency_penalty: 0, // Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.
+        presence_penalty: 0, // Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.
+      })
+
+    console.log(55, response.data.choices[0].message)
 
     res.status(200).send({
-      bot: response.data.choices[0].text
+      bot: response.data.choices[0].message
     });
 
   } catch (error) {
@@ -62,35 +68,6 @@ app.post('/word', async (req, res) => {
   }
 })
 //特别注意：这里的max_tokens是指输出的最大token值，不是指模型的max_tokens值！比如gpt-3.5-turbo的max_tokens是4096，但这里的max_tokens却只能填1500！
-
-//chatgpt api 
-//模型是 gpt-3.5-turbo，性价比最高的模型
-app.post('/gpt', async (req, res) => {
-  try {
-    const query = req.body.query
-    const temperature = req.body.temperature
-
-    const response = await openai.createChatCompletion({
-      model: "gpt-3.5-turbo",
-      messages: query,
-      temperature: temperature, 
-      max_tokens: 1500, 
-      top_p: 1, 
-      frequency_penalty: 0, 
-      presence_penalty: 0, 
-    })
-
-    res.status(200).send({
-      message: response.data.choices[0].message
-    });
-
-  } catch (error) {
-    console.error(111, error)
-    res.status(500).send('Something went wrong')
-  }
-})
-
-app.listen(6200, () => console.log('AI server started on http://localhost:6200'))
 ```
 
 ## python版本
@@ -102,8 +79,13 @@ import os
 import openai
 
 openai.api_key = "YOUR API-KEY"
+
+# 如果希望通过代理来访问
+openai.api_base = "https://example.com/v1"
 # os.environ['HTTP_PROXY'] = "xxx"
 # os.environ['HTTPS_PROXY'] = "xxx"
+# os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
+# os.environ["OPENAI_API_BASE"] = os.getenv("OPENAI_API_BASE")
 
 completion = openai.ChatCompletion.create(
   model="gpt-3.5-turbo",
@@ -436,6 +418,41 @@ for(let i = 0; i < img_length; i++){
   // console.log(88, resX, 456, imgHash)
   imgurls.push(ipfs_host+imgHash)
 }
+```
+
+## 反向代理
+```py
+# 海外服务器 nginx 
+server { 
+	server_name  example.com;
+
+    location / {
+        proxy_pass  https://api.openai.com/;
+        proxy_ssl_server_name on;
+        proxy_set_header Host api.openai.com;
+        proxy_set_header Connection '';
+        proxy_http_version 1.1;
+        chunked_transfer_encoding off;
+        proxy_buffering off;
+        proxy_cache off;
+        proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+
+	error_page   500 502 503 504  /50x.html;
+	location = /50x.html {
+		root   /usr/share/nginx/html;
+	}
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/example.com/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+}
+
+# 用户端 加上一条 api_base 
+openai.api_base = "https://example.com/v1"
 ```
 
 ## 计费说明

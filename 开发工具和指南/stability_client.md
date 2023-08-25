@@ -3,15 +3,19 @@
 ## 下载与资源
 [官网 ｜](https://stability.ai/) 
 [文档 ｜](https://platform.stability.ai)
-[API参数 ｝](./parameter.md)
 [REST-API |](https://api.stability.ai/docs)
+[pricing |](https://platform.stability.ai/pricing)
+[关键词参考 |](https://mp.weixin.qq.com/s/Amo5PP9BqOWtWBCndWbXwQ)
+[关键词参考2 |](https://mp.weixin.qq.com/s/gzWnoP6MXTTukonpGQKIvQ)
+[生成关键词 |](http://sd.firstool.online/)
+
 
 ## REST API
 [文档](https://platform.stability.ai/rest-api)
 ```js
 import fetch from "node-fetch"
 
-let url = 'https://api.stability.ai'
+let apiHost = 'https://api.stability.ai'
 let API_KEY = "sk-lx8xxxxxxxxxx"
 const response = await fetch(
     url+'/v1/engines/list',
@@ -40,13 +44,12 @@ const url = `${apiHost}/v1/engines/list`
 `${apiHost}/v1/generation/${engineId}/text-to-image`,
 https://api.stability.ai/v1/generation/{engine_id}/text-to-image
 
-let engineId = 'stable-diffusion-512-v2-0'
+let engineId = 'stable-diffusion-xl-1024-v1-0'
 let prompt = "A Yuezhou kiln dish designed with Plum Blossom abstract patterns,Rococo "
 
 async function query() {
-  let engineId = 'stable-diffusion-768-v2-1'
   const response = await fetch(
-      `${url}/v1/generation/${engineId}/text-to-image`,
+      `${apiHost}/v1/generation/${engineId}/text-to-image`,
       {
           headers: {
             'Content-Type': 'application/json',
@@ -54,7 +57,6 @@ async function query() {
             'Authorization': `Bearer ${API_KEY}`,
           },
           method: "POST",
-          // method: 'GET',
           body: JSON.stringify({
             text_prompts: [
               {
@@ -63,8 +65,8 @@ async function query() {
             ],
             cfg_scale: 7,
             clip_guidance_preset: 'FAST_BLUE',
-            height: 768,
-            width: 768,
+            height: 1024,
+            width: 1024,
             samples: 1,
             steps: 30,
           })
@@ -94,6 +96,7 @@ engine_id： string Example: stable-diffusion-v1-5
   stable-diffusion-768-v2-1
   stable-inpainting-v1-0
   stable-inpainting-512-v2-0
+  stable-diffusion-xl-1024-v1-0
 height：Default: 512
 width： Default: 512  
   For 768 engines:   589,824 ≤ height * width ≤ 1,048,576
@@ -155,6 +158,4 @@ async function stability(prompt, id, username, num){
 }
 ```
 
-
-
-
+best quality, ultra-detailed, masterpiece, hires, 8k, stand up,girl,thin , short ponytail , red hair , smirk , fox ears , heart - shaped pupils , tail ,denim skirt,beautiful purple sunset at beach

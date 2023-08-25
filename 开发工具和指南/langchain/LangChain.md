@@ -166,7 +166,9 @@ print(123, texts)
 ```
 
 ## embeddings
+[text2vec |](https://github.com/shibing624/text2vec)
 [参考 |](https://zhuanlan.zhihu.com/p/622017658)
+[本地知识库 |](https://juejin.cn/post/7210005376653361213?searchId=20230821101516BD321EF6F8D9E28CA861)
 [huggingface |](https://huggingface.co/shibing624/text2vec-base-chinese/tree/main)
 ```py
 # OpenAIEmbeddings
@@ -212,7 +214,9 @@ from langchain.embeddings.huggingface import HuggingFaceEmbeddings
 
 embedding = HuggingFaceEmbeddings(model_name='shibing624/text2vec-base-chinese')
 # 较好的中文模型，需要下载包，最好有GPU资源
-# 默认存入 /root/.cache/huggingface
+# 默认存入 /root/.cache/huggingface, 大小约849M
+# /root/.cache/torch/sentence_transformers 大小约391M
+# 在短文本的表现上不好
 
 text = "This is a test document."
 
@@ -232,6 +236,26 @@ HuggingFaceEmbeddings：
 可以在HuggingFace上面选择各种sentence-similarity模型来进行实验，数据都是在本机上进行计算
 需要一定的硬件支持，最好是有GPU支持，不然生成数据可能会非常慢
 生成的向量效果可能不是很好，并且HuggingFace上的中文向量模型不是很多。
+
+# 其它模型
+# GanymedeNil/text2vec-large-chinese
+#  /root/.cache/huggingface
+# 默认存入 /root/.cache/torch/sentence_transformers  大小约2.5G
+embedding = HuggingFaceEmbeddings(model_name='GanymedeNil/text2vec-large-chinese')
+# 模型特点： 能正确查找到最关联的数据，但是，余弦值分布太分散，无法分辨是相关还是不相关的数据，无法实用！
+# 有短文本上计算很差
+
+
+# model config
+embedding_model_dict = {
+    "ernie-tiny": "nghuyong/ernie-3.0-nano-zh",
+    "ernie-base": "nghuyong/ernie-3.0-base-zh",
+    "ernie-medium": "nghuyong/ernie-3.0-medium-zh",
+    "ernie-xbase": "nghuyong/ernie-3.0-xbase-zh",
+    "text2vec-base": "GanymedeNil/text2vec-base-chinese",
+    'simbert-base-chinese': 'WangZeJun/simbert-base-chinese',
+    'paraphrase-multilingual-MiniLM-L12-v2': "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+}
 ```
 
 ## 基于文本的问答

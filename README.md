@@ -30,8 +30,6 @@
 
 [Claude](https://claude.ai/chats) 强劲的AI助手
 
-[Claudeai](https://www.claudeai.ai/zh-CN/) Claude国内镜像网站
-
 [AI·Joe](https://ai.ilark.io/) 基于多个语言模型和开发框架，对具体的应用场景和参数都做了调优
 
 [LLaMA2 Chatbot](https://www.llama2.ai/) 基于LLaMA2的AI助手
@@ -43,6 +41,8 @@
 [Cohere](https://cohere.com/) 打造人类与机器之间没有语言障碍的未来
 
 [Inflection AI](https://inflection.ai/) 为每个人创建个人人工智能
+
+[JARVIS](https://github.com/microsoft/JARVIS) 贾维斯，上层调度系统，可连接众多人工智能模型，以解决复杂的人工智能任务
 
 [HuggingChat](https://huggingface.co/chat/) 开源免费的聊天助手
 
@@ -78,6 +78,10 @@
 
 [DB-GPT](https://github.com/eosphoros-ai/DB-GPT)  用私有化LLM技术定义数据库下一代交互方式
 
+[GPT Academic](https://github.com/binary-husky/gpt_academic) 优化论文阅读/润色/写作体验
+
+[privateGPT](https://github.com/imartinez/privateGPT) 私人化GPT解决方案
+
 
 ## 大语言模型LLMs
 [LLaMA](https://github.com/facebookresearch/llama) Meta开源的LLaMA
@@ -94,6 +98,8 @@
 
 [PandaLLM](https://github.com/dandelionsllm/pandallm) 海外中文开源大语言模型,基于Llama-7B, -13B, -33B, -65B
 
+[FinGPT](https://github.com/AI4Finance-Foundation/FinGPT) 开源的金融语言模型, 使用RLHF方法进行个性化的金融语言建模
+
 [Cornucopia](https://github.com/jerry1993-tech/Cornucopia-LLaMA-Fin-Chinese) 基于中文金融知识的LLaMA微调模型
 
 [骆驼](https://github.com/LC1332/Luotuo-Chinese-LLM) 开源中文大语言模型
@@ -102,9 +108,15 @@
 
 [Qwen](https://github.com/QwenLM/Qwen-7B) 通义千问-7B, 阿里云出品
 
+[ChatDoctor](https://github.com/Kent0n-Li/ChatDoctor) LLaMA 基础上 fine-tune
+
 [DoctorGLM](https://github.com/xionghonglin/DoctorGLM) 基于ChatGLM-6B的中文问诊模型
 
 [明医(MING)](https://github.com/MediaBrain-SJTU/MING) 基于ChatGLM-6B微调的中文医疗通用模型
+
+[本草](https://github.com/SCIR-HI/Huatuo-Llama-Med-Chinese) 本草（原名：华驼），基于中文医学知识的大语言模型指令微调
+
+[Baize](https://github.com/project-baize/baize-chatbot) 白泽，来自ChatGPT训练的语言模型
 
 [gpt4all](https://github.com/nomic-ai/gpt4all) 迷你版GPT，可以在消费级CPU上本地运行
 
@@ -287,6 +299,8 @@
 
 [D-ID](https://www.d-id.com/) 虚拟3D人物视频，5分钟的免费额度
 
+[Fay](https://github.com/TheRamU/Fay) 多场景下的AI数字人助理
+
 [Movio](https://www.movio.la) 虚拟人物播报
 
 [Synthesia](https://www.synthesia.io/) 通过文本生成视频，没有免费额度
@@ -318,6 +332,8 @@
 [剪映](https://www.capcut.cn) 抖音出品的智能剪辑软件，文本生成视频
 
 [腾讯智影](https://zenvideo.qq.com/) 智能视频创作工具，数字人播报，素材，文本生成视频等
+
+[DeepFaceLive](https://github.com/iperov/DeepFaceLive) 视频直播聊天实时AI换脸
 
 [Clipchamp](https://clipchamp.com/en) 微软旗下的视频剪辑软件
 
@@ -354,6 +370,8 @@
 [一帧秒创](https://aigc.yizhentv.com/) 智能视频创作平台，一键文章转视频（关联度低）、图文转视频
 
 [Aimages](https://aimages.ai/) 图像视频画质提升
+
+[Text2Video-Zero](https://github.com/picsart-ai-research/text2video-zero) 使用文本描述生成视频
 
 ## 音频
 [Fliki](https://fliki.ai) 音频视频，每个月有5分钟的免费时长

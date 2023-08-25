@@ -14,6 +14,7 @@
     - [相关度数值检索](#相关度数值检索)
     - [metadata数据过滤](#metadata数据过滤)
     - [直接存入数据库和查询](#直接存入数据库和查询)
+    - [httpClient](#httpclient)
 
 <!-- /TOC -->
 
@@ -63,7 +64,6 @@ collection = client.get_collection("testname")
 collection = client.get_or_create_collection("testname")
 # 删除集合
 client.delete_collection("testname")
-
 
 # 创建或获取集合
 collection = client.get_or_create_collection(name="my_collection2")
@@ -132,6 +132,9 @@ print(156, results)
 156 {'ids': [['id1', 'id2']], 'embeddings': None, 'documents': [['2022年2月2号，美国国防部宣布：将向欧洲增派部队，应对俄乌边境地区的紧张局势.',
  ' 2月17号，乌克兰军方称：东部民间武装向政府军控制区发动炮击，而东部民间武装则指责乌政府军先动用了重型武器发动袭击，乌东地区紧张局势持续升级']], 
  'metadatas': [[{'source': 'my_source'}, {'source': 'my_source'}]], 'distances': [[1.2127416133880615, 1.3881784677505493]]}
+
+# 删除数据库
+res = httpClient.reset() #重置整个数据库， 要慎用！ 一般情况下此项设置为not allowed
 ```
 
 ## Chroma embedding
@@ -141,7 +144,7 @@ Chroma为流行的嵌入式提供商提供了轻量级封装，使您可以轻�
 ```py
 from chromadb.utils import embedding_functions
 
-# 默认值：all-MiniLM-L6- v2
+# 默认值：all-MiniLM-L6-v2
 # 默认情况下，Chroma 使用Sentence Transformers all-MiniLM-L6-v2模型来创建嵌入。该嵌入模型可以创建可用于各种任务的句子和文档嵌入。此嵌入功能在您的机器上本地运行，并且可能需要您下载模型文件（这将自动发生）。
 default_ef = embedding_functions.DefaultEmbeddingFunction()
 
@@ -169,20 +172,34 @@ openai_ef = embedding_functions.OpenAIEmbeddingFunction(
 
 ## Chroma docker
 ```py
-# server
-docker-compose up -d --build
+mkdir chromadb & cd chromadb
+git clone https://github.com/chroma-core/chroma.git
 
-# client
+# 构建数据库服务端
+# 1.从docker-compose构建
+docker compose up -d --build
+
+docker image ls
+    REPOSITORY   TAG       IMAGE ID       CREATED          SIZE
+    server       latest    1db4c828e77a   36 seconds ago   649MB
+# 2. 直接从dicker hub中摘取
+docker pull lemooljiang/chroma-server:latest
+# 后台过行
+docker run -d --name chromadb lemooljiang/chroma-server \
+uvicorn chromadb.app:app --workers 1 --host 0.0.0.0 --port 8000 --proxy-headers --log-config log_config.yml
+
+# 用户端
+pip install chromadb
+# client-only
 pip install chromadb-client
 # 请注意，chromadb-client软件包是完整Chroma库的子集，并不包含所有依赖项。如果您想使用完整的Chroma库，可以安装chromadb包。最重要的是，没有默认的嵌入函数。如果您在 add() 文档时没有使用嵌入函数，您必须手动指定一个嵌入函数并为其安装依赖项。
 
 import chromadb
-from chromadb.config import Settings
-# Example setup of the client to connect to your chroma server
-client = chromadb.Client(Settings(chroma_api_impl="rest", chroma_server_host="localhost", chroma_server_http_port=8000))
+chroma_client = chromadb.HttpClient(host='localhost', port=8000)
 ```
 
 ## langchain中的使用
+[参考](https://python.langchain.com/docs/integrations/vectorstores/chroma)
 ```py
 # /home/knowqa/know_env/lib/python3.10/site-packages/langchain/vectorstores
 from langchain.vectorstores import Chroma
@@ -342,7 +359,7 @@ docs = vectordb.similarity_search_with_score(query=ask, k=2, filter=dict(source=
 // [(Document(page_content='更多详细咨询营养师...的原因。', metadata={'source': './uploads/yisheng_update.docx'}), 186.72679092063976), (Document(page_content='益生菌就定植于..最直接的关系，能够在.的...畅，自然和谐统一的状态。', metadata={'source': './uploads/yisheng_update.docx'}), 221.41649154602675)]
 
 相关度数值（score）还是挺迷的，到底多少算是相关，多少算是不相关呢？这里，我做了一些测试。 用的都是中文，向量计算embedding分别采用了OpenAIEmbeddings， text2vec这两个库，计算出的数据经过一番比较，得到：
-OpenAIEmbeddings中，低于0.3的相关度高，高于0.4的基本不相关；
+OpenAIEmbeddings中，低于0.385的相关度高，高于0.4的基本不相关；
 text2vec中，低于256的算是相关度高，高于300的就基本不相关了！
 
 eg:
@@ -368,7 +385,7 @@ def queryVectorDB(ask):
 	if len(s) == 0:
 		return ""
 	else:
-		if s[0][1] < 0.3:   # 文本关联强则返回，不相关则不返回. shiba < 256  openai < 0.3
+		if s[0][1] < 0.385:   # 文本关联强则返回，不相关则不返回. shiba < 256  openai < 0.385
 			return s[0][0].page_content
 		else:
 			return ""
@@ -458,4 +475,23 @@ results = collection.query(
 print(156, results)
 {'ids': [['ab51abbe-6d3f-4c0e-a2cc-b245a3811ae9']], 'embeddings': None, 'documents': [['综合路透社、雅虎新闻等网站 2023 年 3 月 9 日报道，乌克兰官员称，3 月 9 日早些时候，俄 罗斯发动空袭，袭击了乌克兰多个地区，包括黑海港口敖德萨和乌克兰第二大城市哈尔科夫， 导致多个地区断电。这是俄罗斯时隔 25 天以后再次发动大规模袭击，俄军上次大规模导弹袭 击还是 2 月 10 日。俄军当时使用了巡飞弹和巡航导弹。']], 'metadatas': [[None]], 'distances': [[0.9033191204071045]]}
 # print(366, results['documents'][0][0])
+```
+
+## httpClient
+用docker运行了服务端，直接和它相连
+```py
+import chromadb
+# from langchain.vectorstores import Chroma
+from chromaX import ChromaX
+
+# 加载和实例化数据库
+# 数据库地址 /home/chromadb/chroma/chroma 
+collection = 'testNN'
+embedding = OpenAIEmbeddings(
+    model="text-embedding-ada-002",
+    openai_api_key=env_vars['OPENAI_API_KEY']
+)
+httpClient = chromadb.HttpClient(host='localhost', port=8000)
+vectordb = ChromaX(collection_name=collection, embedding_function=embedding, client=httpClient)
+print(33, vectordb)
 ```
