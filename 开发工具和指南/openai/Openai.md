@@ -25,6 +25,15 @@ const configuration = new Configuration({
 })
 // 如果希望通过代理来访问, 加上
 basePath: "https://example.com/v1"
+//https://api.openai.com/v1/chat/completions
+// 测试：
+curl https://example.com/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer sk-Axxxxx" \
+  -d '{
+    "model": "gpt-3.5-turbo",
+    "messages": [{"role": "user", "content": "Hello!"}]
+  }'
 
 const openai = new OpenAIApi(configuration)
 
@@ -50,7 +59,7 @@ app.post('/gpt', async (req, res) => {
         model: "gpt-3.5-turbo", 
         messages: query,
         temperature: 0.2, // Higher values means the model will take more risks.
-        max_tokens: 1500, // The maximum number of tokens to generate in the completion. Most models have a context length of 2048 tokens (except for the newest models, which support 4096).
+        max_tokens: 1600, // The maximum number of tokens to generate in the completion. Most models have a context length of 2048 tokens (except for the newest models, which support 4096).
         top_p: 1, // alternative to sampling with temperature, called nucleus sampling
         frequency_penalty: 0, // Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim.
         presence_penalty: 0, // Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics.
@@ -246,19 +255,21 @@ const response = await openai.createCompletion({
 边看边输的方式就是现在的推流(streaming)模式，像现在的视频站、直播等，肯定都是用的数据流，都是边看边播的。ChatGPT API也是可以实现同样的功能的。前端得到第一个字就开始输出，这让用户体验更佳。
 [参考 |](https://github.com/openai/openai-node/issues/18)
 [node stream |](https://github.com/node-fetch/node-fetch#streams)
+[ChatGPT流式streaming回复 |](https://juejin.cn/post/7222440107214241829)
+[SSE长连接 |](https://blog.csdn.net/m0_46672781/article/details/130296397)
+[Stream 流式 |](https://juejin.cn/post/7249286903207641146)
 ```js
 // 服务器端实现
 try {
     res.setHeader('Cache-Control', 'no-cache')
     res.setHeader('Content-Type', 'text/event-stream')
-    res.setHeader('Access-Control-Allow-Origin', '*')
     res.setHeader('Connection', 'keep-alive')
     res.flushHeaders() // flush the headers to establish SSE with client
 
     const response = openai.createChatCompletion({
-      model: "gpt-3.5-turbo",
+      model: "gpt-3.5-turbo",  //gpt-4
       messages: query,
-      max_tokens: 3000,
+      max_tokens: 1600,
       temperature: 0.2,
       stream: true,    //推流模式打开
     }, { responseType: 'stream' })
@@ -282,18 +293,35 @@ try {
     })
   }
 //输出的结果是这样：
-data: {"id":"chatcmpl-6tolky9FdPyKCKiXbjF7rcWS1QeaA","object":"chat.completion.chunk","created":1678761216,"model":"gpt-3.5-turbo-0301","choices":[{"delta":{"content":"有"},"index":0,"finish_reason":null}]}
-data: {"id":"chatcmpl-6tolky9FdPyKCKiXbjF7rcWS1QeaA","object":"chat.completion.chunk","created":1678761216,"model":"gpt-3.5-turbo-0301","choices":[{"delta":{"content":"关"},"index":0,"finish_reason":null}]}  
+data: {"id":"chatcmpl-7w3i1NrdH7yN3GHBEVyJqEHScmqai","object":"chat.completion.chunk","created":1694071637,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"role":"assistant","content":""},"finish_reason":null}]}
+data: {"id":"chatcmpl-7w3i1NrdH7yN3GHBEVyJqEHScmqai","object":"chat.completion.chunk","created":1694071637,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"好"},"finish_reason":null}]}
+data: {"id":"chatcmpl-7w3i1NrdH7yN3GHBEVyJqEHScmqai","object":"chat.completion.chunk","created":1694071637,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"么"},"finish_reason":null}]
+data: [DONE]
+
 //使用正则提取中间的字符串，清洗得到的字符串
 function getReg(text){
-  //"content":"我是中"},"index"  提取中间的字符串
-  let reg = /(?<=\"content\"\:\")[\s\S]*?(?=\"\}\,\"index\")/g
+  //"content":"好"},"finish_reason"  提取中间的字符串
+  let reg = /(?<=\"content\"\:\")[\s\S]*?(?=\"\}\,\"finish_reason\")/g
   let a = text.match(reg)
   if(a === null){
     return
   }
   return a.join('')
 }
+
+//openterrouter
+123 data: {"choices":[{"index":0,"delta":{"role":"assistant","content":" Hello"},"finish_reason":null}],"model":"claude-2.0","id":"gen-8o6FNHaMxikL3ibgrU3a3iRaOW2b"}
+123 data: {"choices":[{"index":0,"delta":{"role":"assistant","content":"!"},"finish_reason":null}],"model":"claude-2.0","id":"gen-8o6FNHaMxikL3ibgrU3a3iRaOW2b"}
+123 : OPENROUTER PROCESSING
+123 data: {"choices":[{"index":0,"delta":{"role":"assistant","content":" Let"},"finish_reason":null}],"model":"claude-2.0","id":"gen-8o6FNHaMxikL3ibgrU3a3iRaOW2b"}
+
+//meta-llama
+data: {"choices":[{"index":0,"delta":{"role":"assistant","content":"Hello"}}],"id":"gen-yvQXVWCU6bPQMBWZmjGFmnpgsRTS"}
+123 data: {"choices":[{"index":0,"delta":{"role":"assistant","content":"!"}}],"id":"gen-yvQXVWCU6bPQMBWZmjGFmnpgsRTS"}
+123 data: {"choices":[{"index":0,"delta":{"role":"assistant","content":" How"}}],"id":"gen-yvQXVWCU6bPQMBWZmjGFmnpgsRTS"}
+123 data: {"choices":[{"index":0,"delta":{"role":"assistant","content":" are"}}],"id":"gen-yvQXVWCU6bPQMBWZmjGFmnpgsRTS"}
+123 data: {"choices":[{"index":0,"delta":{"role":"assistant","content":" you"}}],"id":"gen-yvQXVWCU6bPQMBWZmjGFmnpgsRTS"}
+
 
 //用户端
 let query = [{role: "user", content: data.get('prompt')}]

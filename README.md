@@ -86,6 +86,10 @@
 ## 大语言模型LLMs
 [LLaMA](https://github.com/facebookresearch/llama) Meta开源的LLaMA
 
+[百川智能](https://www.baichuan-ai.com/home#introduce) 融合了意图理解、信息检索以及强化学习技术，结合有监督微调与人类意图对齐
+
+[智谱AI](https://open.bigmodel.cn) 基于领先的千亿级多语言、多模态预训练模型
+
 [Llama2-Chinese](https://github.com/FlagAlpha/Llama2-Chinese) 中文Llama大模型
 
 [llama-2-13b-chat](https://replicate.com/a16z-infra/llama13b-v2-chat) 来自Meta的130亿参数语言模型，针对聊天完成度进行了微调
@@ -110,6 +114,8 @@
 
 [ChatDoctor](https://github.com/Kent0n-Li/ChatDoctor) LLaMA 基础上 fine-tune
 
+[DISC-MedLLM](https://github.com/FudanDISC/DISC-MedLLM) 专门针对医疗健康对话式场景而设计的医疗领域大模型
+
 [DoctorGLM](https://github.com/xionghonglin/DoctorGLM) 基于ChatGLM-6B的中文问诊模型
 
 [明医(MING)](https://github.com/MediaBrain-SJTU/MING) 基于ChatGLM-6B微调的中文医疗通用模型
@@ -125,6 +131,10 @@
 [ChatLaw](https://github.com/PKU-YuanGroup/ChatLaw) 北大团队发布法律大模型, 致力于提供普惠的法律服务
 
 [BianQue](http://github.com/scutcyr/BianQue) 中文医疗对话模型扁鹊
+
+[RWKV](www.rwkv.com) RWKV是一种无需注意力机制的循环神经网络，因此速度更快且更省显存。它还支持 GPT 模式并行训练
+
+[中国大模型](https://github.com/wgwang/LLMs-In-China) 中国大模型汇总
 
 
 ## AutoGPT
@@ -292,12 +302,18 @@
 
 [Codeium](https://codeium.com) 免费的编程助手
 
-[GitHub Copilot](https://github.com/features/copilot) 编程助手，需要信用卡
+[GitHub Copilot](https://github.com/features/copilot) GitHub编程助手
 
 ## 虚拟角色
 [Heygen](https://www.heygen.com/) 虚拟3D人物视频, 虚拟人物播报。制作专属数字人，并在短视频、直播和带货等多种场景中使用 
 
 [D-ID](https://www.d-id.com/) 虚拟3D人物视频，5分钟的免费额度
+
+[KreadoAI](https://kreadoai.com/) 虚拟人物播报。制作专属数字人, 5分钟的免费额度
+
+[闪剪](https://shanjian.tv) 短视频制作工具，提供了一些虚拟数字人模板
+
+[Deepbrain](https://www.deepbrain.io/) 虚拟3D人物视频
 
 [Fay](https://github.com/TheRamU/Fay) 多场景下的AI数字人助理
 
@@ -372,6 +388,8 @@
 [Aimages](https://aimages.ai/) 图像视频画质提升
 
 [Text2Video-Zero](https://github.com/picsart-ai-research/text2video-zero) 使用文本描述生成视频
+
+[Wav2Lip](https://github.com/Rudrabha/Wav2Lip)  基于GAN的唇形动作迁移算法，实现生成的视频人物口型与输入语音同步
 
 ## 音频
 [Fliki](https://fliki.ai) 音频视频，每个月有5分钟的免费时长

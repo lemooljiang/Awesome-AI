@@ -8,6 +8,8 @@
     - [基本使用](#基本使用)
     - [Chroma embedding](#chroma-embedding)
     - [Chroma docker](#chroma-docker)
+    - [权限](#权限)
+    - [修改docker的配置](#修改docker的配置)
     - [langchain中的使用](#langchain中的使用)
     - [添加文本](#添加文本)
     - [更新和删除数据](#更新和删除数据)
@@ -172,21 +174,25 @@ openai_ef = embedding_functions.OpenAIEmbeddingFunction(
 
 ## Chroma docker
 ```py
-mkdir chromadb & cd chromadb
-git clone https://github.com/chroma-core/chroma.git
-
+# 服务端
 # 构建数据库服务端
 # 1.从docker-compose构建
-docker compose up -d --build
+mkdir chromadb & cd chromadb & git init
+git clone https://github.com/chroma-core/chroma.git
 
-docker image ls
-    REPOSITORY   TAG       IMAGE ID       CREATED          SIZE
-    server       latest    1db4c828e77a   36 seconds ago   649MB
-# 2. 直接从dicker hub中摘取
+docker compose up -d --build
+# 查看运行结果
+docker ps -a
+    b065543b05ec   server    "uvicorn chromadb.ap…"   About a minute ago   Up About a minute   0.0.0.0:8000->8000/tcp, :::8000->8000/tcp   chroma-server-1
+
+# 可以远程访问，无权限， 存在安全问题
+httpClient = chromadb.HttpClient(host='170.187.111.111', port=8000)
+
+# 2. 直接从dicker hub中拉取
 docker pull lemooljiang/chroma-server:latest
-# 后台过行
-docker run -d --name chromadb lemooljiang/chroma-server \
-uvicorn chromadb.app:app --workers 1 --host 0.0.0.0 --port 8000 --proxy-headers --log-config log_config.yml
+# 启动服务
+docker run -d -p 8000:8000 --name chromadb lemooljiang/chroma-server
+
 
 # 用户端
 pip install chromadb
@@ -196,6 +202,44 @@ pip install chromadb-client
 
 import chromadb
 chroma_client = chromadb.HttpClient(host='localhost', port=8000)
+```
+
+## 权限
+```py
+# 创建密钥
+docker run --rm --entrypoint htpasswd httpd:2 -Bbn admin admin > server.htpasswd
+# admin:$2y$05$QrljJulAv9jz8YOvo2gn.OX5BdvOe0Mv1tAhhohxe0KAWlTdsPpau
+
+Create a .chroma_env file with the following contents:
+.chroma_env
+CHROMA_SERVER_AUTH_CREDENTIALS_FILE="/chroma/server.htpasswd"
+CHROMA_SERVER_AUTH_CREDENTIALS_PROVIDER='chromadb.auth.providers.HtpasswdFileServerAuthCredentialsProvider'
+CHROMA_SERVER_AUTH_PROVIDER='chromadb.auth.basic.BasicAuthServerProvider'
+
+# 构建docker服务
+docker-compose --env-file ./.chroma_env up -d --build
+
+# Client Setup
+import chromadb
+from chromadb.config import Settings
+
+client = chromadb.HttpClient(
+  settings=Settings(chroma_client_auth_provider="chromadb.auth.basic.BasicAuthClientProvider",chroma_client_auth_credentials="admin:admin"))
+client.heartbeat()  # this should work with or without authentication - it is a public endpoint
+client.get_version()  # this should work with or without authentication - it is a public endpoint
+client.list_collections()  # this is a protected endpoint and requires authentication
+```
+
+## 修改docker的配置
+```py
+1. Dockerfile
+EXPOSE 9629
+2. docker-compose.yml
+command: uvicorn chromadb.app:app --reload --workers 1 --host 127.0.0.1 --port 9629 --log-config log_config.yml
+ports:
+     - 9629:9629
+3. bin/docker_entrypoint.sh
+uvicorn chromadb.app:app --workers 1 --host 127.0.0.1 --port 9629 --proxy-headers --log-config log_config.yml
 ```
 
 ## langchain中的使用

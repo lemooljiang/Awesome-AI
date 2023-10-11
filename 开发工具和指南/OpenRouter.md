@@ -51,6 +51,38 @@ def routerStreaming(query, temperature):
 
 ## 案例js
 ```js
+//方法一
+import { Configuration, OpenAIApi } from 'openai'
+
+const configuration = new Configuration({
+  apiKey: "sk-or-xxxxxxx",
+  basePath: "https://openrouter.ai/api/v1",
+  baseOptions: {
+    headers: {
+        "HTTP-Referer": "https://test.com",
+        "X-Title": "test"
+    }
+  }
+})
+
+const openai = new OpenAIApi(configuration)
+
+async function test(query){
+    const response = await openai.createChatCompletion({
+        model: "openai/gpt-3.5-turbo", 
+        messages: query,
+        temperature: 0.2, 
+        max_tokens: 1500, 
+        top_p: 1, 
+        frequency_penalty: 0, 
+        presence_penalty: 0, 
+      })
+      console.log(55, response.data.choices[0].message)
+}
+let s = [{"role": "user", "content": "Hello!"}]
+test(s)
+
+//方法二：
 import fetch from "node-fetch"
 
 const apiKey = "sk-xxxxxxx"

@@ -3,7 +3,8 @@
 ## 下载与资源
 [github |](https://github.com/THUDM/ChatGLM-6B)
 [github2 |](https://github.com/THUDM/ChatGLM2-6B)
-[官网 |](https://open.bigmodel.cn)
+[官网 |](https://chatglm.cn/)
+[智谱AI |](https://open.bigmodel.cn)
 [文档 |](https://open.bigmodel.cn/doc/api)
 [课程 ｜](https://huggingface.co/learn/nlp-course/zh-CN/chapter0/1?fw=pt)
 [本地知识库 ｜](https://github.com/imClumsyPanda/langchain-ChatGLM)
@@ -233,7 +234,7 @@ if __name__ == "__main__":
     compute_emb(w2v_model)
 ```
 
-# moka-ai/m3e-base
+## moka-ai/m3e-base
 [moka-ai]( https://huggingface.co/moka-ai/m3e-base)
 ```py
 from sentence_transformers import SentenceTransformer

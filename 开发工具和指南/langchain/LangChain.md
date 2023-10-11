@@ -169,7 +169,9 @@ print(123, texts)
 [text2vec |](https://github.com/shibing624/text2vec)
 [参考 |](https://zhuanlan.zhihu.com/p/622017658)
 [本地知识库 |](https://juejin.cn/post/7210005376653361213?searchId=20230821101516BD321EF6F8D9E28CA861)
-[huggingface |](https://huggingface.co/shibing624/text2vec-base-chinese/tree/main)
+[text2vec-base |](https://huggingface.co/shibing624/text2vec-base-chinese/tree/main)
+[m3e |](https://huggingface.co/moka-ai)
+[FlagEmbedding |](https://github.com/FlagOpen/FlagEmbedding)
 ```py
 # OpenAIEmbeddings
 pip install openai tiktoken
