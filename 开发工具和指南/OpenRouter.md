@@ -1,7 +1,7 @@
 ## openrouter
 [OpenRouter](https://openrouter.ai/docs)
 
-OpenRouter包含了多个大语言模型，国内可以访问。
+OpenRouter包含了多个大语言模型，国内可以直接访问。
 
 ## 案例python
 ```py

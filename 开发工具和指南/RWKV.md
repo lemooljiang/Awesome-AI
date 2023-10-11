@@ -18,7 +18,6 @@ https://better-chat-rwkv.ai-creator.net/
 https://rwkv.ai-creator.net/jpntuned/v1/chat/completions
 https://rwkv.ai-creator.net/chntuned/v1/chat/completions
 
-目前尚不需要密钥，后续我们会高度优先考虑妥善存储您在我方的API密钥。
 
 ## python使用
 ```py
@@ -116,24 +115,3 @@ async function test(){
 }
 test()
 ```
-
-
-data: {"object": "chat.completion.chunk", "model": "RWKV-paper-reviewer-4-World-7B-20230831-ctx16k", "choices": [{"delta": {"content": "!"}, "index": 0, "finish_reason": null}]}
-
-data: {"object": "chat.completion.chunk", "model": "RWKV-paper-reviewer-4-World-7B-20230831-ctx16k", "choices": [{"delta": {"content": " How"}, "index": 0, "finish_reason": null}]}
-
-123 data: [DONE]
-
-1112 Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
-    at new NodeError (node:internal/errors:399:5)
-    at ServerResponse.setHeader (node:_http_outgoing:645:11)
-    at ServerResponse.header (D:\vue-work\openai_server\node_modules\_express@4.18.2@express\lib\response.js:794:10)
-    at ServerResponse.send (D:\vue-work\openai_server\node_modules\_express@4.18.2@express\lib\response.js:174:12)
-    at ServerResponse.json (D:\vue-work\openai_server\node_modules\_express@4.18.2@express\lib\response.js:278:15)
-    at ServerResponse.send (D:\vue-work\openai_server\node_modules\_express@4.18.2@express\lib\response.js:162:21)
-    at file:///D:/vue-work/openai_server/aiServer_v5_test.js:232:28
-    at process.processTicksAndRejections (node:internal/process/task_queues:95:5) {
-  code: 'ERR_HTTP_HEADERS_SENT'
-}
-
-RWKV-novel-4-World-7B-20230810-ctx128k
