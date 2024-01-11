@@ -18,6 +18,11 @@ https://better-chat-rwkv.ai-creator.net/
 https://rwkv.ai-creator.net/jpntuned/v1/chat/completions
 https://rwkv.ai-creator.net/chntuned/v1/chat/completions
 
+## 简介
+RWKV是一种无需注意力机制的循环神经网络，因此速度更快且更省显存。它还支持 GPT 模式并行训练。还好，名字不再是啥驼啊马的，改成鸟了。看来这帮搞大模型的也就这点恶趣味。
+
+目前它已经在Hugging Face上开源，还制作了免费的API接口。
+
 
 ## python使用
 ```py
@@ -69,15 +74,12 @@ print(response_data)
 ## nodejs使用
 ```js
 //方法一
-import { Configuration, OpenAIApi } from 'openai'
+import OpenAI from "openai"
 
-
-const configuration = new Configuration({
+const RWKV = new OpenAI({  //RWKV-5-12B-one-state-chat-16k'
   apiKey: "",
-  basePath: "https://rwkv.ai-creator.net/chntuned/v1"
+  baseURL: "https://rwkv.ai-creator.net/chntuned/v1",
 })
-
-const RWKV = new OpenAIApi(configuration)
 
 async function test(query){
     const response = await RWKV.createChatCompletion({

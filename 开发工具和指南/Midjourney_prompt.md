@@ -4,12 +4,15 @@
 [官网 ｜](https://www.midjourney.com/)
 [文档 ｜](https://docs.midjourney.com/docs/quick-start)
 [样式参考 ｜](https://github.com/willwulfken/MidJourney-Styles-and-Keywords-Reference)
+[艺术风格 |](https://midlibrary.io)
+[艺术风格 ｜](https://lib.kalos.art/)
 [openjourney ｜](https://replicate.com/prompthero/openjourney/api#run)
-[openjourney doc ｜](https://replicate.com/docs)
+[replicate doc ｜](https://replicate.com/docs)
 [PromptHero ｜](https://prompthero.com/) 
 [关键词助手｜](https://prompt.noonshot.com/midjourney) 
 [Huggingface prompt ｜](huggingface.co/spaces/doevent/prompt-generator)
 [prompt-generator ](https://www.howtoleverageai.com/midjourney-prompt-generator)
+[关键词集锦 ｜](https://zhuanlan.zhihu.com/p/614050846)
 
 
 ## 关键词格式
@@ -17,33 +20,50 @@
 /imagine prompt 
 
 ![关键词格式 ](https://cdn.document360.io/3040c2b6-fead-4744-a3a9-d56d621c6c7e/Images/Documentation/MJ%20Prompt.png)
-/imagine url prompt parameters 
+/imagine url prompt parameters   //可以使用图片作为关键词
+eg:  https://s.mj.run/4t043-II22c subway station 
 
-## 参数
-/imagine prompt <br>
+## 基本命令
+/imagine prompt 生成图像<br>
 /blend 组合，如对两张图片的组合 <br>
---ar 16:9  5:4  3:2 纵横比<br>
---chaos 0-100 值越高越有想像力<br>
+/info 用户信息<br>
+/settings 设置
+/describe 从图片生成提示词（逆向工程）
+/subscribe 管理订阅
+
+## 提示词格式
+主体 + 视角 + 距离 + 情绪 + 细节 + 光线 + 风格 + 参数
+eg: character of monkey in style of nothing see nothing hear nothing speak wearingheadphones listening rap, citylights background, Hyper detailed, hyper realistic, 8k, --ar 9:16 --s 950
+猴子的角色，什么都看不见，什么都听不见，戴着耳机听说唱，城市灯光背景，超细节，超逼真，8k-v 5.1-ar 9:16-s 950
+
+主体内容+气氛灯光色彩+构图+风格参考
+eg: A spaceship surrounded by a swarm of small red craft, foggy, top-lit, strongly reflective, wide-angle, ultra-high-definition detail, concept art
+一艘宇宙飞船，周围是一群红色的的小型飞行器，雾蒙蒙的，顶光的，强反射的，广角的，超清细节的，概念艺术
+
+## 常用参数
+--ar(aspect) 图片的宽高比，eg: --ar 16:9  --ar 5:4<br>
+--q (quality) 0.25-5 质量参数，默认为1， 越大质量越高<br>
+--s(stylize) 100-1000, 图像的艺术化程度化，默认为100<br>
+--c(chaos) 0-100 默认为0, 初始图像的差异化<br>
+--v(version) 版本号，在settings中设置了就无需再设置<br>
 --seed 连续人物，引用特定画作<br>
   查找种子值： 添加反应， 咖啡杯， 上方输入env,点击信封<br>
---niji 动漫模式<br>
-
-可以使用图片作为关键词  Image Prompting<br>
-  先帖图片，再写上关键词, <br>
-  eg:https://s.mj.run/4t043-II22c subway station 
-
+--niji 5 动漫模式<br>
+--iw 0-2  参考原图的权重，在垫图中使用<br>
+--no 要去除的因素，比如 --no white 画面中没有白色<br>
+--stop 0-100  在哪个位置时停止出图<br>
 --panels 连续动作 <br>
---niji   动漫风<br>
---ar 5:5 图像比例<br>
---chaos 随机值   <br>
---style 4a /4b<br>
+--tile 可重复拼帖的图像
 
 ## 图片参数技巧
 1. 先生成一个酷炫的背景， abstract tron legacy light rays
 2. 然后图片+主体，https://s.mj.run/Yft37s2rrN0 cyberpunk adorable kitten
   也可以使用两张图片融合（blend）
 
-## 关键词格式
+## 增加文字
+现只支持英文，以 "" 括起来，加关键词 --style raw ， eg: "harry Potter --style raw"
+
+## 常用关键词
 1.Sticker Design --- 贴纸风格 eg: sticker design of cute girl <br>
   Graphic Design of robot and flowers <br>
   Graphic Design, A phone is rising, surrounded by lights and flowers<br>
@@ -52,7 +72,7 @@
 2.“A物体”As“B人物”  --- 角色替换 eg: elon mask as a commander<br>
 3.Symmetrical,flat icon design --- 简洁，对称LOGO设计 eg: lemon, Symmetrical,flat icon design <br>
 4.Game sheet of --- 游戏装备列表 eg: game sheet of gens <br>
-5.Knolling --- 将相关联的物品以平行或是 90 度排放的组织方式  eg: knolling tool set <br>
+5.Knolling --- 将相关联的物品以平行或是 90 度排放的组织方式  eg: knolling tool set， knolling tool fruits<br>
 6.8-bit, 16-bit  --- 怀旧游戏，像素风 eg: 8-bit game pixel art, star war <br>
 7._ out of [material ]  --- 被材质覆盖的物体 eg: castle out of flowers <br>
 8.Layered Paper  --- 折纸艺术画风 eg: layered paper sea wave<br>
@@ -69,8 +89,8 @@
   A Yuezhou kiln dish designed with fish abstract patterns
 15.Tattoo --- 纹身设计 eg: rose tatton design<br>
 16.Interior Design，architecture --- 建筑设计 eg: Interior Design， a warm chinese house<br>
-17.Photorealistic --- 照片级真实设计 eg: a red car in forest, Photorealistic <br>
-18.Stained glass window --- 被物体覆盖的窗户 eg: flower Stained glass window <br>
+17.Photorealistic --- 照片级真实设计 eg: a red car in forest, Photorealistic 
+18.Stained glass window --- 被物体覆盖的窗户 eg: flower Stained glass window 
 19.Blender 3D --- 3D效果 eg: a wood horse Blender 3D<br>
 20.Explode_____by Nychos -- 爆炸性街头艺术 eg: Explode planet by Nychos
 21.logo for __
@@ -84,30 +104,31 @@
  eg: a beautiful girl, Elegant, 5000s,front view --ar 16:9 
 25.Art Nouveau 新艺术   Rococo洛可可
 
-
 ## 分割关键词
-用 :: 分割关键词，例如： hot:: dog 
+用 `|`、`::` 分割关键词，例如： hot ｜ dog， hot:: dog
 它会接受为是两个关键词，而不是理解来一个词"hot dog" .
 
 比重：
-还可以设置关键词的比重，比如： 
+还可以设置关键词的比重，1-4，默认是1，比如： 
   hot::2 dog 
   shopping mall::12  by teamlab::30
 
 ## Remixing
 偏重随机的艺术效果
-/prefer remix  或 /setting Remix setting打开或关闭
+/prefer remix  或 /settings Remix 打开或关闭
 
 
 ## 艺术家风格
-style of __ <br>
-  宫崎骏（日语：宮﨑 駿／みやざき はやお Miyazaki Hayao<br>
+style of __ 
+  凡高 van gogh
+  张小刚 zhang xiaogang
+  宫崎骏（日语：宮﨑 駿／みやざき はやお Miyazaki Hayao
   村上隆(日语 村上 隆 平假名 むらかみ たかし 罗马字 Murakami Takashi<br>
-  草间弥生（Yayoi Kusama）<br>
+  草间弥生（Yayoi Kusama）
 eg:<br>
 A kite flying in the sky, a boy and a girl chasing on the ground, a lot of <br>flowers on the grass, low shrubs,style of Yayoi Kusama<br>
 A few shrimps chased by a crab，ink painting style of Murakami Takashi <br>
-A few shrimps chased by a crab:: picasso::1.4 --v 4<br>
+A few shrimps chased by a crab:: picasso::1.4<br>
 A few shrimps chased by a crab, Painted By Andre Masson<br>
 
 
@@ -115,9 +136,9 @@ A few shrimps chased by a crab, Painted By Andre Masson<br>
 [写实主义](https://www.reddit.com/r/midjourney/comments/119mwu2/i_entered_every_fancy_keyword_that_i_knew_of_to/)
 ```  
 prompt:
-portrait of an indian village woman in forest in Himachal pradesh, clear facial features, Cinematic, 35mm lens, f/1.8, accent lighting, global illumination --uplight --v 4
+portrait of an indian village woman in forest in Himachal pradesh, clear facial features, Cinematic, 35mm lens, f/1.8, accent lighting, global illumination --uplight
 
-portrait of an peking girl, clear facial features, Cinematic, 35mm lens, f/1.8, accent lighting, global illumination --uplight --v 4
+portrait of an peking girl, clear facial features, Cinematic, 35mm lens, f/1.8, accent lighting, global illumination --uplight 
 ```
 
 ## 灯光
@@ -128,9 +149,33 @@ portrait of an peking girl, clear facial features, Cinematic, 35mm lens, f/1.8, 
    eg: blacklight bridge, dark moody lighting 
 4. 童话灯光: fairy light
 5. 全息摄影: Holography
+6. Rembrandt light	伦勃朗光
+7. mood lighting	情绪照明
+8. Soft illuminaotion/ soft lights	柔和的照明/柔光
+
+## 视图
+Aerial view	鸟瞰图
+andala	曼茶罗构图
+ultrawide shot	超广角
+extreme closeup	极端特写
+macroshot	微距拍摄
+an expansive view of	广阔的视野
+busts	半身像
+profile	侧面
+symmetrical body	对称的身体
+symmetrical face	对称的脸
+wide view	广角
+bird view 俯	视/鸟瞰
+up view	俯视图
+front view	正视图
+symmetrical	对称
+Center the composition	居中构图
+symmetrical the composition	对称构图
+
+
 
 ## 设计风格
-1. 字符风格: ASCII art <br>
+1. 字符风格: ASCII art 
   eg: ASCII art, a girl face ,front view
 2. 拼接艺术: collage art
 3. 欧普艺术(视幻艺术): Op art 
@@ -147,23 +192,9 @@ portrait of an peking girl, clear facial features, Cinematic, 35mm lens, f/1.8, 
 10. 景泰蓝: Cloisonnism
    eg:Cloisonnism style porcelain of a bottle
       Yuezhou Kiln of a bottle
-11. 仙女风: Fairy Kei fashion  <br> 
+11. 仙女风: Fairy Kei fashion  
   eg: a beautiful girl in red, Fairy Kei fashion
-eg:<br> 
-masterpiece, anime girl in the rainy day, aesthetic, transparent colorful vinyl jacket, highly detailed, reflections --ar 2:3<br> 
-deep purple nissan gtr in a neon city at night, shot with a sony mirrorless, 35mm, photography, cinematic, anti-aliasing, CGI --ar 3:2 <br> 
-cinematic shot from cyberpunk movie by Pedro Almodovar --ar 2:1
 
-
-## 模块化命令格式
-灯照明光效果】【摄影风格】【电影导演】【绘画风格】【高画质形容词】【光圈镜头】【相机胶片】【人物职业】【背景】【发型，发色】【面部表情】【全身照】【LOGO设计】【艺术家】【艺术风格】【动漫风格】【动作姿势】【城市】【国家】【知名地标建筑】【材质】【3D效果】【年代】【天气】【特效】【服装】【身材】【年龄】【场景描述】
-
-ChatGPT训练模板：
-请按照我的指令，生成10组不同的Midjourney命令，格式如下：【人物形象】+【科幻场景】+【照明效果】+【绘画风格】+ 【高画质】 +【ar参数】
-
-人物形象: 你可以发挥想象力，使用最华丽的词汇，来描述一个来自未来的女性人物，包括对头发，眼睛，服装，身材的描述。例如，一个棕色头发，蓝色眼睛，年轻美丽的女性星际巡航员。
-科幻场景: 详细的描述一个未来的场景，该场景具备很强的科幻，未来风格。例如，废弃的太空船和浩瀚的宇宙，高科技的未来都市，都可以作为对背景的描述。
-照明效果：你可以选择cinematic lighting, Dramatic Lighting,或则类似的词条。
-绘画风格: 你可以选择cyberpunk style, anime style, artstation style或者类似的词条。
-高画质:你可以选择ultra realistic, extreme details,masterpiece，以及类似的词条。
-Ar参数: 请你记住，我经常用的 --ar参数值： 竖屏为--ar 1:2, --ar 2:3, --ar 9:16, 横屏为 --ar 16:9 --ar 2:1 --ar 4:3 在接下来的命令生成中，请根据图像的比例选择正确的ar值. 请用英文回答。
+## 风格头像
+图片 + 风格 + 参数， eg:
+https://ipfs.ilark.io/ipfs/QmRobehozeey31UW7cCDazoikqTXi1a7aZd2vERvXx3jsm portrait, style of Van Gogh --iw 1.1

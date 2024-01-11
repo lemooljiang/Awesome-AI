@@ -2,6 +2,7 @@
 
 ## 下载与资源
 [官网 |](https://openai.com/)
+[npm |](https://www.npmjs.com/package/openai)
 [Openai文档 |](https://platform.openai.com/docs/introduction)
 [Node.js Library |](https://github.com/openai/openai-node)
 [工具指南(python) |](https://github.com/openai/openai-cookbook)   
@@ -12,19 +13,19 @@
 ## Openai API
 [参数 ｜](https://platform.openai.com/docs/api-reference/chat/create)
 ```js
-npm install openai --save  //"openai": "^3.2.1"
+npm install openai --save  //"openai": "^4.16.1"
+// npm update openai
 npm install express cors --save
 
 import express from 'express'
 import cors from 'cors'
-import { Configuration, OpenAIApi } from 'openai'
+import OpenAI from "openai"
 
-
-const configuration = new Configuration({
-  apiKey: "your openai api key",
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
 })
 // 如果希望通过代理来访问, 加上
-basePath: "https://example.com/v1"
+baseURL: "https://test.ilark.io/v1"
 //https://api.openai.com/v1/chat/completions
 // 测试：
 curl https://example.com/v1/chat/completions \
@@ -34,8 +35,6 @@ curl https://example.com/v1/chat/completions \
     "model": "gpt-3.5-turbo",
     "messages": [{"role": "user", "content": "Hello!"}]
   }'
-
-const openai = new OpenAIApi(configuration)
 
 const app = express()
 app.use(cors())
@@ -55,9 +54,13 @@ app.post('/gpt', async (req, res) => {
     const prompt = req.body.prompt
     const temperature = req.body.temperature
 
-    const response = await openai.createChatCompletion({
+    const response = await openai.chat.completions.create({
         model: "gpt-3.5-turbo", 
-        messages: query,
+        // messages: query,
+        messages: [{"role": "system", "content": "You are a helpful assistant."},
+                   {"role": "user", "content": "Who won the world series in 2020?"},
+                   {"role": "assistant", "content": "The Los Angeles Dodgers won the World Series in 2020."},
+                   {"role": "user", "content": "Where was it played?"}]
         temperature: 0.2, // Higher values means the model will take more risks.
         max_tokens: 1600, // The maximum number of tokens to generate in the completion. Most models have a context length of 2048 tokens (except for the newest models, which support 4096).
         top_p: 1, // alternative to sampling with temperature, called nucleus sampling
@@ -76,7 +79,7 @@ app.post('/gpt', async (req, res) => {
     res.status(500).send(error || 'Something went wrong');
   }
 })
-//特别注意：这里的max_tokens是指输出的最大token值，不是指模型的max_tokens值！比如gpt-3.5-turbo的max_tokens是4096，但这里的max_tokens却只能填1500！
+//特别注意：这里的max_tokens是指输出的最大token值，不是指模型的max_tokens值！比如gpt-3.5-turbo的max_tokens是4096，但这里的max_tokens却只能填1600！
 ```
 
 ## python版本
@@ -261,66 +264,52 @@ const response = await openai.createCompletion({
 ```js
 // 服务器端实现
 try {
-    res.setHeader('Cache-Control', 'no-cache')
-    res.setHeader('Content-Type', 'text/event-stream')
-    res.setHeader('Connection', 'keep-alive')
-    res.flushHeaders() // flush the headers to establish SSE with client
+  res.setHeader('Cache-Control', 'no-cache')
+  res.setHeader('Content-Type', 'text/event-stream')
+  res.setHeader('Connection', 'keep-alive')
+  res.flushHeaders()
 
-    const response = openai.createChatCompletion({
-      model: "gpt-3.5-turbo",  //gpt-4
-      messages: query,
-      max_tokens: 1600,
-      temperature: 0.2,
-      stream: true,    //推流模式打开
-    }, { responseType: 'stream' })
-
-    response.then(resp => {
-      resp.data.on('data', data => {
-          const lines = data.toString().split('\n').filter(line => line.trim() !== '')
-          for (const line of lines) {
-              const message = line.replace(/^data: /, '')
-              if (message === '[DONE]') {
-                // console.log(996, "done")
-                  res.end()
-              }
-              let strTemp = getReg(message)
-              if(strTemp != null){
-                // console.log(1188, "strTemp", strTemp)
-                res.write(strTemp)
-              }
-          }
-      })
-    })
+  const stream = await openai.chat.completions.create({
+    model: "gpt-4-1106-preview",
+    messages: query,
+    max_tokens: 1600,  //这里是指输出的最大tokens，不是指模型的最大tokens
+    temperature: temperature,
+    stream: true,
+  });
+  for await (const chunk of stream) {
+    // console.log(222,"chunk:", chunk)
+    // console.log(126, "chunk:", chunk.choices[0]?.delta?.content)
+    // process.stdout.write(chunk.choices[0]?.delta?.content || '');
+    let strTemp = chunk.choices[0]?.delta?.content
+    if(strTemp != null){
+        console.log(658,"strTemp:", strTemp)
+        outString += strTemp
+        res.write(strTemp)
+      }
   }
-//输出的结果是这样：
-data: {"id":"chatcmpl-7w3i1NrdH7yN3GHBEVyJqEHScmqai","object":"chat.completion.chunk","created":1694071637,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"role":"assistant","content":""},"finish_reason":null}]}
-data: {"id":"chatcmpl-7w3i1NrdH7yN3GHBEVyJqEHScmqai","object":"chat.completion.chunk","created":1694071637,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"好"},"finish_reason":null}]}
-data: {"id":"chatcmpl-7w3i1NrdH7yN3GHBEVyJqEHScmqai","object":"chat.completion.chunk","created":1694071637,"model":"gpt-3.5-turbo-0613","choices":[{"index":0,"delta":{"content":"么"},"finish_reason":null}]
-data: [DONE]
-
-//使用正则提取中间的字符串，清洗得到的字符串
-function getReg(text){
-  //"content":"好"},"finish_reason"  提取中间的字符串
-  let reg = /(?<=\"content\"\:\")[\s\S]*?(?=\"\}\,\"finish_reason\")/g
-  let a = text.match(reg)
-  if(a === null){
-    return
+  console.log(444, "end")
+  return res.end()
+  } catch (error) {
+    console.log(1112, error)
+    return res.status(500).send('Something went wrong')
   }
-  return a.join('')
+///
+{
+  id: 'chatcmpl-8IdRXgCjduVw3JVCBGexhqUp5MbsJ',
+  object: 'chat.completion.chunk',
+  created: 1699452215,
+  model: 'gpt-3.5-turbo-1106',
+  system_fingerprint: 'fp_eeff13170a',
+  choices: [ { index: 0, delta: [Object], finish_reason: null } ]
 }
-
-//openterrouter
-123 data: {"choices":[{"index":0,"delta":{"role":"assistant","content":" Hello"},"finish_reason":null}],"model":"claude-2.0","id":"gen-8o6FNHaMxikL3ibgrU3a3iRaOW2b"}
-123 data: {"choices":[{"index":0,"delta":{"role":"assistant","content":"!"},"finish_reason":null}],"model":"claude-2.0","id":"gen-8o6FNHaMxikL3ibgrU3a3iRaOW2b"}
-123 : OPENROUTER PROCESSING
-123 data: {"choices":[{"index":0,"delta":{"role":"assistant","content":" Let"},"finish_reason":null}],"model":"claude-2.0","id":"gen-8o6FNHaMxikL3ibgrU3a3iRaOW2b"}
-
-//meta-llama
-data: {"choices":[{"index":0,"delta":{"role":"assistant","content":"Hello"}}],"id":"gen-yvQXVWCU6bPQMBWZmjGFmnpgsRTS"}
-123 data: {"choices":[{"index":0,"delta":{"role":"assistant","content":"!"}}],"id":"gen-yvQXVWCU6bPQMBWZmjGFmnpgsRTS"}
-123 data: {"choices":[{"index":0,"delta":{"role":"assistant","content":" How"}}],"id":"gen-yvQXVWCU6bPQMBWZmjGFmnpgsRTS"}
-123 data: {"choices":[{"index":0,"delta":{"role":"assistant","content":" are"}}],"id":"gen-yvQXVWCU6bPQMBWZmjGFmnpgsRTS"}
-123 data: {"choices":[{"index":0,"delta":{"role":"assistant","content":" you"}}],"id":"gen-yvQXVWCU6bPQMBWZmjGFmnpgsRTS"}
+{
+  id: 'chatcmpl-8IdRXgCjduVw3JVCBGexhqUp5MbsJ',
+  object: 'chat.completion.chunk',
+  created: 1699452215,
+  model: 'gpt-3.5-turbo-1106',
+  system_fingerprint: 'fp_eeff13170a',
+  choices: [ { index: 0, delta: [Object], finish_reason: null } ]
+}
 
 
 //用户端
@@ -407,26 +396,19 @@ console.log(22, 'We can decode it back into:\n', decoded)
 
 ## Dall-E
 ```js
-const { Configuration, OpenAIApi } = require("openai");
-const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-const openai = new OpenAIApi(configuration)
-let response = await openai.createImage({
-  prompt: "A cute baby sea otter",
-  n: 1,
-  size: "512x512",
-  response_format: "b64_json"
-})
-//response.data.data[0].b64_json
-
-const response = await openai.createImage({
-  prompt: "A cute baby sea otter",
-  n: 2,
-  size: "1024x1024",
-})
+async function main() {
+  let response = await Openai.images.generate({
+    model: "dall-e-3",
+    prompt: "红衣美女",
+    n: 1,
+    size: "1024x1024",
+    response_format: "b64_json"
+  })
+  console.log(589, "dalle", response.data)
+}
 //response_format不设置，则默认返回 url
-//response.data.data[0]..url
+//response.data[0].url
+//response.data[i].b64_json
 
 //参数：
 n： integer Optional  Defaults to 1,  Must be between 1 and 10.
@@ -436,15 +418,54 @@ response_format： string Optional Defaults to url , Must be one of url or b64_j
 
 ## 图片上传到IPFS
 ```js
-//response.data.data[0].b64_json
+//response.data[0].b64_json
 let imgurls = []
-let img_length = response.data.data.length
+let img_length = response.data.length
 for(let i = 0; i < img_length; i++){
-  let content = Buffer.from(response.data.data[i].b64_json, 'base64')
+  let content = Buffer.from(response.data[i].b64_json, 'base64')
   let resX = await ipfs.add(content)
   let imgHash = resX.path
   // console.log(88, resX, 456, imgHash)
   imgurls.push(ipfs_host+imgHash)
+}
+```
+
+## 读图
+向模型提供图片有两种主要方式：通过传递图片链接或在请求中直接传递 base64 编码的图片。
+
+计算成本
+与文本输入一样，图片输入也是以代币计量和收费的。一张图片的代币成本由两个因素决定：图片大小和每个 image_url 块上的细节选项。所有带 "细节：低 "选项的图片每张都需要花费 85 个代币。"细节：高 "选项的图片首先会被缩放到 2048 x 2048 的正方形内，并保持长宽比不变。然后，再进行缩放，使图像最短的边长为 768px。最后，我们计算图片由多少个 512px 的正方形组成。每个方块需要花费 170 个代币。最后总计还要加上 85 个代币。
+
+下面是一些演示上述操作的示例。
+一张 1024 x 1024 正方形图像的细节：高模式下耗费 765 个代币
+1024 小于 2048，因此无需调整初始大小。
+最短的边是 1024，因此我们将图像缩小到 768 x 768。
+表示图像需要 4 个 512 平方英寸的方块，因此最终令牌成本为 170 * 4 + 85 = 765。
+
+2048 x 4096 图像细节：高模式下需要花费 1105 个代币
+我们将图像缩小到 1024 x 2048，以适应 2048 平方英寸的大小。
+最短的边是 1024，因此我们进一步缩小到 768 x 1536。
+需要 6 个 512px 的磁贴，因此最终的代币成本为 170 * 6 + 85 = 1105。
+```js
+async function main() {
+  const response = await Openai.chat.completions.create({
+    model: "gpt-4-vision-preview",
+    messages: [
+      {
+        role: "user",
+        content: [
+          { type: "text", text: "图片里有什么" },
+          {
+            type: "image_url",
+            image_url: {
+              "url": "https://ipfs.ilark.io/ipfs/QmadtZxXPTVS9q2qArZHpZaRjYmF9o5HMxj6Hdgc59dGpR",
+            },
+          },
+        ],
+      },
+    ],
+  });
+  console.log(65, response.choices[0])
 }
 ```
 

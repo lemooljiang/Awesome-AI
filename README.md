@@ -5,7 +5,7 @@
 - [<center>Awesome AI</center>](#centerawesome-aicenter)
     - [AI助手](#ai助手)
     - [大语言模型LLMs](#大语言模型llms)
-    - [AutoGPT](#autogpt)
+    - [Agent](#agent)
     - [ChatGPT工具](#chatgpt工具)
     - [AI社区](#ai社区)
     - [绘图](#绘图)
@@ -82,6 +82,13 @@
 
 [privateGPT](https://github.com/imartinez/privateGPT) 私人化GPT解决方案
 
+[闻达](https://github.com/wenda-LLM/wenda) 一个大规模语言模型调用平台
+
+[川虎 Chat](https://github.com/GaiZhenbiao/ChuanhuChatGPT) 为多种 LLM 提供了一个轻快好用的 Web 图形界面和众多附加功能。支持 GPT-4 、基于文件问答、 LLM本地部署 、联网搜索、Agent 助理、支持 Fine-tune
+
+[Gpt-crawler](https://github.com/BuilderIO/gpt-crawler)  从URL创建自己的自定义GPT
+
+
 
 ## 大语言模型LLMs
 [LLaMA](https://github.com/facebookresearch/llama) Meta开源的LLaMA
@@ -137,18 +144,18 @@
 [中国大模型](https://github.com/wgwang/LLMs-In-China) 中国大模型汇总
 
 
-## AutoGPT
-[官网 |](https://news.agpt.co/)
+## Agent
+[AutoGPT](https://news.agpt.co/)
 
 [MetaGPT](https://github.com/geekan/MetaGPT) 使GPT以软件公司的形式工作，协作处理更复杂的任务
 
-[github |](https://github.com/Significant-Gravitas/Auto-GPT)
+[github](https://github.com/Significant-Gravitas/Auto-GPT)
 
-[文档 ｜](https://docs.agpt.co/)
+[AutoGPT文档](https://docs.agpt.co/)
 
-[中文版 ｜](https://github.com/RealHossie/Auto-GPT-Chinese)
+[AutoGPT中文版](https://github.com/RealHossie/Auto-GPT-Chinese)
 
-[中文安装文档 ｜](https://hossie.notion.site/828a0874e1c2472887859437eaf9cf00)
+[AutoGPT中文安装文档](https://hossie.notion.site/828a0874e1c2472887859437eaf9cf00)
 
 [Ggodmode](https://godmode.space)  AutoGPT + BabyAGI
 
@@ -157,6 +164,9 @@
 [AgentGPT](https://agentgpt.reworkd.ai)
 
 [Agent Colab](https://colab.research.google.com/drive/1QpvUHQzpHPvlMgBElwd5NJQ6qpryVeWE?usp=sharing)
+
+[SuperAGI](https://github.com/TransformerOptimus/SuperAGI) 一个开发者优先的开源自主人工智能代理框架，使开发者能够构建、管理和运行有用的自主代理。
+
 
 
 ## ChatGPT工具
@@ -343,6 +353,8 @@
 
 [Replicate](https://replicate.com) 海量的提示词
 
+[stable diffusion关键词](http://sd.firstool.online/)
+
 
 ## 视频
 [剪映](https://www.capcut.cn) 抖音出品的智能剪辑软件，文本生成视频
@@ -355,7 +367,7 @@
 
 [万兴喵影](https://miao.wondershare.cn/) 视频剪辑
 
-[Runway](https://runwayml.com/)
+[Runway](https://runwayml.com/) 别出心裁的电影剪辑，功能超卓
 
 [Fliki](https://fliki.ai/) 文本生成视频
 
@@ -416,12 +428,14 @@
 
 [Buzz](https://github.com/chidiwilliams/buzz) 在你的个人电脑上离线转录和翻译音频。由OpenAI的Whisper提供技术支持。
 
+[Whisper-jax](https://github.com/sanchit-gandhi/whisper-jax)
+
 ## 三维化
 [Shap-E](https://github.com/openai/shap-e) 从文字或图片生成3D物体
 
 [Spline](https://spline.design/ai) 生成3D物体
 
-[Blockade Labs](https://www.blockadelabs.com/index.html) 三级场景等
+[Blockade Labs](https://www.blockadelabs.com/index.html) 三维场景等
 
 [Luma AI](https://lumalabs.ai) 通过手机生成逼真3D效果
 
