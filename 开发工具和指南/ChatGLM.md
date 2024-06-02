@@ -36,7 +36,10 @@ source glm_env/Scripts/activate   //windows
 
 ## 安装
 ```py
-pip install zhipuai
+pip install zhipuai   // 1.0.7  2.0.1
+// pip install zhipuai  -i https://pypi.tuna.tsinghua.edu.cn/simple
+//升级
+pip install --upgrade zhipuai 
 
 import zhipuai
 zhipuai.model_api.invoke(
@@ -318,3 +321,4 @@ demo.launch(server_name='0.0.0.0', # ip for listening, 0.0.0.0 for every inbound
             share=False, # if register a public url
             inbrowser=False)
 ```
+

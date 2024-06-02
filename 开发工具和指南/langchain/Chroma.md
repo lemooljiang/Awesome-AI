@@ -8,7 +8,7 @@
     - [基本使用](#基本使用)
     - [Chroma embedding](#chroma-embedding)
     - [Chroma docker](#chroma-docker)
-    - [权限](#权限)
+    - [docker权限认证](#docker权限认证)
     - [修改docker的配置](#修改docker的配置)
     - [langchain中的使用](#langchain中的使用)
     - [添加文本](#添加文本)
@@ -30,8 +30,9 @@
 
 Chroma是一个新的AI原生开源嵌入式数据库，非常轻量和易用。Chroma是开源嵌入式数据库，它使知识、事实和技能可插入，从而轻松构建LLM应用程序。它可以运行在内存中（可保存在磁盘中），也可做为数据库服务器来使用（这和传统数据库类似）。
 ```py
-pip install chromadb   # 0.4.3  
-// pip install chromadb -U 升级
+pip install chromadb   # 0.4.3  0.4.24  0.5.0
+// pip install chromadb -i https://pypi.tuna.tsinghua.edu.cn/simple  国内一定要切换源
+// pip install --upgrade chromadb -i https://pypi.tuna.tsinghua.edu.cn/simple 升级
 //python3.11版无法安装！
 
 # 预先依赖 
@@ -174,23 +175,25 @@ openai_ef = embedding_functions.OpenAIEmbeddingFunction(
 
 ## Chroma docker
 ```py
-# 服务端
-# 构建数据库服务端
+# 服务端(无权限认证)
 # 1.从docker-compose构建
+# 从github拉取必要的文件
 mkdir chromadb & cd chromadb & git init
 git clone https://github.com/chroma-core/chroma.git
-
+cd chroma
 docker compose up -d --build
+
 # 查看运行结果
 docker ps -a
-    b065543b05ec   server    "uvicorn chromadb.ap…"   About a minute ago   Up About a minute   0.0.0.0:8000->8000/tcp, :::8000->8000/tcp   chroma-server-1
-
-# 可以远程访问，无权限， 存在安全问题
-httpClient = chromadb.HttpClient(host='170.187.111.111', port=8000)
+   # b065543b05ec   server    "uvicorn chromadb.ap…"   About a minute ago   Up About a minute   0.0.0.0:8000->8000/tcp, :::8000->8000/tcp   chroma-server-1
+    846bd7449b84   server    "/docker_entrypoint.…"   8 seconds ago   Up 7 seconds (health: starting)   0.0.0.0:8000->8000/tcp, :::8000->8000/tcp   chroma-server-1
 
 # 2. 直接从dicker hub中拉取
+docker pull chromadb/chroma
 docker pull lemooljiang/chroma-server:latest
+
 # 启动服务
+docker run -p 8000:8000 chromadb/chroma
 docker run -d -p 8000:8000 --name chromadb lemooljiang/chroma-server
 
 
@@ -200,34 +203,46 @@ pip install chromadb
 pip install chromadb-client
 # 请注意，chromadb-client软件包是完整Chroma库的子集，并不包含所有依赖项。如果您想使用完整的Chroma库，可以安装chromadb包。最重要的是，没有默认的嵌入函数。如果您在 add() 文档时没有使用嵌入函数，您必须手动指定一个嵌入函数并为其安装依赖项。
 
+# 可以远程访问，无权限， 存在安全问题
 import chromadb
+# httpClient = chromadb.HttpClient(host='170.187.111.111', port=8000)  // host=<server IP address>
 chroma_client = chromadb.HttpClient(host='localhost', port=8000)
 ```
 
-## 权限
+## docker权限认证
 ```py
-# 创建密钥
+# 创建密钥文件，存入chroma中(和 docker-compose.yml同一个文件夹)
+cd /home/chromadb/chroma
+# apt install apache2-utils
+htpasswd -Bbn admin admin > server.htpasswd
+# 其中 “admin admin”是用户名和密码，可自行修改
+# 或用docker创建
 docker run --rm --entrypoint htpasswd httpd:2 -Bbn admin admin > server.htpasswd
 # admin:$2y$05$QrljJulAv9jz8YOvo2gn.OX5BdvOe0Mv1tAhhohxe0KAWlTdsPpau
 
-Create a .chroma_env file with the following contents:
-.chroma_env
-CHROMA_SERVER_AUTH_CREDENTIALS_FILE="/chroma/server.htpasswd"
-CHROMA_SERVER_AUTH_CREDENTIALS_PROVIDER='chromadb.auth.providers.HtpasswdFileServerAuthCredentialsProvider'
-CHROMA_SERVER_AUTH_PROVIDER='chromadb.auth.basic.BasicAuthServerProvider'
+# 创建环境变量
+export CHROMA_SERVER_AUTHN_CREDENTIALS_FILE="server.htpasswd"
+export CHROMA_SERVER_AUTHN_PROVIDER="chromadb.auth.basic_authn.BasicAuthenticationServerProvider"
 
-# 构建docker服务
-docker-compose --env-file ./.chroma_env up -d --build
+# 创建镜像并运行容器
+docker compose up -d --build
 
-# Client Setup
+# 客户端
 import chromadb
 from chromadb.config import Settings
 
-client = chromadb.HttpClient(
-  settings=Settings(chroma_client_auth_provider="chromadb.auth.basic.BasicAuthClientProvider",chroma_client_auth_credentials="admin:admin"))
-client.heartbeat()  # this should work with or without authentication - it is a public endpoint
-client.get_version()  # this should work with or without authentication - it is a public endpoint
-client.list_collections()  # this is a protected endpoint and requires authentication
+# httpClient = chromadb.HttpClient(
+#   host='localhost', port=8000,
+#   settings=Settings(chroma_client_auth_provider="chromadb.auth.basic.BasicAuthClientProvider",chroma_client_auth_credentials="admin:admin")
+#   )
+
+httpClient = chromadb.HttpClient(
+	host='47.113.117.181', port=8000, 
+	settings=Settings(chroma_client_auth_provider="chromadb.auth.basic_authn.BasicAuthClientProvider",
+		chroma_client_auth_credentials="admin:admin")
+	)  
+
+//没有权限的用户会报错： chromadb.errors.AuthorizationError: Unauthorized
 ```
 
 ## 修改docker的配置

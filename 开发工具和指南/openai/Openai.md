@@ -23,9 +23,8 @@ import OpenAI from "openai"
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
+  baseURL: "https://example.com/v1"   //如果希望通过代理来访问, 国内要加上
 })
-// 如果希望通过代理来访问, 加上
-baseURL: "https://test.ilark.io/v1"
 //https://api.openai.com/v1/chat/completions
 // 测试：
 curl https://example.com/v1/chat/completions \
@@ -82,81 +81,78 @@ app.post('/gpt', async (req, res) => {
 //特别注意：这里的max_tokens是指输出的最大token值，不是指模型的max_tokens值！比如gpt-3.5-turbo的max_tokens是4096，但这里的max_tokens却只能填1600！
 ```
 
+## GPT-4o
+GPT-4o (“o” for “omni”) is our most advanced model. It is multimodal (accepting text or image inputs and outputting text), and it has the same high intelligence as GPT-4 Turbo but is much more efficient—it generates text 2x faster and is 50% cheaper. Additionally, GPT-4o has the best vision and performance across non-English languages of any of our models. GPT-4o is available in the OpenAI API to paying customers. Learn how to use GPT-4o in our text generation guide.
+
+GPT-4o （"o "表示 "omni"）是我们最先进的型号。它是多模态的（接受文本或图像输入并输出文本），具有与 GPT-4 Turbo 相同的高智能，但效率更高--生成文本的速度快 2 倍，成本低 50%。此外，GPT-4o 在非英语语言方面的视觉和性能也是我们所有型号中最好的。GPT-4o 可通过 OpenAI API 提供给付费用户。在我们的文本生成指南中了解如何使用 GPT-4o。
+```js
+import OpenAI from "openai"
+import dotEnv from "dotenv"
+
+dotEnv.config()
+const apiKey = process.env.API_KEY
+
+const Openai = new OpenAI({
+  apiKey: apiKey
+})
+
+async function main() {
+  const response = await Openai.chat.completions.create({
+    model: "gpt-4o",
+    messages: [
+      {
+        role: "user",
+        content: [
+          { type: "text", text: "图片里有什么" },
+          {
+            type: "image_url",
+            image_url: {
+              "url": "https://ipfs.ilark.io/ipfs/QmadtZxXPTVS9q2qArZHpZaRjYmF9o5HMxj6Hdgc59dGpR",
+            },
+          },
+        ],
+      },
+    ],
+  });
+  console.log(635, response.choices[0])
+}
+main()
+/*635 {
+  index: 0,
+  message: {
+    role: 'assistant',
+    content: '图片中展示了一个手工工艺品的工作台面。主要物体是一个带有复杂雕刻的绿色陶瓷花瓶，花瓶高大且装饰华丽。周围还有一些其他陶瓷物品，包括一个盖碗和几只小碗。背景中可以看到一些工 具、材料和一个正在工作的空间。工作台上比较凌乱，显示出这是一个正在进行手工制作的场景。'
+  },
+  logprobs: null,
+  finish_reason: 'stop'
+}
+*/
+```
+
 ## python版本
 [参考](https://platform.openai.com/docs/api-reference/chat/create?lang=python)
 ```py
-pip install openai  # 0.27.8
+pip install openai  # 0.27.8  1.14.2
 
-import os
-import openai
+from openai import OpenAI
+from dotenv import dotenv_values
+import sys
 
-openai.api_key = "YOUR API-KEY"
+env_vars = dotenv_values('.env')
 
-# 如果希望通过代理来访问
-openai.api_base = "https://example.com/v1"
-# os.environ['HTTP_PROXY'] = "xxx"
-# os.environ['HTTPS_PROXY'] = "xxx"
-# os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
-# os.environ["OPENAI_API_BASE"] = os.getenv("OPENAI_API_BASE")
-
-completion = openai.ChatCompletion.create(
-  model="gpt-3.5-turbo",
-  messages=[
-    {"role": "system", "content": "You are a helpful assistant."},
-    {"role": "user", "content": "Hello!"}
-  ]
+client = OpenAI(
+  base_url="https://example.com/v1",
+  api_key=env_vars['OPENAI_API_KEY'],
 )
-print(completion.choices[0].message)
 
-# 流传输
-def openaiStreaming(query, temperature):
-    response = openai.ChatCompletion.create(
-        model = "gpt-3.5-turbo",
+def aiChat(query):
+    completion = client.chat.completions.create(
+        model="gpt-3.5-turbo-0125",
         messages = query,
-        temperature = temperature,
-        max_tokens = 2000,
-        stream = True
+        temperature = 0.3
     )
-    for trunk in response:
-        # print(56, trunk)
-        if trunk['choices'][0]['finish_reason'] is not None:
-            data = '[DONE]'
-            return 'ok', 200
-        else:
-            data = trunk['choices'][0]['delta'].get('content','')
-        # yield "data: %s\n\n" % data.replace("\n","<br>")
-        yield data
-        # return flask.Response(stream(),mimetype="text/event-stream")
-///
-56 {
-  "id": "chatcmpl-7gPI3f8yPerbCv1HzmC41UY4GpXAB",
-  "object": "chat.completion.chunk",
-  "created": 1690341347,
-  "model": "gpt-3.5-turbo-0613",
-  "choices": [
-    {
-      "index": 0,
-      "delta": {
-        "content": "\u4e3a"
-      },
-      "finish_reason": null
-    }
-  ]
-}
-.........
-56 {
-  "id": "chatcmpl-7gPI3f8yPerbCv1HzmC41UY4GpXAB",
-  "object": "chat.completion.chunk",
-  "created": 1690341347,
-  "model": "gpt-3.5-turbo-0613",
-  "choices": [
-    {
-      "index": 0,
-      "delta": {},
-      "finish_reason": "stop"
-    }
-  ]
-}
+    print(6662, completion.choices[0].message.content, file=sys.stderr)
+    return completion.choices[0].message.content
 ```
 
 
@@ -469,6 +465,214 @@ async function main() {
 }
 ```
 
+## 函数调用
+函数调用(Function calling)可以极大地增强大语言模型的功能，可以增强推理效果或进行其他外部操作，包括信息检索、数据库操作、知识图谱搜索与推理、操作系统、触发外部操作等工具调用场景。在设计各类bot或agent时非常有用。
+
+![functioncall.jpg](https://ipfs.ilark.io/ipfs/QmSGU9RvhkxfGLNTznEK9pWhH8fCPSu3qWzuzZvm8RtNxA)
+
+函数调用图示
+
+如上所示，在第二步中，可以提供特定的接口函数（也就是外部API），额外增加特定的数据以增强大语言模型的能力。在特定的工作流中，比如查询天气，查询车次等，大语言模型都能够办到啰！
+
+下面我使用的是OpenAI中的示例，进行测试后，得到的结果和代码，大家可以参考。
+```js
+import OpenAI from "openai"
+import dotEnv from "dotenv"
+
+dotEnv.config()
+const apiKey = process.env.API_KEY
+
+const openai = new OpenAI({
+  apiKey: apiKey 
+})
+
+// Example dummy function hard coded to return the same weather
+// In production, this could be your backend API or an external API
+function getCurrentWeather(location, unit = "fahrenheit") {
+  if (location.toLowerCase().includes("tokyo")) {
+    return JSON.stringify({ location: "Tokyo", temperature: "10", unit: "celsius" });
+  } else if (location.toLowerCase().includes("san francisco")) {
+    return JSON.stringify({ location: "San Francisco", temperature: "72", unit: "fahrenheit" });
+  } else if (location.toLowerCase().includes("paris")) {
+    return JSON.stringify({ location: "Paris", temperature: "22", unit: "fahrenheit" });
+  } else {
+    return JSON.stringify({ location, temperature: "unknown" });
+  }
+}
+
+async function runConversation() {
+  // Step 1: send the conversation and available functions to the model
+  const messages = [
+    { role: "user", content: "What's the weather like in San Francisco, Tokyo, and Paris?" },
+  ];
+
+  const tools = [
+    {
+      type: "function",
+      function: {
+        name: "get_current_weather",
+        description: "Get the current weather in a given location",
+        parameters: {
+          type: "object",
+          properties: {
+            location: {
+              type: "string",
+              description: "The city and state, e.g. San Francisco, CA",
+            },
+            unit: { type: "string", enum: ["celsius", "fahrenheit"] },
+          },
+          required: ["location"],
+        },
+      },
+    },
+  ];
+
+
+  const response = await openai.chat.completions.create({
+    model: "gpt-3.5-turbo-0125",
+    messages: messages,
+    tools: tools,
+    tool_choice: "auto", // auto is default, but we'll be explicit
+  });
+  const responseMessage = response.choices[0].message;
+  console.log(111, "response", response)
+  /*
+  {
+    id: 'chatcmpl-90oyNdEDQSxsvpMpwxZ3KeYShovtH',
+    object: 'chat.completion',
+    created: 1709982967,
+    model: 'gpt-3.5-turbo-0125',
+    choices: [
+      {
+        index: 0,
+        message: [Object],
+        logprobs: null,
+        finish_reason: 'tool_calls'
+      }
+    ],
+    usage: { prompt_tokens: 88, completion_tokens: 77, total_tokens: 165 },
+    system_fingerprint: 'fp_4f0b692a78'
+  }
+  */
+
+  console.log(123, "responseMessage", responseMessage)
+  /* promptX
+  {
+  role: 'assistant',
+  content: null,
+  tool_calls: [
+    {
+      id: 'call_0QMDlATqYjBjgdySQVCL0PI4',
+      type: 'function',
+      function: [Object]
+    },
+    {
+      id: 'call_e8ceipN3i2OUiF3Z38qNEEs5',
+      type: 'function',
+      function: [Object]
+    },
+    {
+      id: 'call_cHlSgOIcsOXwpiOpzHIev6vF',
+      type: 'function',
+      function: [Object]
+    }
+  ]
+  }
+  */
+
+  //console.log(396, "function", responseMessage.tool_calls[0].function)
+  /*
+  {
+    name: 'get_current_weather',
+    arguments: '{"location": "San Francisco", "unit": "celsius"}'
+  }
+  */
+
+  // Step 2: check if the model wanted to call a function
+  const toolCalls = responseMessage.tool_calls
+  if (responseMessage.tool_calls) {
+    // call the function
+    // Note: the JSON response may not always be valid; be sure to handle errors
+    const availableFunctions = {
+      get_current_weather: getCurrentWeather,
+    }; // only one function in this example, but you can have multiple
+    messages.push(responseMessage); // extend conversation with assistant's reply
+    console.log(225,"messages", messages)
+    /*
+    [{
+      role: 'user',
+      content: "What's the weather like in San Francisco, Tokyo, and Paris?"
+    },
+    {
+      role: 'assistant',
+      content: null,
+      tool_calls: [ [Object], [Object], [Object] ]
+    }]
+    */
+
+    for (const toolCall of toolCalls) {
+      const functionName = toolCall.function.name;
+      const functionToCall = availableFunctions[functionName];
+      const functionArgs = JSON.parse(toolCall.function.arguments);
+      const functionResponse = functionToCall(
+        functionArgs.location,
+        functionArgs.unit
+      );
+      messages.push({
+        tool_call_id: toolCall.id,
+        role: "tool",
+        name: functionName,
+        content: functionResponse,
+      }); // extend conversation with function response
+    }
+    console.log(365,"messages2", messages)
+  /*
+  [{
+    role: 'user',
+    content: "What's the weather like in San Francisco, Tokyo, and Paris?"
+  },
+  {
+    role: 'assistant',
+    content: null,
+    tool_calls: [ [Object], [Object], [Object] ]
+  },
+  {
+    tool_call_id: 'call_0QMDlATqYjBjgdySQVCL0PI4',
+    role: 'tool',
+    name: 'get_current_weather',
+    content: '{"location":"San Francisco","temperature":"72","unit":"fahrenheit"}'
+  },
+  {
+    tool_call_id: 'call_e8ceipN3i2OUiF3Z38qNEEs5',
+    role: 'tool',
+    name: 'get_current_weather',
+    content: '{"location":"Tokyo","temperature":"10","unit":"celsius"}'
+  },
+  {
+    tool_call_id: 'call_cHlSgOIcsOXwpiOpzHIev6vF',
+    role: 'tool',
+    name: 'get_current_weather',
+    content: '{"location":"Paris","temperature":"22","unit":"fahrenheit"}'
+  }]
+  */
+    
+    //Step 3: get a new response from the model where it can see the function response
+    const secondResponse = await openai.chat.completions.create({
+      model: "gpt-3.5-turbo-0125",
+      messages: messages,
+    }); 
+    console.log(569, secondResponse)
+    return secondResponse.choices;
+  }
+}
+
+
+runConversation().then(console.log).catch(console.error);
+```
+
+经过三步之后会得到最终的结果，目前来看效果还不错！**其实函数调用(Function calling)和外挂向量数据库有类似的地方，都是要给大语言模型提供额外的信息以得到更为准确的结果。** 如果你正在开发bot或agent，那就用起来吧，它会使大语言模型的能力得到拓展！
+
+
 ## 反向代理
 ```py
 # 海外服务器 nginx 
@@ -515,3 +719,11 @@ $0.002/1000tokens(约750英文单词)
 Whisper API  <br>
 $0.006/分钟
 
+GPT-4o
+gpt-4o  US$5.00/1Mtokens (Input)  US$15.00/1M tokens(Output)
+
+GPT-4 Turbo
+gpt-4-turbo  US$10.00/1Mtokens (Input)  US$30.00/1M tokens(Output)
+
+GPT-3.5 Turbo
+gpt-3.5-turbo-0125  US$0.50/1Mtokens (Input)  US$1.50/1M tokens(Output)  1000000

@@ -11,15 +11,18 @@
     - [绘图](#绘图)
     - [修图](#修图)
     - [设计](#设计)
+    - [室内设计](#室内设计)
     - [写作](#写作)
     - [编程](#编程)
     - [虚拟角色](#虚拟角色)
     - [图像生成关键词](#图像生成关键词)
     - [关键词助手](#关键词助手)
-    - [视频](#视频)
+    - [视频剪辑](#视频剪辑)
+    - [视频动画](#视频动画)
     - [音频](#音频)
     - [三维化](#三维化)
     - [AI专用语言](#ai专用语言)
+    - [机器学习资料](#机器学习资料)
 
 <!-- /TOC -->
 
@@ -50,7 +53,7 @@
 
 [QuillBot](https://quillbot.com/) 主要功能是重写文章
 
-[Perplexity](https://www.perplexity.ai/) 为复杂问题提供准确答案的引擎
+[Perplexity](https://www.perplexity.ai/) 为复杂问题提供准确答案的AI引擎
 
 [Writesonic](https://writesonic.com/) 文案写作工具
 
@@ -88,7 +91,9 @@
 
 [Gpt-crawler](https://github.com/BuilderIO/gpt-crawler)  从URL创建自己的自定义GPT
 
+[Poe](https://poe.com) 快捷实用的AI聊天
 
+[Dify](https://dify.ai) 一个开源的LLM应用开发平台。结合了AI工作流程、RAG管道、代理功能、模型管理、可观察性功能等
 
 ## 大语言模型LLMs
 [LLaMA](https://github.com/facebookresearch/llama) Meta开源的LLaMA
@@ -145,9 +150,7 @@
 
 
 ## Agent
-[AutoGPT](https://news.agpt.co/)
-
-[MetaGPT](https://github.com/geekan/MetaGPT) 使GPT以软件公司的形式工作，协作处理更复杂的任务
+[AutoGPT](https://news.agpt.co/) 让每个人都能够访问和利用AI力量的愿景 ，以及在此基础上构建。
 
 [github](https://github.com/Significant-Gravitas/Auto-GPT)
 
@@ -157,9 +160,19 @@
 
 [AutoGPT中文安装文档](https://hossie.notion.site/828a0874e1c2472887859437eaf9cf00)
 
-[Ggodmode](https://godmode.space)  AutoGPT + BabyAGI
-
 [AutoGPT.js](https://autogptjs.com) 自动化AI的浏览器
+
+[MetaGPT](https://github.com/geekan/MetaGPT) 使GPT以软件公司的形式工作，协作处理更复杂的任务
+
+[AutoGen](https://github.com/microsoft/autogen) 通过多个代理进行对话以解决任务 ，实现LLM应用程序的开发
+
+[Langfuse](https://github.com/langfuse/langfuse) 面向LLM（大型语言模型）应用程序的开源可观测性和分析解决方案
+
+[ChatDev](https://github.com/OpenBMB/ChatDev) 通过各种智能代理担任不同的角色来构成一个多代理组织结构，通过编程改变数字世界
+
+[BabyAGI](https://github.com/yoheinakajima/babyagi) AI支持的任务管理系统示例，使用 OpenAI 和 PineconeAPI 创建
+
+[Ggodmode](https://godmode.space)  AutoGPT + BabyAGI
 
 [AgentGPT](https://agentgpt.reworkd.ai)
 
@@ -167,6 +180,7 @@
 
 [SuperAGI](https://github.com/TransformerOptimus/SuperAGI) 一个开发者优先的开源自主人工智能代理框架，使开发者能够构建、管理和运行有用的自主代理。
 
+[XAgent](https://github.com/OpenBMB/XAgent) 开源的基于大型语言模型（LLM）的自主智能体，可以自动解决各种任务。
 
 
 ## ChatGPT工具
@@ -202,6 +216,8 @@
 
 [Tools Arena](https://aitoolsarena.com/) AI工具集
 
+[AI-bot](https://ai-bot.cn) AI工具集
+
 [Topapps](http://Topapps.ai) AI工具集
 
 [Learnprompting](learnprompting.org) 吴恩达开源的免费机器学习课程，讲的是如何与 AI 沟通。
@@ -209,13 +225,15 @@
 ## 绘图
 [Midjourney](https://midjourney.com/) 效果极佳的AI制图工具，使用discord
 
-[Blue Willow](https://www.bluewillow.ai/) midjourney的同类产品，免费 
-
-[Stable Foundation](https://discord.com/channels/1002292111942635562/1100170312106127410) Stable Diffusion的同类产品，免费  
+[Leonardo](https://leonardo.ai/) 每天150点，多个图像模型，可自定义模型
 
 [Stability AI](https://stability.ai/) 号称Stable Diffusion后面的公司
 
-[Leonardo](https://leonardo.ai/) 免费，多个模型
+[Krea](https://www.krea.ai)  图片放大和增强, 即时生成图像，背景去除，擦除
+
+[Blue Willow](https://www.bluewillow.ai/) midjourney的同类产品，免费 
+
+[Stable Foundation](https://discord.com/channels/1002292111942635562/1100170312106127410) Stable Diffusion的同类产品，免费  
 
 [Astria](https://www.astria.ai) 虚拟人物，产品广告，视频制作
 
@@ -229,7 +247,7 @@
 
 [Dall-E](https://labs.openai.com/) OpenAI的绘图工具
 
-[Playground AI](https://playgroundai.com)  免费，多个模型
+[Playground AI](https://playground.com/)  免费，多个模型
 
 [Dreamlike](https://dreamlike.art) 
 
@@ -251,8 +269,17 @@
 
 [MiniGPT](https://github.com/Vision-CAIR/MiniGPT-4) 图像识别模型
 
+[RenderNet](https://rendernet.ai) 生成动作和连续角色
+
+[openart](https://openart.ai/) 图片和视频
+
+
 ## 修图
 [Cutout](https://www.cutout.pro/zh-CN) 修图工具，去除背景，放大图片等
+
+[MewX](https://www.mewxai.com/) 图像放大和增强
+
+[iFoto](https://www.ifoto.ai/)  电商AI
 
 [CodeFormer](https://replicate.com/sczhou/codeformer) 使模糊图片变清晰，特别是角色五官重新绘制
 
@@ -268,16 +295,22 @@
 
 [nero](https://ai.nero.com/) 图片放大
 
-[Upscayl](https://github.com/upscayl/upscayl) 图片放大
+[Upscayl](https://www.upscayl.org) 图片放大
 
 [AI图像增强工具](https://deep-image.ai/)
 
+[Getimg](https://getimg.ai) SD图像模型
+
 ## 设计
+[PromeAI](https://www.promeai.com/) 产品设计，室内设计，动画等
+
 [Canva](https://www.canva.com) 在线设计平台，品牌设计，网站设计，短视频，动画，电子书，二维码
 
 [Looka](https://looka.com) 商标设计
 
 [Uizard](https://uizard.io) 可视化界面设计
+
+[Vercel V0](https://v0.dev/) 在线设计网页前端，一键生成
 
 [Roomgpt](https://www.roomgpt.io/) 室内装饰，开源
 
@@ -295,7 +328,22 @@
 
 [Kickresume](http://Kickresume.com) AI简历生成器
 
+[Freepik](https://www.freepik.com/pikaso) 在线设计
+
+
+## 室内设计
+[Planner 5D](https://planner5d.com) 室内设计，从草图到三维
+
+[RoomGPT](https://www.roomgpt.io) 室内设计，从图片到装修
+
+[Reimagine Home](https://www.reimaginehome.ai) 室内设计
+
+[InteriorAi](https://interiorai.com) 室内设计
+
+
 ## 写作
+[powtoon](www.powtoon.com)  模板、白板解说动画
+
 [Copy AI](https://www.copy.ai/) 多种功能调优的写作助手
 
 [Jasper AI](https://www.jasper.ai/) 需要信用卡
@@ -321,6 +369,8 @@
 
 [KreadoAI](https://kreadoai.com/) 虚拟人物播报。制作专属数字人, 5分钟的免费额度
 
+[Delphi AI](http://delphi.ai/) 克隆自己
+
 [闪剪](https://shanjian.tv) 短视频制作工具，提供了一些虚拟数字人模板
 
 [Deepbrain](https://www.deepbrain.io/) 虚拟3D人物视频
@@ -332,6 +382,17 @@
 [Synthesia](https://www.synthesia.io/) 通过文本生成视频，没有免费额度
 
 [Leia Pix](https://convert.leiapix.com/)
+
+[synthlife](https://synthlife.co/) 虚拟网红
+
+[DreamTalk](https://github.com/ali-vilab/dreamtalk) 同步唇形
+
+[DomoAi(discord)](discord.gg/domoai)  视频转动漫
+
+[Channel-1](https://www.channel1.ai/)  虚拟人物播报，生成新闻
+
+[Rendernet](https://rendernet.ai/) 连续人物生成
+
 
 ## 图像生成关键词
 [methexis-inc](https://replicate.com/methexis-inc/img2prompt)
@@ -356,7 +417,7 @@
 [stable diffusion关键词](http://sd.firstool.online/)
 
 
-## 视频
+## 视频剪辑
 [剪映](https://www.capcut.cn) 抖音出品的智能剪辑软件，文本生成视频
 
 [腾讯智影](https://zenvideo.qq.com/) 智能视频创作工具，数字人播报，素材，文本生成视频等
@@ -367,13 +428,7 @@
 
 [万兴喵影](https://miao.wondershare.cn/) 视频剪辑
 
-[Runway](https://runwayml.com/) 别出心裁的电影剪辑，功能超卓
-
-[Fliki](https://fliki.ai/) 文本生成视频
-
-[Kaiber](https://www.kaiber.ai/) 图片动画
-
-[Artflow](https://www.app.artflow.ai/) 动画制作
+[Ozone](https://www.ozone.pro/) 视频剪辑
 
 [Pictory](https://pictory.ai/) 文本生成视频
 
@@ -403,14 +458,40 @@
 
 [Wav2Lip](https://github.com/Rudrabha/Wav2Lip)  基于GAN的唇形动作迁移算法，实现生成的视频人物口型与输入语音同步
 
+
+## 视频动画
+[Runway](https://runwayml.com/) 文本、图像生成视频，功能超卓
+
+[Pika](https://pika.art/)  生成视频
+
+[Fliki](https://fliki.ai/) 文本生成视频
+
+[Kaiber](https://www.kaiber.ai/) 图片动画
+
+[Artflow](https://www.app.artflow.ai/) 动画制作
+
+[Moonvalley](https://moonvalley.ai/) 动画生成，使用discord
+
+[Pixverse](https://app.pixverse.ai/) 免费高清短视频生成
+
+[BasedLabs](https://www.basedlabs.ai/) 短视频生成
+
+[Assistive](https://assistive.chat/video) 图像转视频
+
 ## 音频
 [Fliki](https://fliki.ai) 音频视频，每个月有5分钟的免费时长
 
 [Elevenlabs](https://beta.elevenlabs.io/)  声音克隆
 
+[Musicfy](https://musicfy.lol/)   歌曲克隆，音乐生成，语音克隆
+
 [Singing Voice Conversion](https://github.com/svc-develop-team/so-vits-svc) 歌声音色转化的模型
 
+[CassetteAi](https://cassetteai.com)  高质量无版权音乐生成器
+
 [lovo](https://lovo.ai/)
+
+[OpenVoice](https://github.com/myshell-ai/OpenVoice)  声音克隆
 
 [Voicemod](https://www.voicemod.net/) 变声器
 
@@ -423,6 +504,8 @@
 [Mubert](https://mubert.com/) 生成音乐 
 
 [Play.ht](https://play.ht/) 文本转音频
+
+[Splash Pro](https://pro.splashmusic.com/) 歌曲生成
 
 [Audacity](https://www.audacityteam.org/) 免费音频工具
 
@@ -441,6 +524,20 @@
 
 [Kaedim3d](https://www.kaedim3d.com/) 3D模型自动生成
 
+[CGDream](https://www.cgdream.ai/) 三维视觉
+
+[Stable-zero123](https://stability.ai/news/stable-zero123-3d-generation)  生成3D模型
+
+[InseRF](https://mohamad-shahbazi.github.io/inserf/) 在神经三维场景中插入文本驱动的生成对象
+
 
 ## AI专用语言
 [Mojo](https://docs.modular.com/mojo/get-started.html)
+
+
+## 机器学习资料 
+[李宏毅深度学习](https://github.com/datawhalechina/leedl-tutorial?tab=readme-ov-file)
+
+[深度学习500问](https://github.com/scutan90/DeepLearning-500-questions)
+
+[资料汇总](https://www.bilibili.com/read/cv15624770/)

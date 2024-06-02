@@ -17,9 +17,9 @@ channels后是服务器ID、频道ID这样的顺序。
 [参考](https://github.com/novicezk/midjourney-proxy/blob/main/docs/discord-params.md)
 进入频道，打开network（F12），刷新页面(F5)，找到 messages 的请求，这里的 Authorization 即用户Token
 
-
 ## 安装
-npm install midjourney --save  //^4.3.13
+npm install midjourney --save  //^4.3.13  4.3.17
+//npm update midjourney --save
 //或者
 yarn add midjourney
 

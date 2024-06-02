@@ -25,13 +25,13 @@
 cd /home
 mkdir pythonEnv
 virtualenv pythonEnv/rest_demo
-//virtualenv -p /usr/bin/python3.8 pythonEnv/chroma 
-source pythonEnv/rest_demo/bin/activate  //使用
+//virtualenv -p /usr/bin/python3.8 pythonEnv/rest_demo 
+source pythonEnv/rest_demo/bin/activate  //激活环境
 deactivate   // 退出环境
 
-pip install langchain   # 0.0.240
-//pip install langchain -U
-// pip install openai -U
+pip install langchain   # 0.0.240  0.1.13  0.1.17
+//pip install langchain -U  升级
+// pip install openai -U   升级
 //pip install langchain -i https://pypi.tuna.tsinghua.edu.cn/simple  国内一定要切换源
 pip list
 ```
@@ -54,7 +54,10 @@ Callbacks：提供了一个回调系统，可连接到 LLM 申请的各个阶段
 
 ## 开始应用
 ```py
-from langchain.llms import OpenAI
+pip install langchain-openai
+
+# from langchain.llms import OpenAI
+from langchain_openai import ChatOpenAI
 import os
 os.environ["OPENAI_API_KEY"] = "sk-xxxxx"
 # If you are behind an explicit proxy, you can use the OPENAI_PROXY environment variable to pass through
@@ -62,13 +65,14 @@ os.environ["OPENAI_API_KEY"] = "sk-xxxxx"
 # 如果希望通过代理来访问可以配置上
 # os.environ["OPENAI_API_BASE"] = os.getenv("OPENAI_API_BASE")
 
-llm = OpenAI(model_name="text-davinci-003",max_tokens=1024,temperature=0.2)
+llm = ChatOpenAI(model_name="gpt-3.5-turbo-0125", temperature=0)
 text = "天空为什么是蓝的？"
 print(llm(text))
 ```
 
 ## 联网搜索
 让我们的 OpenAI api 联网搜索，并返回答案给我们。这里我们需要借助 Serpapi 来进行实现，Serpapi 提供了 google 搜索的 api 接口。
+[参考](https://mp.weixin.qq.com/s/D9e4zzGQdKCnNYxmRFaqBQ)
 ```py
 pip install google-search-results
 
@@ -110,23 +114,60 @@ Final Answer: Today is Wednesday, May 3, 2023. On this day in history, the first
 ```
 
 ## 加载文档
-UnstructuredFileLoader可以加载多种文本，txt, md, pdf,docx这些都可以，但在国内不能用，只能用TextLoader
+UnstructuredFileLoader可以加载多种文本，txt, md, html, pdf,docx这些都可以，但在国内不能用，只能用TextLoader
 
-[参考](https://python.langchain.com/docs/modules/data_connection/document_loaders/integrations/unstructured_file.html)
+[参考](https://python.langchain.com/docs/integrations/document_loaders/unstructured_file)
+[参考2](https://mp.weixin.qq.com/s/OwOmXey_bYNcHpgSFYcVyA)
 ```py
-pip install "unstructured[local-inference]" -i https://pypi.tuna.tsinghua.edu.cn/simple
-pip install layoutparser[layoutmodels,tesseract]
+# # Install package
+# pip install --upgrade --quiet  "unstructured[all-docs]"
+pip install "unstructured[all-docs]"
+// pip install "unstructured[all-docs]" -i https://pypi.tuna.tsinghua.edu.cn/simple
+// pip install -i https://pypi.tuna.tsinghua.edu.cn/simple unstructured
+// pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pdf2image
+// pip install -i https://pypi.tuna.tsinghua.edu.cn/simple opencv-python
+// pip install -i https://pypi.tuna.tsinghua.edu.cn/simple unstructured-inference
+// pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pikepdf
 
-from langchain.text_splitter import CharacterTextSplitter
-from langchain.document_loaders import UnstructuredFileLoader
+除了Python包，还需要下载 nltk_data，这东西非常大，下载起来非常慢。所以们可以事先下好，放到固定的位置。
+下载地址：https://github.com/nltk/nltk_data/tree/gh-pages
+下载完后，将其中的packages文件夹内的全部内容拷贝到固定位置，例如上面的 C:\Users\xxx\AppData\Roaming\nltk_data
 
-loader = UnstructuredFileLoader("./russiaX.pdf")  #rssion.docx  russiaX.pdf
-documents = loader.load()
+from langchain_community.document_loaders import UnstructuredFileLoader
+
+loader = UnstructuredFileLoader("./example_data/state_of_the_union.txt")
+docs = loader.load()
 
 # 注意：UnstructuredFileLoader国内用不了！ 用TextLoader
-from langchain.document_loaders import TextLoader
+from langchain_community.document_loaders import TextLoader
 loader = TextLoader('./russia.txt', encoding='gbk')  #中文必须带 encoding='gbk'
 documents = loader.load()
+
+//////
+from langchain_community.document_loaders import UnstructuredWordDocumentLoader
+
+loader = UnstructuredWordDocumentLoader("example_data/fake.docx")
+data = loader.load()
+```
+
+## 加载网络资料
+```py
+from langchain_community.document_loaders import WebBaseLoader
+
+# Load, chunk and index the contents of the blog.
+loader = WebBaseLoader(
+    web_paths=("https://lilianweng.github.io/posts/2023-06-23-agent/",),
+    bs_kwargs=dict(
+        parse_only=bs4.SoupStrainer(
+            class_=("post-content", "post-title", "post-header")
+        )
+    ),
+)
+docs = loader.load()
+
+text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
+splits = text_splitter.split_documents(docs)
+vectorstore = Chroma.from_documents(documents=splits, embedding=OpenAIEmbeddings())
 ```
 
 ## 文本分割

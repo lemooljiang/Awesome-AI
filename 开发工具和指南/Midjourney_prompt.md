@@ -198,3 +198,52 @@ symmetrical the composition	对称构图
 ## 风格头像
 图片 + 风格 + 参数， eg:
 https://ipfs.ilark.io/ipfs/QmRobehozeey31UW7cCDazoikqTXi1a7aZd2vERvXx3jsm portrait, style of Van Gogh --iw 1.1
+
+
+## 标志设计
+[LOGO设计全案](https://mp.weixin.qq.com/s/8DUXnEy0EYxvx0rw3p9ZXw)
+
+单色黑白字母LOGO
+Company logo, flat, clean, simplicity modern, minimalist, vintage, cartoon, geometric, lettermark logo of letter MS
+公司LOGO，扁平、干净、简约、现代、极简主义、复古、卡通、几何、字母标记LOGO，字母为MS。
+
+字母主题LOGO
+A company logo, stylized capital letter B, playground theme, overall purple color scheme
+公司标志，以大写字母B为主题，运动场景，整体紫色调
+
+
+黑白图形LOGO
+A simple black and white creative logo drawn with ONLY ONE SINGLE LINE representing a stylised Wolf from profil in a minimalistic oneline tattoo style, 2D, Harmonious, full body 
+一个简单的黑白创意标志，用一条线条勾勒出了一个符号化的侧面狼形象，在极简主义的单线纹身风格中，2D，和谐，全身
+
+多色图形LOGO
+create very simple logo  for company named MANTE with many colors 
+为名为“MANTE”的公司设计非常简单的标志，使用多种颜色。
+
+平面图形LOGO
+Logo design, a logo that combines coffee related elements, vector, flat and simple design, with a white background, designed by Alvin Lustig 
+标志设计，一个结合咖啡相关元素的标志，矢量图，扁平而简约的设计，白色背景，由阿尔文·拉斯蒂格设计
+eg: Logo design, a logo that combines yuezhou kiln related elements, Mainly celadon design and development,vector, flat and simple design, with a white background, designed by Paul Rand 
+eg2: Logo design, a logo that combines Hunan Tourism Development Conference related elements, reflecting Yueyang's culture and elements,vector, flat and simple design, with a white background, designed by Paul Rand 
+
+A cat lying on the earth, simple lines
+
+设计师：
+保罗·兰德（Paul Rand，1914-1996）
+阿尔文·勒斯蒂格（Alvin Lustig，1915-1955）
+亚历山大·亚历克斯·斯坦维斯（Alexander Alex Steinweiss，1917-2011）
+布拉德伯里·汤普森（Bradbury Thompson，1911-1995）
+乔治·契尼（George Tscherny，1924- ）
+
+
+## 角色一致性
+跟之前的风格一致性--sref命名基本一致，--cref。
+
+我们可以使用多个 URL 来混合多张图片中的信息/字符，例如 --cref URL1 URL2（这类似于多张图片或样式提示）。
+eg: Someone sitting in the middle of a concert --cref https://s.mj.run/rvDu3RXchC8
+
+--cw 参数的作用
+Midjourney 能够从参考图像中识别的角色属性将与提示混合，从而创建出新的角色。你可以通过使用 --cw N 参数（cref 权重）来控制，其中 N 的值可以从 1 到 100。默认值为 100。
+--cw 参数不会改变角色参考图像的强度/影响力，--cw 参数的作用：
+--cw 100 的值（默认值）将捕捉整个角色；
+--cw 0 的值将仅捕捉面部，大致类似于面部替换，而且你无法关闭面部的参考
