@@ -11,8 +11,9 @@
 [PromptHero ｜](https://prompthero.com/) 
 [关键词助手｜](https://prompt.noonshot.com/midjourney) 
 [Huggingface prompt ｜](huggingface.co/spaces/doevent/prompt-generator)
-[prompt-generator ](https://www.howtoleverageai.com/midjourney-prompt-generator)
+[prompt-generator ｜](https://www.howtoleverageai.com/midjourney-prompt-generator)
 [关键词集锦 ｜](https://zhuanlan.zhihu.com/p/614050846)
+[商业设计完全教程 ｜](https://u0gp5ergxyk.feishu.cn/wiki/WMPkwaYybi5X1ykqyZHcFPeAnue)
 
 
 ## 关键词格式
@@ -203,6 +204,8 @@ https://ipfs.ilark.io/ipfs/QmRobehozeey31UW7cCDazoikqTXi1a7aZd2vERvXx3jsm portra
 ## 标志设计
 [LOGO设计全案](https://mp.weixin.qq.com/s/8DUXnEy0EYxvx0rw3p9ZXw)
 
+ Logo类型+主体物+风格+艺术家+视角+行业+颜色 
+
 单色黑白字母LOGO
 Company logo, flat, clean, simplicity modern, minimalist, vintage, cartoon, geometric, lettermark logo of letter MS
 公司LOGO，扁平、干净、简约、现代、极简主义、复古、卡通、几何、字母标记LOGO，字母为MS。
@@ -210,6 +213,46 @@ Company logo, flat, clean, simplicity modern, minimalist, vintage, cartoon, geom
 字母主题LOGO
 A company logo, stylized capital letter B, playground theme, overall purple color scheme
 公司标志，以大写字母B为主题，运动场景，整体紫色调
+
+letter A Logo, Logo design, flat vector, minimalist --s 200
+字母A标志，标志设计，平面矢量，极简主义
+
+吉祥物logo
+提示词：red fox, side view, Logo design, minimalist, color block, black background
+翻译：赤狐，侧视图，标志设计，极简主义，色块，黑色背景
+
+线条logo
+提示词：fox, front view, Logo design, minimalist, line, soft, white background
+翻译：狐狸，前视图，标志设计，极简主义，线条，柔和，白色背景
+
+手绘logo
+提示词：a coffee shop handwriting style Logo, there’s a little bird, Simplicity
+翻译：一个咖啡店 手写风格的标志，有一只小鸟，简单
+
+具体图形
+提示词： Cloud, Logo design, minimalist Logo, dazzling light, sparkling feeling, gradient colors, psychedelic
+翻译：云，标志设计，极简主义标志，耀眼的光线，闪闪发光的感觉，渐变色，迷幻色，明亮的颜色
+
+多个图形结合
+Logo composed of cloud and game controller, Logo design, minimalist logo, gradient colors
+由云朵和游戏手柄组成的标志，标志设计，极简主义标志，渐变色
+
+抽象图形
+提示词：simple linear wavy Logo, minimalistic
+简单的线性波浪形标志，极简
+
+徽章式
+提示词：red fox, front view, Logo design, badge, black background
+翻译：赤狐，前视图，标志设计，徽章，黑色背景
+提示词： （图像提示）elephant, front view, Logo design, badge,
+翻译：大象，正面视图，标志设计，徽章，黑色背景，圆形
+
+行业logo
+提示词：The Logo of a coffee shop
+提示词：Logo of a technology company
+
+提示词： a logo for a children’s toys brand, simple,vector,by Pablo Picasso
+儿童玩具品牌的标志，简单，矢量，毕加索风格
 
 
 黑白图形LOGO
@@ -226,7 +269,6 @@ Logo design, a logo that combines coffee related elements, vector, flat and simp
 eg: Logo design, a logo that combines yuezhou kiln related elements, Mainly celadon design and development,vector, flat and simple design, with a white background, designed by Paul Rand 
 eg2: Logo design, a logo that combines Hunan Tourism Development Conference related elements, reflecting Yueyang's culture and elements,vector, flat and simple design, with a white background, designed by Paul Rand 
 
-A cat lying on the earth, simple lines
 
 设计师：
 保罗·兰德（Paul Rand，1914-1996）
@@ -234,7 +276,29 @@ A cat lying on the earth, simple lines
 亚历山大·亚历克斯·斯坦维斯（Alexander Alex Steinweiss，1917-2011）
 布拉德伯里·汤普森（Bradbury Thompson，1911-1995）
 乔治·契尼（George Tscherny，1924- ）
+毕加索风格： Pablo Picasso
 
+## 吉祥物设计
+形象生成公式： 类型+主体物+风格+颜色+视角景别+质感灯光  
+
+//动物形象
+提示词： three views, front view, side view, back view, cartoon IP, orange cat, full body, standing, clean background, pixar, IP blind box clay material, studio light, octane render, 3D, C4D, blender, hyper quality, UHD, 8K --ar 16:9 --niji 5
+翻译： 三视图，前视图，侧视图，后视图，卡通IP，橙色猫，全身，站立，干净的背景，皮克斯，IP, 盲盒黏土材料，工作室灯光，辛烷值渲染，3D，C4D，blender（一款3D软件），超高质量，超高清, 8K
+
+提示词： 3D animation style character design, a cute polar dog cartoon character, --niji 5 --s 120
+翻译： 3D动画风格的人物设计，一个可爱的北极犬卡通人物
+
+//动物拟人化
+提示词： 3D, chibi, a cute tiger cartoon character, holding a book, wearing an overcoat, front view, blue and pink, pure white background, POP MART style, IP image, advanced natural color matching, cute and colorful, exquisite details, C4D, octane renderer, ultra high definition, perfect lighting, cartoon realism,fun character settings, ray tracing --niji 5 --ar 16:9 --s 120
+翻译： 3D，chibi，一个可爱的老虎卡通人物，拿着一本书，穿着大衣，正视图，蓝色和粉红色，纯白背景，泡泡玛特风格， IP形象，高级自然配色，可爱多彩，精致的细节， C4D，辛烷值渲染，超高清，完美照明，卡通现实主义，有趣的角色设置，光线追踪
+
+//古风人物
+提示词： a super cute girl, wearing traditional Chinese Hanfu, chibi, dreamy, IP character design, full body,white background, bright color, Pixar style, 3D render, front lighting, high detail, C4D, 8K
+翻译： 一个超级可爱的女孩，穿着中国传统汉服，chibi，梦幻，IP人物设计，全身，白底，明亮的颜色，皮克斯风格，3D渲染，正面照明，高细节，C4D，8K
+
+
+## 表情包
+[img url] a young man,emoji pack, multiple poses and expressions,[happy,sad,expectant,laughing,disappointed,surprised,pitiful,aggrieved,despised,embarrassed,unhappy] 2d,meme art,white background --niji 5 --iw 1.1
 
 ## 角色一致性
 跟之前的风格一致性--sref命名基本一致，--cref。
@@ -247,3 +311,18 @@ Midjourney 能够从参考图像中识别的角色属性将与提示混合，从
 --cw 参数不会改变角色参考图像的强度/影响力，--cw 参数的作用：
 --cw 100 的值（默认值）将捕捉整个角色；
 --cw 0 的值将仅捕捉面部，大致类似于面部替换，而且你无法关闭面部的参考
+
+## 艺术风格
+watercolor， 水彩画
+Psychedelic，迷幻风格
+Chinese ink style, ink drop，水墨画
+graphite sketch，素描
+tie dye illustration，扎染风格
+Cubist screen print illustration style，立体拼贴风格
+black line art work,black and white，黑白色调
+in pop art retro comic style，波普艺术
+Charcoal drawing，炭笔画
+Pointillism,in style of Georges Seurat，点彩画
+woodcu print，木刻画
+oil painting,brush strokes，油画
+

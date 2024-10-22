@@ -29,17 +29,17 @@
 ## AI助手
 [ChatGPT](https://chat.openai.com) OpenAI研发的聊天机器人程序，人工智能技术驱动的自然语言处理工具。
 
-[Google Bard](https://bard.google.com) LaMDA 模型驱动，谷歌出品
-
-[Claude](https://claude.ai/chats) 强劲的AI助手
-
 [AI·Joe](https://ai.ilark.io/) 基于多个语言模型和开发框架，对具体的应用场景和参数都做了调优
+
+[Phind](https://www.phind.com)  AI搜索引擎
 
 [LLaMA2 Chatbot](https://www.llama2.ai/) 基于LLaMA2的AI助手
 
 [Llama2 ChatBot](https://chinese.llama.family) 基于Llama2的在线对话机器人
 
 [Notion AI](https://www.notion.so/) 偏重工作空间，团队合作，笔记，文档
+
+[Claude](https://claude.ai/chats) 强劲的AI助手
 
 [Cohere](https://cohere.com/) 打造人类与机器之间没有语言障碍的未来
 
@@ -87,13 +87,14 @@
 
 [闻达](https://github.com/wenda-LLM/wenda) 一个大规模语言模型调用平台
 
-[川虎 Chat](https://github.com/GaiZhenbiao/ChuanhuChatGPT) 为多种 LLM 提供了一个轻快好用的 Web 图形界面和众多附加功能。支持 GPT-4 、基于文件问答、 LLM本地部署 、联网搜索、Agent 助理、支持 Fine-tune
+[川虎 Chat](https://github.com/GaiZhenbiao/ChuanhuChatGPT) 为多种 LLM 提供了一个轻快好用的 Web 图形界面和众多附加功能。
 
 [Gpt-crawler](https://github.com/BuilderIO/gpt-crawler)  从URL创建自己的自定义GPT
 
 [Poe](https://poe.com) 快捷实用的AI聊天
 
 [Dify](https://dify.ai) 一个开源的LLM应用开发平台。结合了AI工作流程、RAG管道、代理功能、模型管理、可观察性功能等
+
 
 ## 大语言模型LLMs
 [LLaMA](https://github.com/facebookresearch/llama) Meta开源的LLaMA
@@ -348,7 +349,11 @@
 
 [Jasper AI](https://www.jasper.ai/) 需要信用卡
 
-[Tome](https://beta.tome.app/) 一键生成PPT
+[Tome](https://beta.tome.app/) 一键生成ppt
+
+[Gamma](https://gamma.app/zh-cn) 精美的演示文稿、文档和网站
+
+[MindShow](https://https://www.mindshow.fun) 输入标题，AI直接生成PPT,自动配图、自动排版
 
 [Wordtune](https://www.wordtune.com/)
 
@@ -356,11 +361,15 @@
 
 
 ## 编程
+[Cursor](https://www.cursor.com/) 编程工具IDE
+
 [Codegeex](https://codegeex.cn/zh-CN) 免费的AI编程助手
 
 [Codeium](https://codeium.com) 免费的编程助手
 
 [GitHub Copilot](https://github.com/features/copilot) GitHub编程助手
+
+[screenshot-to-code](https://github.com/abi/screenshot-to-code) 截图生成前端代码
 
 ## 虚拟角色
 [Heygen](https://www.heygen.com/) 虚拟3D人物视频, 虚拟人物播报。制作专属数字人，并在短视频、直播和带货等多种场景中使用 
@@ -483,7 +492,9 @@
 
 [Elevenlabs](https://beta.elevenlabs.io/)  声音克隆
 
-[Musicfy](https://musicfy.lol/)   歌曲克隆，音乐生成，语音克隆
+[Musicfy](https://musicfy.lol/)  歌曲克隆，音乐生成，语音克隆
+
+[Suno](https://suno.com/) 创作歌曲
 
 [Singing Voice Conversion](https://github.com/svc-develop-team/so-vits-svc) 歌声音色转化的模型
 
