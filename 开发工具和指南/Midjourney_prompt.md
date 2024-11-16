@@ -306,6 +306,8 @@ eg2: Logo design, a logo that combines Hunan Tourism Development Conference rela
 我们可以使用多个 URL 来混合多张图片中的信息/字符，例如 --cref URL1 URL2（这类似于多张图片或样式提示）。
 eg: Someone sitting in the middle of a concert --cref https://s.mj.run/rvDu3RXchC8
 
+eg2: You are sitting in a chair, sipping coffee, with a beautiful robot serving you beside you. Other robots are busy working in the background. The scene is captured from a first-person perspective, showcasing the futuristic environment filled with advanced technology and the elegance of the robot, --cref https://s.mj.run/V2kCoCMTPbo --cw 0
+
 --cw 参数的作用
 Midjourney 能够从参考图像中识别的角色属性将与提示混合，从而创建出新的角色。你可以通过使用 --cw N 参数（cref 权重）来控制，其中 N 的值可以从 1 到 100。默认值为 100。
 --cw 参数不会改变角色参考图像的强度/影响力，--cw 参数的作用：

@@ -4,7 +4,6 @@
 
 - [<center> Chroma  </center>](#center-chroma--center)
     - [向量数据库 Chroma](#向量数据库-chroma)
-    - [bug](#bug)
     - [基本使用](#基本使用)
     - [Chroma embedding](#chroma-embedding)
     - [Chroma docker](#chroma-docker)
@@ -30,22 +29,12 @@
 
 Chroma是一个新的AI原生开源嵌入式数据库，非常轻量和易用。Chroma是开源嵌入式数据库，它使知识、事实和技能可插入，从而轻松构建LLM应用程序。它可以运行在内存中（可保存在磁盘中），也可做为数据库服务器来使用（这和传统数据库类似）。
 ```py
-pip install chromadb   # 0.4.3  0.4.24  0.5.0
+pip install chromadb   # 0.4.3  0.4.24  0.5.0  0.5.8  0.5.18
 // pip install chromadb -i https://pypi.tuna.tsinghua.edu.cn/simple  国内一定要切换源
 // pip install --upgrade chromadb -i https://pypi.tuna.tsinghua.edu.cn/simple 升级
-//python3.11版无法安装！
-
-# 预先依赖 
-# chromadb有一堆预先的依赖。如果已经安装了langchain，就不用安装别的。否则要先安装torch
-pip install torch -i https://pypi.tuna.tsinghua.edu.cn/simple    //2.0.1  一堆 nvidia-cublas
-//pip install torch
+//推荐python3.10环境
 ```
 
-## bug
-```py
-1. 使用`delete`函数后，经常会出现如下错误，暂未修复：
-Delete of nonexisting embedding ID: 77d25c18-3774-11ee-a7f1-fb75c83274a1
-```
 
 ## 基本使用
 [参考 ](https://docs.trychroma.com/api-reference)
@@ -85,18 +74,6 @@ collection.add(
     metadatas=[{"source": "my_source"}, {"source": "my_source"}],
     ids=["id1", "id2"]
 )
-
-# 如果 Chroma 收到一个文档列表，它会自动标记并使用集合的嵌入函数嵌入这些文档（如果在创建集合时没有提供嵌入函数，则使用默认值）。Chroma也会存储文档本身。如果文档过大，无法使用所选的嵌入函数嵌入，则会出现异常。
-
-# 每个文档必须有一个唯一的相关ID。尝试.添加相同的ID两次将导致错误。可以为每个文档提供一个可选的元数据字典列表，以存储附加信息并进行过滤。
-
-# 或者，您也可以直接提供文档相关嵌入的列表，Chroma将存储相关文档，而不会自行嵌入。
-# collection.add(
-#     embeddings=[[1.2, 2.3, 4.5], [6.7, 8.2, 9.2]],
-#     documents=["This is a document", "This is another document"],
-#     metadatas=[{"source": "my_source"}, {"source": "my_source"}],
-#     ids=["id1", "id2"]
-# )
 
 # 改数据
 # 更新所提供 id 的嵌入、元数据或文档。
@@ -180,6 +157,7 @@ openai_ef = embedding_functions.OpenAIEmbeddingFunction(
 # 从github拉取必要的文件
 mkdir chromadb & cd chromadb & git init
 git clone https://github.com/chroma-core/chroma.git
+(ssh连接： git clone git@github.com:chroma-core/chroma.git)
 cd chroma
 docker compose up -d --build
 
@@ -191,7 +169,6 @@ docker ps -a
 # 2. 直接从dicker hub中拉取
 docker pull chromadb/chroma
 docker pull lemooljiang/chroma-server:latest
-
 # 启动服务
 docker run -p 8000:8000 chromadb/chroma
 docker run -d -p 8000:8000 --name chromadb lemooljiang/chroma-server
@@ -205,7 +182,7 @@ pip install chromadb-client
 
 # 可以远程访问，无权限， 存在安全问题
 import chromadb
-# httpClient = chromadb.HttpClient(host='170.187.111.111', port=8000)  // host=<server IP address>
+# httpClient = chromadb.HttpClient(host='170.187.111.xxx', port=8000)  // host=<server IP address>
 chroma_client = chromadb.HttpClient(host='localhost', port=8000)
 ```
 
@@ -218,7 +195,7 @@ htpasswd -Bbn admin admin > server.htpasswd
 # 其中 “admin admin”是用户名和密码，可自行修改
 # 或用docker创建
 docker run --rm --entrypoint htpasswd httpd:2 -Bbn admin admin > server.htpasswd
-# admin:$2y$05$QrljJulAv9jz8YOvo2gn.OX5BdvOe0Mv1tAhhohxe0KAWlTdsPpau
+# admin:$2y$05$QrljJulAv9jz8YOvo2gn.OX5BdvOe0Mv1txxxxxxxx
 
 # 创建环境变量
 export CHROMA_SERVER_AUTHN_CREDENTIALS_FILE="server.htpasswd"
@@ -228,16 +205,11 @@ export CHROMA_SERVER_AUTHN_PROVIDER="chromadb.auth.basic_authn.BasicAuthenticati
 docker compose up -d --build
 
 # 客户端
-import chromadb
+import chromadb 
 from chromadb.config import Settings
 
-# httpClient = chromadb.HttpClient(
-#   host='localhost', port=8000,
-#   settings=Settings(chroma_client_auth_provider="chromadb.auth.basic.BasicAuthClientProvider",chroma_client_auth_credentials="admin:admin")
-#   )
-
 httpClient = chromadb.HttpClient(
-	host='47.113.117.181', port=8000, 
+	host='47.113.xxx.xxx', port=8000,  #host='localhost' 如果是本机
 	settings=Settings(chroma_client_auth_provider="chromadb.auth.basic_authn.BasicAuthClientProvider",
 		chroma_client_auth_credentials="admin:admin")
 	)  
@@ -260,8 +232,7 @@ uvicorn chromadb.app:app --workers 1 --host 127.0.0.1 --port 9629 --proxy-header
 ## langchain中的使用
 [参考](https://python.langchain.com/docs/integrations/vectorstores/chroma)
 ```py
-# /home/knowqa/know_env/lib/python3.10/site-packages/langchain/vectorstores
-from langchain.vectorstores import Chroma
+from langchain_community.vectorstores import Chroma
 
 # langchain 默认文档 collections [Collection(name=langchain)]
 # 持久化数据
@@ -272,10 +243,10 @@ vectordb.persist()
 vectordb = Chroma(persist_directory="./chromadb", embedding_function=embeddings)
 
 eg:
-from langchain.embeddings.openai import OpenAIEmbeddings
-from langchain.text_splitter import CharacterTextSplitter
-from langchain.vectorstores import Chroma
-from langchain.document_loaders import TextLoader
+from langchain_openai import OpenAIEmbeddings
+from langchain_text_splitters import CharacterTextSplitter
+from langchain_community.vectorstores import Chroma
+from langchain_community.document_loaders import TextLoader
 import os
 os.environ["OPENAI_API_KEY"] = 'sk-xxxxxx'
 
@@ -309,7 +280,7 @@ s = vectordb.similarity_search(query)
 # print(s[0].page_content)
 
 # 特别注意
-在存入数据后有时不能立即查到新添加的数据，此时，关停后重启加载即可！
+内存版本时，在存入数据后有时不能立即查到新添加的数据，此时，关停后重启加载即可！
 
 
 # 直接用get获取数据
@@ -327,9 +298,6 @@ res = vectordb.add_texts(texts=[text])
 print(259, res)
 //返回ids列表
 //['a05e3d0c-ab40-11ed-a853-e65801318981']
-
-# 特别注意
-在存入数据后有时不能立即查到新添加的数据，此时，关停后重启加载即可！
 ```
 
 ## 更新和删除数据
@@ -422,8 +390,8 @@ OpenAIEmbeddings中，低于0.385的相关度高，高于0.4的基本不相关�
 text2vec中，低于256的算是相关度高，高于300的就基本不相关了！
 
 eg:
-from langchain.vectorstores import Chroma
-from langchain.embeddings.openai import OpenAIEmbeddings
+from langchain_community.vectorstores import Chroma
+from langchain_openai import OpenAIEmbeddings
 from dotenv import dotenv_values
 
 env_vars = dotenv_values('.env')
@@ -432,9 +400,10 @@ env_vars = dotenv_values('.env')
 persist_directory = './chromac'
 collection = 'bigccx'
 embedding = OpenAIEmbeddings(
-    model="text-embedding-ada-002",
+    model="text-embedding-3-small",
     openai_api_key=env_vars['OPENAI_API_KEY']
 )
+# openai_api_base=env_vars['OPENAI_API_BASE'] 国内要增加这条设置
 
 vectordb = Chroma(persist_directory=persist_directory, embedding_function=embedding, collection_name=collection)
 
@@ -450,8 +419,8 @@ def queryVectorDB(ask):
 			return ""
 
 
-eg2:  text2vec模型质量一般，推荐使用OpenAIEmbeddings
-from langchain.vectorstores import Chroma
+eg2:  text2vec模型质量一般，此处只作探讨，推荐使用OpenAIEmbeddings
+from langchain_community.vectorstores import Chroma
 import sentence_transformers
 from langchain.embeddings.huggingface import HuggingFaceEmbeddings
 from langchain import PromptTemplate
@@ -500,8 +469,8 @@ for doc, score in results_with_scores:
 # 存入数据库
 import chromadb
 from chromadb.config import Settings
-from langchain.text_splitter import CharacterTextSplitter
-from langchain.document_loaders import TextLoader
+from langchain_text_splitters import CharacterTextSplitter
+from langchain_community.document_loaders import TextLoader
 import uuid
 
 client = chromadb.Client(Settings(chroma_db_impl="duckdb+parquet",  persist_directory="./chromadb"))
@@ -540,17 +509,18 @@ print(156, results)
 用docker运行了服务端，直接和它相连
 ```py
 import chromadb
-# from langchain.vectorstores import Chroma
-from chromaX import ChromaX
+from langchain_community.vectorstores import Chroma
+from langchain_openai import OpenAIEmbeddings
+
 
 # 加载和实例化数据库
 # 数据库地址 /home/chromadb/chroma/chroma 
 collection = 'testNN'
 embedding = OpenAIEmbeddings(
-    model="text-embedding-ada-002",
+    model="text-embedding-3-small",
     openai_api_key=env_vars['OPENAI_API_KEY']
 )
-httpClient = chromadb.HttpClient(host='localhost', port=8000)
-vectordb = ChromaX(collection_name=collection, embedding_function=embedding, client=httpClient)
+httpClient = chromadb.HttpClient( host='139.111.1xx.23', port=8000 ) host='localhost'
+vectordb = Chroma(collection_name=collection, embedding_function=embedding, client=httpClient)
 print(33, vectordb)
 ```

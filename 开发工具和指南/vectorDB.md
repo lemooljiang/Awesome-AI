@@ -19,23 +19,26 @@
 ## Chroma 
 Chroma是一个新的AI原生开源嵌入式数据库，非常轻量和易用。Chroma是开源嵌入式数据库，它使知识、事实和技能可插入，从而轻松构建LLM应用程序。它可以运行在内存中（可保存在磁盘中），也可做为数据库服务器来使用（这和传统数据库类似）。
 
-[文档 ｜](https://docs.trychroma.com/?lang=py)
+[文档 ｜](https://docs.trychroma.com)
 [github |](https://github.com/chroma-core/chroma)
 ```py
 pip install chromadb
 
-from langchain.embeddings.openai import OpenAIEmbeddings
-from langchain.text_splitter import CharacterTextSplitter
-from langchain.vectorstores import Chroma
-from langchain.document_loaders import TextLoader
+from langchain_openai import OpenAIEmbeddings
+from langchain_text_splitters import CharacterTextSplitter
+from langchain_community.vectorstores import Chroma
+from langchain_community.document_loaders import TextLoader
 
-from langchain.document_loaders import TextLoader
 loader = TextLoader('../../../state_of_the_union.txt')
 documents = loader.load()
 text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
 docs = text_splitter.split_documents(documents)
  
-embeddings = OpenAIEmbeddings()
+embedding = OpenAIEmbeddings(
+    model="text-embedding-3-small",
+    openai_api_key=env_vars['OPENAI_API_KEY'],
+)
+# openai_api_base=env_vars['OPENAI_API_BASE']
 db = Chroma.from_documents(docs, embeddings)
  
 query = "What did the president say about Ketanji Brown Jackson"

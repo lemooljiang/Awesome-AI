@@ -29,7 +29,7 @@
 ## AI助手
 [ChatGPT](https://chat.openai.com) OpenAI研发的聊天机器人程序，人工智能技术驱动的自然语言处理工具。
 
-[AI·Joe](https://ai.ilark.io/) 基于多个语言模型和开发框架，对具体的应用场景和参数都做了调优
+[AI·Joe](https://ai.ilark.io/) 人工智能助手，辅助工作流
 
 [Phind](https://www.phind.com)  AI搜索引擎
 
@@ -40,6 +40,8 @@
 [Notion AI](https://www.notion.so/) 偏重工作空间，团队合作，笔记，文档
 
 [Claude](https://claude.ai/chats) 强劲的AI助手
+
+[Character](https://beta.character.ai/)  模拟角色对话，一众名人都在其中
 
 [Cohere](https://cohere.com/) 打造人类与机器之间没有语言障碍的未来
 
@@ -60,8 +62,6 @@
 [AI律师](https://donotpay.com/) 
 
 [Casetext](https://casetext.com) 法律助手
-
-[Character](https://beta.character.ai/)  模拟角色对话，一众名人都在其中
 
 [Chatbase](https://www.chatbase.co/#demo) 构建一个基于特点数据和文档的聊天机器人
 

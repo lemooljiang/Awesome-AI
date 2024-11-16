@@ -1,10 +1,10 @@
 # <center> LangChain  </center>
 
 ## 下载与资源
-[python包 ｜](https://python.langchain.com/docs/get_started/introduction.html)
-[github |](https://github.com/hwchase17/langchain)
+[github |](https://github.com/langchain-ai/langchain)
+[文档｜](https://python.langchain.com/docs/introduction/)
+[中文文档｜](https://python.langchain.com.cn/docs/)
 [Langchain中文教程 |](https://www.langchain.com.cn/)
-[LangChain Cookbook |](https://github.com/gkamradt/langchain-tutorials/blob/main/LangChain%20Cookbook%20Part%201%20-%20Fundamentals.ipynb)
 [handbook |](https://www.pinecone.io/learn/langchain-intro/)
 [中文说明 ｜](https://liaokong.gitbook.io/llm-kai-fa-jiao-cheng/)
 [中文说明2 ｜](https://github.com/liaokongVFX/LangChain-Chinese-Getting-Started-Guide) 
@@ -29,7 +29,7 @@ virtualenv pythonEnv/rest_demo
 source pythonEnv/rest_demo/bin/activate  //激活环境
 deactivate   // 退出环境
 
-pip install langchain   # 0.0.240  0.1.13  0.1.17
+pip install langchain   # 0.0.240  0.1.13  0.1.17  0.3.7
 //pip install langchain -U  升级
 // pip install openai -U   升级
 //pip install langchain -i https://pypi.tuna.tsinghua.edu.cn/simple  国内一定要切换源
@@ -51,10 +51,19 @@ Agents：基于 Chains 进一步串联工具（Tools），从而将大语言模�
 
 Callbacks：提供了一个回调系统，可连接到 LLM 申请的各个阶段，便于进行日志记录、追踪等数据导流
 
+//更新
+1、LangGraph核心组件: Graphs、State、Nodes、Edges、Send、checkpointer
+
+2、LangGraph 实现：可控性、持久化、Human-in-the-loop、
+streaming、React agent
+
+3、Agent使用案例： Chatbots，Multi-Agent Systems, Planning
+Agent
 
 ## 开始应用
 ```py
-pip install langchain-openai
+# pip install langchain-openai
+pip install langchain-openai -i https://pypi.tuna.tsinghua.edu.cn/simple  // 0.2.8
 
 # from langchain.llms import OpenAI
 from langchain_openai import ChatOpenAI
@@ -174,8 +183,8 @@ vectorstore = Chroma.from_documents(documents=splits, embedding=OpenAIEmbeddings
 实现文本分割器倒不算难，但也有几个坑，主要是对中文的支持。读取文本时必须使用encoding='gbk'，否则分割不了。
 [大语言模型应用中的文本分块策略](https://mp.weixin.qq.com/s/S8RecRgiGO_rLbnwC_iExQ)
 ```py
-from langchain.text_splitter import CharacterTextSplitter
-from langchain.document_loaders import TextLoader
+from langchain_text_splitters import CharacterTextSplitter
+from langchain_community.document_loaders import TextLoader
 
 loader = TextLoader('./russia.txt', encoding='gbk')  #中文必须带 encoding='gbk'
 # 文本最好做一些加工，段落最好有两个换行
@@ -189,7 +198,7 @@ print(112, docs)
 112 [Document(page_content='2022年1月10号到13号，...兵与俄罗斯作战！', metadata={'source': './russia.txt'}), Document(page_content='2022年2月24日，随...316人受伤。', metadata={'source': './russia.txt'}), ...]
 
 # 另一种实现方法
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 with open('./russia.txt', encoding='gbk') as f:
     state_of_the_union = f.read()
 
@@ -215,11 +224,12 @@ print(123, texts)
 [FlagEmbedding |](https://github.com/FlagOpen/FlagEmbedding)
 ```py
 # OpenAIEmbeddings
-pip install openai tiktoken
+pip install langchain-openai
 
-import openai
 from dotenv import dotenv_values
-from langchain.embeddings.openai import OpenAIEmbeddings
+# from langchain.embeddings.openai import OpenAIEmbeddings
+from langchain_openai import OpenAIEmbeddings
+
 import os
 from dotenv import dotenv_values
 
@@ -231,12 +241,14 @@ env_vars = dotenv_values('.env')
 # os.environ["OPENAI_API_BASE"] = os.getenv("OPENAI_API_BASE")
 # embedding = OpenAIEmbeddings()
 embeddings = OpenAIEmbeddings(
-    model="text-embedding-ada-002",
+    model="text-embedding-3-small ", #text-embedding-ada-002
     openai_api_key=env_vars['OPENAI_API_KEY']
+    openai_api_base=env_vars['OPENAI_API_BASE']
 )
 # embedding = OpenAIEmbeddings(
 #     model="text-embedding-ada-002",
 #     openai_api_key=env_vars['OPENAI_API_KEY'],
+#     openai_api_base=env_vars['OPENAI_API_BASE']
 #     openai_organization="ilark",
 #     chunk_size=400,
 #     request_timeout=60
@@ -305,8 +317,7 @@ embedding_model_dict = {
 [](https://python.langchain.com/en/latest/modules/chains/index_examples/question_answering.html)
 
 ```py
-from langchain.embeddings.openai import OpenAIEmbeddings
-from langchain.document_loaders import TextLoader
+from langchain_community.document_loaders import TextLoader
 from langchain.indexes import VectorstoreIndexCreator
 import os
 os.environ["OPENAI_API_KEY"] = 'sk-vgxxxxxx'
