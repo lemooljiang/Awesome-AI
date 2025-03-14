@@ -427,25 +427,11 @@ for(let i = 0; i < img_length; i++){
 ```
 
 ## 读图
-向模型提供图片有两种主要方式：通过传递图片链接或在请求中直接传递 base64 编码的图片。
-
-计算成本
-与文本输入一样，图片输入也是以代币计量和收费的。一张图片的代币成本由两个因素决定：图片大小和每个 image_url 块上的细节选项。所有带 "细节：低 "选项的图片每张都需要花费 85 个代币。"细节：高 "选项的图片首先会被缩放到 2048 x 2048 的正方形内，并保持长宽比不变。然后，再进行缩放，使图像最短的边长为 768px。最后，我们计算图片由多少个 512px 的正方形组成。每个方块需要花费 170 个代币。最后总计还要加上 85 个代币。
-
-下面是一些演示上述操作的示例。
-一张 1024 x 1024 正方形图像的细节：高模式下耗费 765 个代币
-1024 小于 2048，因此无需调整初始大小。
-最短的边是 1024，因此我们将图像缩小到 768 x 768。
-表示图像需要 4 个 512 平方英寸的方块，因此最终令牌成本为 170 * 4 + 85 = 765。
-
-2048 x 4096 图像细节：高模式下需要花费 1105 个代币
-我们将图像缩小到 1024 x 2048，以适应 2048 平方英寸的大小。
-最短的边是 1024，因此我们进一步缩小到 768 x 1536。
-需要 6 个 512px 的磁贴，因此最终的代币成本为 170 * 6 + 85 = 1105。
+图像大模型：GPT-4o, GPT-4o mini
 ```js
 async function main() {
   const response = await Openai.chat.completions.create({
-    model: "gpt-4-vision-preview",
+    model: "gpt-4o",
     messages: [
       {
         role: "user",
@@ -463,6 +449,85 @@ async function main() {
   });
   console.log(65, response.choices[0])
 }
+```
+
+## 计算图片tokens
+向模型提供图片有两种主要方式：通过传递图片链接或在请求中直接传递 base64 编码的图片。
+
+计算成本
+与文本输入一样，图片输入也是以代币计量和收费的。一张图片的代币成本由两个因素决定：图片大小和每个 image_url 块上的细节选项。所有带 "细节：低 "选项的图片每张都需要花费 85 个代币。"细节：高 "选项的图片首先会被缩放到 2048 x 2048 的正方形内，并保持长宽比不变。然后，再进行缩放，使图像最短的边长为 768px。最后，我们计算图片由多少个 512px 的正方形组成。每个方块需要花费 170 个代币。最后总计还要加上 85 个代币。
+
+下面是一些演示上述操作的示例。
+一张 1024 x 1024 正方形图像的细节：高模式下耗费 765 个代币
+1024 小于 2048，因此无需调整初始大小。
+最短的边是 1024，因此我们将图像缩小到 768 x 768。
+表示图像需要 4 个 512 平方英寸的方块，因此最终令牌成本为 170 * 4 + 85 = 765。
+
+2048 x 4096 图像细节：高模式下需要花费 1105 个代币
+我们将图像缩小到 1024 x 2048，以适应 2048 平方英寸的大小。
+最短的边是 1024，因此我们进一步缩小到 768 x 1536。
+需要 6 个 512px 的磁贴，因此最终的代币成本为 170 * 6 + 85 = 1105。
+```js
+import url from 'node:url'
+import https from 'node:https'
+import { imageSize } from 'image-size'
+
+async function getSize(imgUrl){
+    const options = url.parse(imgUrl)
+    return new Promise(resolve => {
+        https.get(options, function (response) {
+            const chunks = []
+            response
+                .on('data', function (chunk) {
+                chunks.push(chunk)
+                })
+                .on('end', function () {
+                const buffer = Buffer.concat(chunks)
+                console.log(223, imageSize(buffer))
+                resolve(imageSize(buffer))
+                })
+            })
+    })
+}
+
+
+async function calImgToken(imgUrl) {
+    let size = await getSize(imgUrl)
+    console.log(556, size)
+    let width = size.width
+    let height = size.height
+    console.log(669, width, height)
+    let newWidth = 768
+    let newHeight = 768
+    let aspect_ratio = width / height 
+    
+    //第一步：将图片缩小到2048*2048的范围内
+    if (width > 2048 || height > 2048) {
+      if (aspect_ratio > 1) {
+        newWidth = 2048
+        newHeight = parseInt(2048 / aspect_ratio)
+      } else {
+        newHeight = 2048
+        newWidth = parseInt(2048 * aspect_ratio)
+      }
+    }
+
+    // 第二步：将最短边缩小到768
+    if (width >= height && height > 768) {
+      newWidth = Math.floor((768 / height) * width)
+    } else if (height > width && width > 768) {
+      newHeight = Math.floor((768 / width) * height)
+    }
+    
+    // 第三步：计算占几个512*512的方块，并计算出token
+    const tiles_width = Math.ceil(newWidth / 512)
+    const tiles_height = Math.ceil(newHeight / 512)
+    const total_tokens = 85 + 170 * (tiles_width * tiles_height)
+    console.log(569, total_tokens)
+    return total_tokens
+}
+// calImgToken(1868, 892)  //1445
+calImgToken("https://ipfs.ilark.io/ipfs/QmbwEHigZpVFNWrUJgP6u28t9NhAW2xbqUm7BMAzSEc2ND")
 ```
 
 ## 函数调用

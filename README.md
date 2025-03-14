@@ -6,7 +6,7 @@
     - [AI助手](#ai助手)
     - [大语言模型LLMs](#大语言模型llms)
     - [Agent](#agent)
-    - [ChatGPT工具](#chatgpt工具)
+    - [AI拓展工具](#ai拓展工具)
     - [AI社区](#ai社区)
     - [绘图](#绘图)
     - [修图](#修图)
@@ -14,8 +14,10 @@
     - [室内设计](#室内设计)
     - [写作](#写作)
     - [编程](#编程)
+    - [前端开发](#前端开发)
     - [虚拟角色](#虚拟角色)
-    - [图像生成关键词](#图像生成关键词)
+    - [数字人](#数字人)
+    - [开源数字人](#开源数字人)
     - [关键词助手](#关键词助手)
     - [视频剪辑](#视频剪辑)
     - [视频动画](#视频动画)
@@ -27,11 +29,19 @@
 <!-- /TOC -->
 
 ## AI助手
-[ChatGPT](https://chat.openai.com) OpenAI研发的聊天机器人程序，人工智能技术驱动的自然语言处理工具。
-
 [AI·Joe](https://ai.ilark.io/) 人工智能助手，辅助工作流
 
 [Phind](https://www.phind.com)  AI搜索引擎
+
+[秘塔AI搜索](https://metaso.cn/) 通过理解用户的搜索意图，为用户提供无广告、高质量搜索结果的搜索引擎。
+
+[DeepSeek](https://www.deepseek.com/) 基于Transformer结构，具有670亿参数的规模
+
+[ChatGPT](https://chat.openai.com) OpenAI研发的聊天机器人程序，人工智能技术驱动的自然语言处理工具。
+
+[BrowserUse](https://github.com/browser-use/browser-use) 可以读取网页的AI
+
+[海螺AI](https://hailuoai.com/) 多功能的AI助手，通过提供视频创作、音乐创作、图像识别和文本写作等功能
 
 [LLaMA2 Chatbot](https://www.llama2.ai/) 基于LLaMA2的AI助手
 
@@ -95,6 +105,10 @@
 
 [Dify](https://dify.ai) 一个开源的LLM应用开发平台。结合了AI工作流程、RAG管道、代理功能、模型管理、可观察性功能等
 
+[TinyWow](https://tinywow.com/) AI写作工具 PDF编辑 图像处理 在线工具
+
+[懒人客服](https://github.com/cs-lazy-tools/ChatGPT-On-CS) 基于 LLM 大语言模型的知识库的集成客服系统
+
 
 ## 大语言模型LLMs
 [LLaMA](https://github.com/facebookresearch/llama) Meta开源的LLaMA
@@ -151,19 +165,9 @@
 
 
 ## Agent
-[AutoGPT](https://news.agpt.co/) 让每个人都能够访问和利用AI力量的愿景 ，以及在此基础上构建。
+[AutoGPT](https://github.com/Significant-Gravitas/AutoGPT) 让每个人都能够访问和利用AI力量的愿景 ，以及在此基础上构建。
 
-[github](https://github.com/Significant-Gravitas/Auto-GPT)
-
-[AutoGPT文档](https://docs.agpt.co/)
-
-[AutoGPT中文版](https://github.com/RealHossie/Auto-GPT-Chinese)
-
-[AutoGPT中文安装文档](https://hossie.notion.site/828a0874e1c2472887859437eaf9cf00)
-
-[AutoGPT.js](https://autogptjs.com) 自动化AI的浏览器
-
-[MetaGPT](https://github.com/geekan/MetaGPT) 使GPT以软件公司的形式工作，协作处理更复杂的任务
+[MetaGPT](https://github.com/geekan/MetaGPT) 使 GPTs 组成软件公司，协作处理更复杂的任务
 
 [AutoGen](https://github.com/microsoft/autogen) 通过多个代理进行对话以解决任务 ，实现LLM应用程序的开发
 
@@ -179,26 +183,39 @@
 
 [Agent Colab](https://colab.research.google.com/drive/1QpvUHQzpHPvlMgBElwd5NJQ6qpryVeWE?usp=sharing)
 
-[SuperAGI](https://github.com/TransformerOptimus/SuperAGI) 一个开发者优先的开源自主人工智能代理框架，使开发者能够构建、管理和运行有用的自主代理。
+[SuperAGI](https://github.com/TransformerOptimus/SuperAGI) 开发者优先的开源自主人工智能代理框架
 
 [XAgent](https://github.com/OpenBMB/XAgent) 开源的基于大型语言模型（LLM）的自主智能体，可以自动解决各种任务。
 
+[OpenManus](https://github.com/mannaandpoem/OpenManus) 简洁高效的智能体实现方案
 
-## ChatGPT工具
+[OWL](https://github.com/camel-ai/owl) 优化劳动力学习的通用智能体，用于处理现实世界的自动化任务
+
+[autoMate](https://github.com/yuruotong1/autoMate) AI驱动的本地自动化工具, 让电脑自己会干活
+
+[News-Collector](https://github.com/AgentEra/Agently-Daily-News-Collector)  用户输入的主题关键词自动完成新闻汇总报告的结构设计
+
+
+
+## AI拓展工具
 [OpenRouter](https://openrouter.ai/) 提供多个大模型的API接口
+
+[Browser-Use](https://github.com/browser-use/browser-use)  让AI自动操作浏览器的开源工具
+
+[语聚AI](https://yuju-ai.com/index.html) 集简云推出的全国第一款AI+连接器解决方案产品
+
+[Gapier](https://gapier.com/) 1 分钟内与 GPT 集成
+
+[Airtable](https://www.airtable.com/) 创建现代业务应用程序，管理关键流程并使其自动化。
 
 [Openai Cookbook](https://github.com/openai/openai-cookbook) Openai开发指南(python)
 
 [Monica](https://monica.im/) 谷歌插件, AI智能助理
 
-[AIPRM](https://chrome.google.com/webstore/detail/aiprm-for-chatgpt/ojnbohmppadfgpejeebfnmnknjdlckgj?hl=en) 众多功能 
-
 [Bardeen](https://www.bardeen.ai/)  谷歌插件， 自动化社交媒体
 
 [Axiom](https://axiom.ai/) 谷歌插件，自动化的网页工具
  
-[Personality-Selector](https://chrome.google.com/webstore/detail/chatgpt-personality-selec/jdmpccdlifdkhniemenfmieffkdblahk?hl=en) 语音功能
-
 [Awesome Chatgpt](https://github.com/humanloop/awesome-chatgpt) 项目集
 
 
@@ -222,6 +239,7 @@
 [Topapps](http://Topapps.ai) AI工具集
 
 [Learnprompting](learnprompting.org) 吴恩达开源的免费机器学习课程，讲的是如何与 AI 沟通。
+
 
 ## 绘图
 [Midjourney](https://midjourney.com/) 效果极佳的AI制图工具，使用discord
@@ -278,6 +296,8 @@
 ## 修图
 [Cutout](https://www.cutout.pro/zh-CN) 修图工具，去除背景，放大图片等
 
+[MagicStudio](https://magicstudio.com/zh/) AI图像编辑工具
+
 [MewX](https://www.mewxai.com/) 图像放大和增强
 
 [iFoto](https://www.ifoto.ai/)  电商AI
@@ -303,15 +323,17 @@
 [Getimg](https://getimg.ai) SD图像模型
 
 ## 设计
-[PromeAI](https://www.promeai.com/) 产品设计，室内设计，动画等
-
 [Canva](https://www.canva.com) 在线设计平台，品牌设计，网站设计，短视频，动画，电子书，二维码
+
+[堆友](https://d.design/) AI设计生产力工具，零门槛AI绘画，多种电商设计神器
+
+[PiccoPilot](https://www.piccopilot.com/)  阿里推出的AI电商营销图设计平台  
 
 [Looka](https://looka.com) 商标设计
 
 [Uizard](https://uizard.io) 可视化界面设计
 
-[Vercel V0](https://v0.dev/) 在线设计网页前端，一键生成
+[PromeAI](https://www.promeai.com/) 产品设计，室内设计，动画等
 
 [Roomgpt](https://www.roomgpt.io/) 室内装饰，开源
 
@@ -361,13 +383,18 @@
 
 
 ## 编程
-[Cursor](https://www.cursor.com/) 编程工具IDE
+[Windsurf](https://codeium.com/windsurf) 智能编程工具IDE，帮助程序员在编程过程中提升效率
+
+[Cursor](https://www.cursor.com/) 智能编程工具IDE，人性化的设计和简洁的用户界面
 
 [Codegeex](https://codegeex.cn/zh-CN) 免费的AI编程助手
 
-[Codeium](https://codeium.com) 免费的编程助手
-
 [GitHub Copilot](https://github.com/features/copilot) GitHub编程助手
+
+## 前端开发
+[v0](https://v0.dev) vercel团队开发的前端用户界面生成工具
+
+[bolt](https://bolt.new)  AI驱动全栈开发平台
 
 [screenshot-to-code](https://github.com/abi/screenshot-to-code) 截图生成前端代码
 
@@ -379,8 +406,6 @@
 [KreadoAI](https://kreadoai.com/) 虚拟人物播报。制作专属数字人, 5分钟的免费额度
 
 [Delphi AI](http://delphi.ai/) 克隆自己
-
-[闪剪](https://shanjian.tv) 短视频制作工具，提供了一些虚拟数字人模板
 
 [Deepbrain](https://www.deepbrain.io/) 虚拟3D人物视频
 
@@ -403,13 +428,50 @@
 [Rendernet](https://rendernet.ai/) 连续人物生成
 
 
-## 图像生成关键词
-[methexis-inc](https://replicate.com/methexis-inc/img2prompt)
+## 数字人
+[腾讯智影](https://zenvideo.qq.com/) 支持基础的视频编辑功能，还提供了数字人播报视频生成功能。
+
+[科大讯飞](https://virtual-man.xfyun.cn/)  提供虚拟人形象资产构建、AI驱动、多模态交互的多场景虚拟人产品服务。
+
+[商汤如影](https://www.shyuhuankj.com) 以数字人视频生成技术为核心的创新应用平台。
+
+[即梦AI](https://jimeng.jianying.com) 字节跳动旗下的视频创作平台，提供了简单易用的数字人解决方案。
+
+[硅基智能](https://www.guiji.ai/)  基于AI 大模型、数字人及声音克隆相关技术
+
+[风平智能](https://fullpeace.cn/)  提供虚拟数字人定制、AI短视频内容生产和数字人直播、IP培育和交易的一站式解决方案。 
+
+[闪剪](https://shanjian.tv/)  短视频制作还是数字人直播
+
+[百度曦灵](https://xiling.cloud.baidu.com) 百度推出的智能数字人平台, 面向视频、直播、交互等全场景应用
+
+
+## 开源数字人
+[Goku](https://github.com/Saiyan-World/goku) 基于流的视频生成基础模型
+
+[Latentsync](https://github.com/bytedance/LatentSync) 开源嘴唇形同步项目
+
+[AigcPanel](https://github.com/modstart-lib/aigcpanel) 简单易用的一站式AI数字人系统
+
+[Sonic](https://github.com/jixiaozhong/Sonic) 将重点转向肖像动画中的全局音频感知
+
+[EchoMimicV2](https://github.com/antgroup/echomimic_v2)  实现引人注目的简化半人体动画
+
+[MimicTalk](https://github.com/yerfor/MimicTalk) 用于实现特定说话人的高表现力的虚拟人视频合成
+
+[Streamer-Sales](https://github.com/PeterH0323/Streamer-Sales) 能够根据给定的商品特点激发用户购买的卖货主播大模型
+
+[MiniMates](https://github.com/kleinlee/MiniMates) 一款轻量级AI数字人，支持运行嵌入，网页或者电脑桌面都能流畅运行。
+
+[混元视频模型](https://github.com/Tencent/HunyuanVideo) 一个全新的开源视频生成大模型
+
+[混元视频网站](https://aivideo.hunyuan.tencent.com/)
+
 
 ## 关键词助手
 [Chat GPT Prompts](https://prompts.chat/) ChatGPT代入角色
 
-[Lexica](https://lexica.art/)  图库和搜索功能
+[Lexica](https://lexica.art/) 图库和搜索功能
 
 [PromptHero](https://prompthero.com/) 大量的案例和关键词
 
@@ -453,8 +515,6 @@
 
 [Make-A-Video](https://makeavideo.studio/) 从文本创建视频
 
-[Clipchamp](https://clipchamp.com/)
-
 [VidIQ](https://vidiq.com)  YouTube SEO 工具
 
 [Invideo](https://invideo.io/)
@@ -486,6 +546,13 @@
 [BasedLabs](https://www.basedlabs.ai/) 短视频生成
 
 [Assistive](https://assistive.chat/video) 图像转视频
+
+[Deep-Live-Cam](https://github.com/hacksider/Deep-Live-Cam) 只需一张图片就可实时换脸和一键视频深度伪装
+
+[StreamV2V](https://github.com/Jeff-LiangF/streamv2v) 实时视频中进行面部替换和风格转换
+
+[ToonCrafter](https://github.com/ToonCrafter/ToonCrafter) 自动生成中间的动画帧，实现平滑的过渡效果
+
 
 ## 音频
 [Fliki](https://fliki.ai) 音频视频，每个月有5分钟的免费时长
