@@ -4,8 +4,8 @@
 
 - [<center>Awesome AI</center>](#centerawesome-aicenter)
     - [AI助手](#ai助手)
-    - [大语言模型LLMs](#大语言模型llms)
     - [Agent](#agent)
+    - [大语言模型LLMs](#大语言模型llms)
     - [AI拓展工具](#ai拓展工具)
     - [AI社区](#ai社区)
     - [绘图](#绘图)
@@ -25,13 +25,14 @@
     - [三维化](#三维化)
     - [AI专用语言](#ai专用语言)
     - [机器学习资料](#机器学习资料)
+    - [Awesome-AI](#awesome-ai)
 
 <!-- /TOC -->
 
 ## AI助手
 [AI·Joe](https://ai.ilark.io/) 人工智能助手，辅助工作流
 
-[Phind](https://www.phind.com)  AI搜索引擎
+[Phind](https://www.phind.com)  AI搜索引擎, 智能问答与内容生成
 
 [秘塔AI搜索](https://metaso.cn/) 通过理解用户的搜索意图，为用户提供无广告、高质量搜索结果的搜索引擎。
 
@@ -47,7 +48,7 @@
 
 [Llama2 ChatBot](https://chinese.llama.family) 基于Llama2的在线对话机器人
 
-[Notion AI](https://www.notion.so/) 偏重工作空间，团队合作，笔记，文档
+[NotionAI](https://www.notion.so/) 偏重工作空间，团队合作，笔记，文档
 
 [Claude](https://claude.ai/chats) 强劲的AI助手
 
@@ -85,7 +86,7 @@
 
 [佛祖AI](https://hotoke.ai/)  机器佛
 
-[GPTZero](https://gptzero.me) 对抗 AI, 检测文本是不是由 AI 生成的
+[GPTZero](https://gptzero.me) 对抗AI, 检测文本是不是由AI生成的
 
 [GirlfriendGPT](https://github.com/EniasCailliau/GirlfriendGPT) 私人情感AI
 
@@ -108,6 +109,44 @@
 [TinyWow](https://tinywow.com/) AI写作工具 PDF编辑 图像处理 在线工具
 
 [懒人客服](https://github.com/cs-lazy-tools/ChatGPT-On-CS) 基于 LLM 大语言模型的知识库的集成客服系统
+
+
+## Agent
+[MetaGPT](https://github.com/geekan/MetaGPT) 使 GPTs 组成软件公司，协作处理更复杂的任务
+
+[AutoGen](https://github.com/microsoft/autogen) 通过多个代理进行对话以解决任务 ，实现LLM应用程序的开发
+
+[AutoGPT](https://github.com/Significant-Gravitas/AutoGPT) 让每个人都能够访问和利用AI力量的愿景 ，以及在此基础上构建。
+
+[OpenManus](https://github.com/mannaandpoem/OpenManus) 简洁高效的智能体实现方案
+
+[OWL](https://github.com/camel-ai/owl) 优化劳动力学习的通用智能体，用于处理现实世界的自动化任务
+
+[autoMate](https://github.com/yuruotong1/autoMate) AI驱动的本地自动化工具, 让电脑自己会干活
+
+[TARS](https://github.com/bytedance/UI-TARS-desktop) 一款基于 UI-TARS（视觉-语言模型）的图形用户界面代理应用程序，可让您使用自然语言控制计算机。
+
+[FinRobot](https://github.com/AI4Finance-Foundation/FinRobot) 使用大型语言模型进行金融分析的开源人工智能代理平台
+
+[Agno](https://github.com/agno-agi/agno) 一个用于构建具有记忆、知识和工具的多模态代理的轻量级库
+
+[Langfuse](https://github.com/langfuse/langfuse) 面向LLM（大型语言模型）应用程序的开源可观测性和分析解决方案
+
+[ChatDev](https://github.com/OpenBMB/ChatDev) 通过各种智能代理担任不同的角色来构成一个多代理组织结构，通过编程改变数字世界
+
+[BabyAGI](https://github.com/yoheinakajima/babyagi) AI支持的任务管理系统示例，使用 OpenAI 和 PineconeAPI 创建
+
+[Ggodmode](https://godmode.space)  AutoGPT + BabyAGI
+
+[AgentGPT](https://agentgpt.reworkd.ai)
+
+[Agent Colab](https://colab.research.google.com/drive/1QpvUHQzpHPvlMgBElwd5NJQ6qpryVeWE?usp=sharing)
+
+[SuperAGI](https://github.com/TransformerOptimus/SuperAGI) 开发者优先的开源自主人工智能代理框架
+
+[XAgent](https://github.com/OpenBMB/XAgent) 开源的基于大型语言模型（LLM）的自主智能体，可以自动解决各种任务。
+
+[News-Collector](https://github.com/AgentEra/Agently-Daily-News-Collector)  用户输入的主题关键词自动完成新闻汇总报告的结构设计
 
 
 ## 大语言模型LLMs
@@ -164,39 +203,6 @@
 [中国大模型](https://github.com/wgwang/LLMs-In-China) 中国大模型汇总
 
 
-## Agent
-[AutoGPT](https://github.com/Significant-Gravitas/AutoGPT) 让每个人都能够访问和利用AI力量的愿景 ，以及在此基础上构建。
-
-[MetaGPT](https://github.com/geekan/MetaGPT) 使 GPTs 组成软件公司，协作处理更复杂的任务
-
-[AutoGen](https://github.com/microsoft/autogen) 通过多个代理进行对话以解决任务 ，实现LLM应用程序的开发
-
-[Langfuse](https://github.com/langfuse/langfuse) 面向LLM（大型语言模型）应用程序的开源可观测性和分析解决方案
-
-[ChatDev](https://github.com/OpenBMB/ChatDev) 通过各种智能代理担任不同的角色来构成一个多代理组织结构，通过编程改变数字世界
-
-[BabyAGI](https://github.com/yoheinakajima/babyagi) AI支持的任务管理系统示例，使用 OpenAI 和 PineconeAPI 创建
-
-[Ggodmode](https://godmode.space)  AutoGPT + BabyAGI
-
-[AgentGPT](https://agentgpt.reworkd.ai)
-
-[Agent Colab](https://colab.research.google.com/drive/1QpvUHQzpHPvlMgBElwd5NJQ6qpryVeWE?usp=sharing)
-
-[SuperAGI](https://github.com/TransformerOptimus/SuperAGI) 开发者优先的开源自主人工智能代理框架
-
-[XAgent](https://github.com/OpenBMB/XAgent) 开源的基于大型语言模型（LLM）的自主智能体，可以自动解决各种任务。
-
-[OpenManus](https://github.com/mannaandpoem/OpenManus) 简洁高效的智能体实现方案
-
-[OWL](https://github.com/camel-ai/owl) 优化劳动力学习的通用智能体，用于处理现实世界的自动化任务
-
-[autoMate](https://github.com/yuruotong1/autoMate) AI驱动的本地自动化工具, 让电脑自己会干活
-
-[News-Collector](https://github.com/AgentEra/Agently-Daily-News-Collector)  用户输入的主题关键词自动完成新闻汇总报告的结构设计
-
-
-
 ## AI拓展工具
 [OpenRouter](https://openrouter.ai/) 提供多个大模型的API接口
 
@@ -204,7 +210,9 @@
 
 [语聚AI](https://yuju-ai.com/index.html) 集简云推出的全国第一款AI+连接器解决方案产品
 
-[Gapier](https://gapier.com/) 1 分钟内与 GPT 集成
+[Ollama](https://ollama.com) 开源的本地大语言模型运行框架，专为在本地机器上便捷部署和运行大型语言模型
+
+[Gapier](https://gapier.com/) 提供的50种定制化的ActionsAPIs，1分钟内与GPTs集成 
 
 [Airtable](https://www.airtable.com/) 创建现代业务应用程序，管理关键流程并使其自动化。
 
@@ -217,6 +225,8 @@
 [Axiom](https://axiom.ai/) 谷歌插件，自动化的网页工具
  
 [Awesome Chatgpt](https://github.com/humanloop/awesome-chatgpt) 项目集
+
+[SuperDuperDB](https://github.com/superduper-io/superduper) 将人工智能（AI）模型和工作流程无缝集成到主流数据库中
 
 
 ## AI社区
@@ -391,12 +401,16 @@
 
 [GitHub Copilot](https://github.com/features/copilot) GitHub编程助手
 
+
 ## 前端开发
 [v0](https://v0.dev) vercel团队开发的前端用户界面生成工具
 
 [bolt](https://bolt.new)  AI驱动全栈开发平台
 
+[Same.dev](https://same.new/)  复刻网站的UI，还具体分析它的dom结构、组件、交互逻辑，直到上线部署。
+
 [screenshot-to-code](https://github.com/abi/screenshot-to-code) 截图生成前端代码
+
 
 ## 虚拟角色
 [Heygen](https://www.heygen.com/) 虚拟3D人物视频, 虚拟人物播报。制作专属数字人，并在短视频、直播和带货等多种场景中使用 
@@ -619,3 +633,6 @@
 [深度学习500问](https://github.com/scutan90/DeepLearning-500-questions)
 
 [资料汇总](https://www.bilibili.com/read/cv15624770/)
+
+## Awesome-AI
+[github地址](https://github.com/lemooljiang/Awesome-AI)

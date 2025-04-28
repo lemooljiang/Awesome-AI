@@ -308,6 +308,9 @@ eg: Someone sitting in the middle of a concert --cref https://s.mj.run/rvDu3RXch
 
 eg2: You are sitting in a chair, sipping coffee, with a beautiful robot serving you beside you. Other robots are busy working in the background. The scene is captured from a first-person perspective, showcasing the futuristic environment filled with advanced technology and the elegance of the robot, --cref https://s.mj.run/V2kCoCMTPbo --cw 0
 
+eg3: SURREAL "TTAI" Vintage Analog dub chanson vinyl music album cover "Welcome to TagAI" music album cover, editorial nerdy woman sitting on a vintage couch focused on embroidering a blue baseball caps with white threads, she is wearing blue and white and red starred onesie and has long dark hair with bangs. There's an embroidered blue baseball cap on her lap that says "TTAI". There are more blue baseball caps scattered around her on the couch, in front of vintage red and white wallpaper. Murica MASA warning blueprint report, style of Miyazaki Hayao --chaos 60 --ar 16:9 --sref 1390278553 --stylize 800
+
+
 --cw 参数的作用
 Midjourney 能够从参考图像中识别的角色属性将与提示混合，从而创建出新的角色。你可以通过使用 --cw N 参数（cref 权重）来控制，其中 N 的值可以从 1 到 100。默认值为 100。
 --cw 参数不会改变角色参考图像的强度/影响力，--cw 参数的作用：
