@@ -3,6 +3,7 @@
 ## 下载与资源
 [github |](https://github.com/langchain-ai/langchain)
 [文档｜](https://python.langchain.com/docs/introduction/)
+[工具包 |](https://github.com/LangChain-OpenTutorial/LangChain-OpenTutorial)
 [中文文档｜](https://python.langchain.com.cn/docs/)
 [Langchain中文教程 |](https://www.langchain.com.cn/)
 [handbook |](https://www.pinecone.io/learn/langchain-intro/)
@@ -57,8 +58,7 @@ Callbacks：提供了一个回调系统，可连接到 LLM 申请的各个阶段
 2、LangGraph 实现：可控性、持久化、Human-in-the-loop、
 streaming、React agent
 
-3、Agent使用案例： Chatbots，Multi-Agent Systems, Planning
-Agent
+3、Agent使用案例： Chatbots，Multi-Agent Systems, Planning Agent
 
 ## 开始应用
 ```py

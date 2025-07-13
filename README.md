@@ -5,6 +5,7 @@
 - [<center>Awesome AI</center>](#centerawesome-aicenter)
     - [AI助手](#ai助手)
     - [Agent](#agent)
+    - [智能体平台](#智能体平台)
     - [大语言模型LLMs](#大语言模型llms)
     - [AI拓展工具](#ai拓展工具)
     - [AI社区](#ai社区)
@@ -114,6 +115,8 @@
 ## Agent
 [MetaGPT](https://github.com/geekan/MetaGPT) 使 GPTs 组成软件公司，协作处理更复杂的任务
 
+[Magentic-UI](https://github.com/microsoft/magentic-ui) 自动执行网络任务，同时保持控制
+
 [AutoGen](https://github.com/microsoft/autogen) 通过多个代理进行对话以解决任务 ，实现LLM应用程序的开发
 
 [AutoGPT](https://github.com/Significant-Gravitas/AutoGPT) 让每个人都能够访问和利用AI力量的愿景 ，以及在此基础上构建。
@@ -124,9 +127,13 @@
 
 [autoMate](https://github.com/yuruotong1/autoMate) AI驱动的本地自动化工具, 让电脑自己会干活
 
+[Suna](https://github.com/kortix-ai/suna) 开源生成式 AI Agent
+
 [TARS](https://github.com/bytedance/UI-TARS-desktop) 一款基于 UI-TARS（视觉-语言模型）的图形用户界面代理应用程序，可让您使用自然语言控制计算机。
 
 [FinRobot](https://github.com/AI4Finance-Foundation/FinRobot) 使用大型语言模型进行金融分析的开源人工智能代理平台
+
+[Manus](https://manus.im) 能够独立思考、规划并执行复杂任务，直接交付完整成果
 
 [Agno](https://github.com/agno-agi/agno) 一个用于构建具有记忆、知识和工具的多模态代理的轻量级库
 
@@ -147,6 +154,24 @@
 [XAgent](https://github.com/OpenBMB/XAgent) 开源的基于大型语言模型（LLM）的自主智能体，可以自动解决各种任务。
 
 [News-Collector](https://github.com/AgentEra/Agently-Daily-News-Collector)  用户输入的主题关键词自动完成新闻汇总报告的结构设计
+
+[OpenBB](https://github.com/OpenBB-finance/OpenBB) 强大免费的金融数据终端，为量化交易者提供了一个完整的市场数据分析平台
+
+
+## 智能体平台
+[扣子](https://www.coze.cn) 字节跳动推出的一款智能体构建平台，也是目前C端用户最多的智能体平台之一
+
+[腾讯元器](https://yuanqi.tencent.com) 基于腾讯混元的大模型，设置智能体信息、一键分发到腾讯系的平台
+
+[阿里云百炼](https://bailian.console.aliyun.com) 一站式的大模型开发及应用构建平台
+
+[百度文心](https://agents.baidu.com)  无缝接入百度搜索、地图、文库，适合电商导购、本地生活服务
+
+[智谱清言](https://chatglm.cn) 能够进行智能对话，还集成了多种功能，包括AI绘画、视频生成、代码编写等，旨在为用户提供全方位的智能服务支持。
+
+[魔搭社区](https://www.modelscope.cn) 汇聚了各领域最先进的机器学习模型，并提供一站式服务，包括模型的探索体验、推理、训练、部署和应用。
+
+[讯飞星火](https://xinghuo.xfyun.cn)  以中文为核心，具备跨领域的知识和语言理解能力，能够基于自然对话方式理解与执行任务。
 
 
 ## 大语言模型LLMs
@@ -202,9 +227,18 @@
 
 [中国大模型](https://github.com/wgwang/LLMs-In-China) 中国大模型汇总
 
+[NLP资源库](https://github.com/fighting41love/funNLP) 中文NLP资源库
+
+
 
 ## AI拓展工具
 [OpenRouter](https://openrouter.ai/) 提供多个大模型的API接口
+
+[N8N](https://github.com/n8n-io/n8n) 开源的工作流自动化工具
+
+[Zapier](https://zapier.com)  连接起超过6000+款常用应用，工作流自动化平台
+
+[make](https://www.make.com/en)  直观的可视化流程设计，自动化工作流
 
 [Browser-Use](https://github.com/browser-use/browser-use)  让AI自动操作浏览器的开源工具
 
@@ -227,6 +261,8 @@
 [Awesome Chatgpt](https://github.com/humanloop/awesome-chatgpt) 项目集
 
 [SuperDuperDB](https://github.com/superduper-io/superduper) 将人工智能（AI）模型和工作流程无缝集成到主流数据库中
+
+
 
 
 ## AI社区
@@ -320,7 +356,7 @@
 
 [Clipdrop](https://clipdrop.co/) 打光
 
-[Clean UP](https://cleanup.pictures/) 一键抠图
+[Cleanup](https://cleanup.pictures/) 一键抠图
 
 [Remove](https://www.remove.bg/zh) 一键抠图
 
@@ -355,10 +391,6 @@
 
 [Brandmark](https://brandmark.io/) 专做logo
 
-[Durable](http://Durable.co)  建网站
-
-[10web](https://10web.io/) 网站搭建
-
 [Kickresume](http://Kickresume.com) AI简历生成器
 
 [Freepik](https://www.freepik.com/pikaso) 在线设计
@@ -381,7 +413,7 @@
 
 [Jasper AI](https://www.jasper.ai/) 需要信用卡
 
-[Tome](https://beta.tome.app/) 一键生成ppt
+[Tome](https://tome.app) 一键生成ppt
 
 [Gamma](https://gamma.app/zh-cn) 精美的演示文稿、文档和网站
 
@@ -406,6 +438,26 @@
 [v0](https://v0.dev) vercel团队开发的前端用户界面生成工具
 
 [bolt](https://bolt.new)  AI驱动全栈开发平台
+
+[Durable.co](https://durable.co) 30秒搭出一个专业网站
+
+[Dora AI](https://dora.run/ai) 只需一个简单的提示词，便能生成如同出自Figma设计团队之手的精美网站
+
+[Typedream](https://typedream.com) 只需要简单描述一下网站需求，它就自动为你生成布局、结构、文字甚至设计风格。稍作微调，即可发布。
+
+[Wegic AI](https://wegic.ai) 无论作品集还是产品展示页，Wegic都会构建功能齐全、响应式、代码优雅又美观的网站。 
+
+[Dorik AI](https://dorik.com) 一句话就能生成完整网站
+
+[10web](https://10web.io/) 网站搭建
+
+[Pineapple Builder](https://pineapplebuilder.com) 非常适合快速创建MVP、落地页或者快速启动实验项目
+
+[CodeDesign AI](https://codedesign.ai) 不仅能帮你构建并托管网站，还允许你导出生成的代码
+
+[MakeLanding](https://makelanding.ai) 专注于打造高转化率的落地页。
+
+[Mixo.io](https://mixo.io) 一键生成落地页  
 
 [Same.dev](https://same.new/)  复刻网站的UI，还具体分析它的dom结构、组件、交互逻辑，直到上线部署。
 
@@ -545,6 +597,8 @@
 ## 视频动画
 [Runway](https://runwayml.com/) 文本、图像生成视频，功能超卓
 
+[Lumen5](https://lumen5.com) 把文章秒变吸睛短视频, 它会自动提取核心文本，匹配视觉效果与动画元素
+
 [Pika](https://pika.art/)  生成视频
 
 [Fliki](https://fliki.ai/) 文本生成视频
@@ -630,9 +684,12 @@
 ## 机器学习资料 
 [李宏毅深度学习](https://github.com/datawhalechina/leedl-tutorial?tab=readme-ov-file)
 
+[机器学习入门课程](https://github.com/microsoft/ML-For-Beginners) 微软开源，面向所有人的经典机器学习入门课程
+
 [深度学习500问](https://github.com/scutan90/DeepLearning-500-questions)
 
 [资料汇总](https://www.bilibili.com/read/cv15624770/)
+
 
 ## Awesome-AI
 [github地址](https://github.com/lemooljiang/Awesome-AI)
