@@ -13,7 +13,7 @@
 ## Openai API
 [参数 ｜](https://platform.openai.com/docs/api-reference/chat/create)
 ```js
-npm install openai --save  //"openai": "^4.16.1"
+npm install openai --save  //"openai": "^4.16.1"  "^4.104.0"
 // npm update openai
 npm install express cors --save
 

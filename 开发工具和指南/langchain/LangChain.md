@@ -1,11 +1,12 @@
 # <center> LangChain  </center>
 
 ## 下载与资源
-[github |](https://github.com/langchain-ai/langchain)
+[github |](https://github.com/langchain-ai/langchain) 
+[文档 |](https://docs.langchain.com/)
 [文档｜](https://python.langchain.com/docs/introduction/)
 [工具包 |](https://github.com/LangChain-OpenTutorial/LangChain-OpenTutorial)
-[中文文档｜](https://python.langchain.com.cn/docs/)
-[Langchain中文教程 |](https://www.langchain.com.cn/)
+[中文文档｜](https://python.langchain.com.cn/docs)
+[Langchain中文教程 |](https://www.langchain.com.cn)
 [handbook |](https://www.pinecone.io/learn/langchain-intro/)
 [中文说明 ｜](https://liaokong.gitbook.io/llm-kai-fa-jiao-cheng/)
 [中文说明2 ｜](https://github.com/liaokongVFX/LangChain-Chinese-Getting-Started-Guide) 
@@ -13,6 +14,7 @@
 [基于LangChain的优秀项目资源库 |](https://mp.weixin.qq.com/s/G9aqBFzd5j8wVPTH160pZA)
 [SERP API |](https://serpapi.com/)
 [supabase |](https://supabase.com/)
+[LangGraph文档 |](https://docs.langchain.com/oss/python/langgraph/overview)
 [AutoGPT |](https://github.com/Dogtiti/-Next-Web)
 [chatpdf |](https://github.com/austin2035/chatpdf)
 [chat-with-documents |](https://github.com/ciocan/langchain-chat-with-documents)

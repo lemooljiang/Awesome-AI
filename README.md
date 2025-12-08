@@ -3,41 +3,40 @@
 <!-- TOC -->
 
 - [<center>Awesome AI</center>](#centerawesome-aicenter)
-    - [AI助手](#ai助手)
-    - [Agent](#agent)
-    - [智能体平台](#智能体平台)
-    - [大语言模型LLMs](#大语言模型llms)
-    - [AI拓展工具](#ai拓展工具)
-    - [AI社区](#ai社区)
-    - [绘图](#绘图)
-    - [修图](#修图)
-    - [设计](#设计)
-    - [室内设计](#室内设计)
-    - [写作](#写作)
-    - [编程](#编程)
-    - [前端开发](#前端开发)
-    - [虚拟角色](#虚拟角色)
-    - [数字人](#数字人)
-    - [开源数字人](#开源数字人)
-    - [关键词助手](#关键词助手)
-    - [视频剪辑](#视频剪辑)
-    - [视频动画](#视频动画)
-    - [音频](#音频)
-    - [三维化](#三维化)
-    - [AI专用语言](#ai专用语言)
-    - [机器学习资料](#机器学习资料)
-    - [Awesome-AI](#awesome-ai)
+  - [AI助手](#ai助手)
+  - [Agent](#agent)
+  - [智能体平台](#智能体平台)
+  - [大语言模型LLMs](#大语言模型llms)
+  - [AI拓展工具](#ai拓展工具)
+  - [AI社区](#ai社区)
+  - [绘图](#绘图)
+  - [修图](#修图)
+  - [设计](#设计)
+  - [室内设计](#室内设计)
+  - [写作](#写作)
+  - [编程](#编程)
+  - [前端开发](#前端开发)
+  - [虚拟角色](#虚拟角色)
+  - [数字人](#数字人)
+  - [开源数字人](#开源数字人)
+  - [关键词助手](#关键词助手)
+  - [视频剪辑](#视频剪辑)
+  - [视频动画](#视频动画)
+  - [音频](#音频)
+  - [三维化](#三维化)
+  - [AI专用语言](#ai专用语言)
+  - [机器学习资料](#机器学习资料)
 
 <!-- /TOC -->
 
 ## AI助手
 [AI·Joe](https://ai.ilark.io/) 人工智能助手，辅助工作流
 
+[Gemini](https://gemini.google.com) 谷歌旗下用于高精度多模态AI助手
+
 [Phind](https://www.phind.com)  AI搜索引擎, 智能问答与内容生成
 
-[秘塔AI搜索](https://metaso.cn/) 通过理解用户的搜索意图，为用户提供无广告、高质量搜索结果的搜索引擎。
-
-[DeepSeek](https://www.deepseek.com/) 基于Transformer结构，具有670亿参数的规模
+[DeepSeek](https://www.deepseek.com) 基于Transformer结构，具有670亿参数的规模
 
 [ChatGPT](https://chat.openai.com) OpenAI研发的聊天机器人程序，人工智能技术驱动的自然语言处理工具。
 
@@ -87,6 +86,8 @@
 
 [佛祖AI](https://hotoke.ai/)  机器佛
 
+[秘塔AI搜索](https://metaso.cn/) 通过理解用户的搜索意图，为用户提供无广告、高质量搜索结果的搜索引擎。
+
 [GPTZero](https://gptzero.me) 对抗AI, 检测文本是不是由AI生成的
 
 [GirlfriendGPT](https://github.com/EniasCailliau/GirlfriendGPT) 私人情感AI
@@ -113,6 +114,8 @@
 
 
 ## Agent
+[LangGraph](https://docs.langchain.com/oss/python/langgraph/overview) 专注于代理协调的非常底层的工具
+
 [MetaGPT](https://github.com/geekan/MetaGPT) 使 GPTs 组成软件公司，协作处理更复杂的任务
 
 [Magentic-UI](https://github.com/microsoft/magentic-ui) 自动执行网络任务，同时保持控制
@@ -234,7 +237,13 @@
 ## AI拓展工具
 [OpenRouter](https://openrouter.ai/) 提供多个大模型的API接口
 
+[LangChain](https://github.com/langchain-ai/langchain) 构建智能体和大型语言模型驱动应用的框架
+
+[Replicate](https://replicate.com/) AI模型部署和运行平台
+
 [N8N](https://github.com/n8n-io/n8n) 开源的工作流自动化工具
+
+[Aistudio](https://aistudio.google.com) 谷歌推出的AI应用开发平台
 
 [Zapier](https://zapier.com)  连接起超过6000+款常用应用，工作流自动化平台
 
@@ -262,6 +271,7 @@
 
 [SuperDuperDB](https://github.com/superduper-io/superduper) 将人工智能（AI）模型和工作流程无缝集成到主流数据库中
 
+[MediaCrawler](https://github.com/NanmiCoder/MediaCrawler)  一个功能强大的多平台自媒体数据采集工具，支持小红书、抖音、快手、B站、微博、贴吧、知乎等
 
 
 
@@ -283,6 +293,8 @@
 [AI-bot](https://ai-bot.cn) AI工具集
 
 [Topapps](http://Topapps.ai) AI工具集
+
+[工具集](https://www.toolify.ai) AI网站和AI工具
 
 [Learnprompting](learnprompting.org) 吴恩达开源的免费机器学习课程，讲的是如何与 AI 沟通。
 
@@ -423,23 +435,36 @@
 
 [PPT制作](https://www.beautiful.ai/)
 
+[小说生成](https://github.com/YILING0013/AI_NovelGenerator)
+
+
 
 ## 编程
-[Windsurf](https://codeium.com/windsurf) 智能编程工具IDE，帮助程序员在编程过程中提升效率
+[Windsurf](https://windsurf.com/) 智能编程工具IDE，帮助程序员在编程过程中提升效率
 
 [Cursor](https://www.cursor.com/) 智能编程工具IDE，人性化的设计和简洁的用户界面
+
+[Antigravity](https://antigravity.google) 谷歌的Agent优先开发平台
+
+[Replit](https://replit.com) 在线集成开发环境（IDE）
+
+[TRAE](https://www.trae.cn/) 字节跳动AI原生IDE，全流程自动化开发
 
 [Codegeex](https://codegeex.cn/zh-CN) 免费的AI编程助手
 
 [GitHub Copilot](https://github.com/features/copilot) GitHub编程助手
 
+[Replit](https://replit.com) 在线集成开发环境（IDE）,集成代码生成、调试及解释功能
+
 
 ## 前端开发
-[v0](https://v0.dev) vercel团队开发的前端用户界面生成工具
+[v0](https://v0.app) vercel团队开发的前端用户界面生成工具
+
+[Lovable](https://lovable.dev) 全栈AI编程工具，一句话构建网站应用
 
 [bolt](https://bolt.new)  AI驱动全栈开发平台
 
-[Durable.co](https://durable.co) 30秒搭出一个专业网站
+[Durable](https://durable.co) 30秒搭出一个专业网站
 
 [Dora AI](https://dora.run/ai) 只需一个简单的提示词，便能生成如同出自Figma设计团队之手的精美网站
 
@@ -475,7 +500,7 @@
 
 [Deepbrain](https://www.deepbrain.io/) 虚拟3D人物视频
 
-[Fay](https://github.com/TheRamU/Fay) 多场景下的AI数字人助理
+[Fay](https://github.com/xszyou/Fay) 多场景下的AI数字人助理
 
 [Movio](https://www.movio.la) 虚拟人物播报
 
@@ -492,6 +517,14 @@
 [Channel-1](https://www.channel1.ai/)  虚拟人物播报，生成新闻
 
 [Rendernet](https://rendernet.ai/) 连续人物生成
+
+[AIRI](https://github.com/moeru-ai/airi) AI伴侣，虚拟形象，支持 Live2D 和 VRM 模型，自动眨眼、表情动画，萌力十足
+
+[SPICYCHAT](https://spicychat.ai) 提供AI角色的聊天机器人平台，允许用户聊天和创建聊天机器人
+
+[Open-LLM-VTuber](https://github.com/Open-LLM-VTuber/Open-LLM-VTuber) 一款独特的语音交互 AI 伴侣
+
+[AI-Vtuber](https://github.com/Ikaros-521/AI-Vtuber) Luna AI 是一款结合了最先进技术的虚拟AI主播, 它的核心是一系列高效的人工智能模型和平台
 
 
 ## 数字人
@@ -689,7 +722,3 @@
 [深度学习500问](https://github.com/scutan90/DeepLearning-500-questions)
 
 [资料汇总](https://www.bilibili.com/read/cv15624770/)
-
-
-## Awesome-AI
-[github地址](https://github.com/lemooljiang/Awesome-AI)
