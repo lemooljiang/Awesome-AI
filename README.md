@@ -8,6 +8,7 @@
   - [智能体平台](#智能体平台)
   - [大语言模型LLMs](#大语言模型llms)
   - [AI拓展工具](#ai拓展工具)
+  - [Skills](#skills)
   - [AI社区](#ai社区)
   - [绘图](#绘图)
   - [修图](#修图)
@@ -34,15 +35,17 @@
 
 [Gemini](https://gemini.google.com) 谷歌旗下用于高精度多模态AI助手
 
-[Phind](https://www.phind.com)  AI搜索引擎, 智能问答与内容生成
+[Kimi](https://www.kimi.com)由 Moonshot 自研的大语言模型驱动，支持在线搜索、深度思考、多模态推理和超长文本对话
+
+[Perplexity](https://www.perplexity.ai) 为复杂问题提供准确答案的AI引擎
 
 [DeepSeek](https://www.deepseek.com) 基于Transformer结构，具有670亿参数的规模
 
-[ChatGPT](https://chat.openai.com) OpenAI研发的聊天机器人程序，人工智能技术驱动的自然语言处理工具。
+[ChatGPT](https://chatgpt.com) OpenAI研发的聊天机器人程序，人工智能技术驱动的自然语言处理工具。
 
-[BrowserUse](https://github.com/browser-use/browser-use) 可以读取网页的AI
+[Krea](https://www.krea.ai) 实时AI图像、视频生成和编辑平台
 
-[海螺AI](https://hailuoai.com/) 多功能的AI助手，通过提供视频创作、音乐创作、图像识别和文本写作等功能
+[Legora](https://legora.com) 面向律师的人工智能平台，在与客户合作部署的过程中，会共同开发定制化功能以解决具体问题
 
 [LLaMA2 Chatbot](https://www.llama2.ai/) 基于LLaMA2的AI助手
 
@@ -50,7 +53,7 @@
 
 [NotionAI](https://www.notion.so/) 偏重工作空间，团队合作，笔记，文档
 
-[Claude](https://claude.ai/chats) 强劲的AI助手
+[Claude](https://claude.com) 强劲的AI助手
 
 [Character](https://beta.character.ai/)  模拟角色对话，一众名人都在其中
 
@@ -65,8 +68,6 @@
 [open-assistant](https://open-assistant.io)  开源免费的聊天助手
 
 [QuillBot](https://quillbot.com/) 主要功能是重写文章
-
-[Perplexity](https://www.perplexity.ai/) 为复杂问题提供准确答案的AI引擎
 
 [Writesonic](https://writesonic.com/) 文案写作工具
 
@@ -116,9 +117,15 @@
 ## Agent
 [LangGraph](https://docs.langchain.com/oss/python/langgraph/overview) 专注于代理协调的非常底层的工具
 
+[Atoms](https://atoms.dev/) AI驱动的全栈开发平台，通过多智能体协作将自然语言想法快速转化为可上线的商业应用。
+
 [MetaGPT](https://github.com/geekan/MetaGPT) 使 GPTs 组成软件公司，协作处理更复杂的任务
 
+[AnyGen](https://www.anygen.io) 字节跳动推出的AI办公智能体，通过语音输入和AI技术提升办公效率
+
 [Magentic-UI](https://github.com/microsoft/magentic-ui) 自动执行网络任务，同时保持控制
+
+[Agent Framework](https://github.com/microsoft/agent-framework) 微软开源的AI代理开发工具包，用于构建智能AI代理和多代理工作流系统
 
 [AutoGen](https://github.com/microsoft/autogen) 通过多个代理进行对话以解决任务 ，实现LLM应用程序的开发
 
@@ -160,9 +167,19 @@
 
 [OpenBB](https://github.com/OpenBB-finance/OpenBB) 强大免费的金融数据终端，为量化交易者提供了一个完整的市场数据分析平台
 
+[TradingAgents](https://github.com/hsliuping/TradingAgents-CN) 基于多智能体LLM的中文金融交易框架 - TradingAgents中文增强版
+
+[CrewAI](https://crewai.com) 多智能体协作的开源框架，专门用于编排和协调多个 AI Agent 进行协作
+
+[Pydantic AI](https://github.com/pydantic/pydantic-ai) 下一代类型安全的AI Agent框架
+
 
 ## 智能体平台
 [扣子](https://www.coze.cn) 字节跳动推出的一款智能体构建平台，也是目前C端用户最多的智能体平台之一
+
+[Moonshot AI](https://www.moonshot.cn) 月之暗面的人工智能体平台
+
+[MiniMax](https://www.minimaxi.com) 一系列多模态通用大模型，具备强大的代码和Agent能力
 
 [腾讯元器](https://yuanqi.tencent.com) 基于腾讯混元的大模型，设置智能体信息、一键分发到腾讯系的平台
 
@@ -239,6 +256,12 @@
 
 [LangChain](https://github.com/langchain-ai/langchain) 构建智能体和大型语言模型驱动应用的框架
 
+[BrowserUse](https://github.com/browser-use/browser-use) 能让AI自动操作浏览器的开源工具
+
+[Playwright](https://github.com/microsoft/playwright) 微软开源的自动化测试工具，原生兼容Chromium（Chrome/Edge）、Firefox、WebKit（Safari）
+
+[CLI-Anything](https://github.com/HKUDS/CLI-Anything) 让所有软件都能被 Agent 驱动
+
 [Replicate](https://replicate.com/) AI模型部署和运行平台
 
 [N8N](https://github.com/n8n-io/n8n) 开源的工作流自动化工具
@@ -273,6 +296,17 @@
 
 [MediaCrawler](https://github.com/NanmiCoder/MediaCrawler)  一个功能强大的多平台自媒体数据采集工具，支持小红书、抖音、快手、B站、微博、贴吧、知乎等
 
+[语雀](https://www.yuque.com)知识构建与分享工具
+
+[Mermaid](https://mermaid.nodejs.cn/) 使用文本生成流程图、饼状图、甘特图等图表的描述语言
+
+
+## Skills
+[ClawHub](https://clawhub.ai) OpenClaw 的公共 Skills 注册中心
+
+[AgentSkill](https://agentskills.io) Anthropic Skills 的开放标准
+
+[skill0](https://skill0.io) 国内特赞团队（atypica.ai）推出的 Skills 市场，目前收录了 423 个 skills
 
 
 ## AI社区
@@ -305,8 +339,6 @@
 [Leonardo](https://leonardo.ai/) 每天150点，多个图像模型，可自定义模型
 
 [Stability AI](https://stability.ai/) 号称Stable Diffusion后面的公司
-
-[Krea](https://www.krea.ai)  图片放大和增强, 即时生成图像，背景去除，擦除
 
 [Blue Willow](https://www.bluewillow.ai/) midjourney的同类产品，免费 
 
@@ -382,6 +414,12 @@
 
 ## 设计
 [Canva](https://www.canva.com) 在线设计平台，品牌设计，网站设计，短视频，动画，电子书，二维码
+
+[FigmaAI](https://www.figma.com) 基于文字描述或现有设计文件生成高保真可交互原型，支持React、Vue、Flutter等框架代码生成
+
+[Pixso](https://pixso.cn/) 专为数字化团队打造的产品设计协作一体化工具
+
+[Stitch](https://stitch.withgoogle.com/) Google Labs 推出的 AI 原生设计工具 
 
 [堆友](https://d.design/) AI设计生产力工具，零门槛AI绘画，多种电商设计神器
 
@@ -534,8 +572,6 @@
 
 [商汤如影](https://www.shyuhuankj.com) 以数字人视频生成技术为核心的创新应用平台。
 
-[即梦AI](https://jimeng.jianying.com) 字节跳动旗下的视频创作平台，提供了简单易用的数字人解决方案。
-
 [硅基智能](https://www.guiji.ai/)  基于AI 大模型、数字人及声音克隆相关技术
 
 [风平智能](https://fullpeace.cn/)  提供虚拟数字人定制、AI短视频内容生产和数字人直播、IP培育和交易的一站式解决方案。 
@@ -554,7 +590,7 @@
 
 [Sonic](https://github.com/jixiaozhong/Sonic) 将重点转向肖像动画中的全局音频感知
 
-[EchoMimicV2](https://github.com/antgroup/echomimic_v2)  实现引人注目的简化半人体动画
+[EchoMimicV3](https://github.com/antgroup/echomimic_v3)  实现引人注目的简化半人体动画
 
 [MimicTalk](https://github.com/yerfor/MimicTalk) 用于实现特定说话人的高表现力的虚拟人视频合成
 
@@ -586,17 +622,19 @@
 
 [stable diffusion关键词](http://sd.firstool.online/)
 
+[Nano Banana Pro 提示词大全](https://github.com/YouMind-OpenLab/awesome-nano-banana-pro-prompts/blob/main/README_zh.md)
+
 
 ## 视频剪辑
 [剪映](https://www.capcut.cn) 抖音出品的智能剪辑软件，文本生成视频
+
+[万兴喵影](https://miao.wondershare.cn/) 视频剪辑
 
 [腾讯智影](https://zenvideo.qq.com/) 智能视频创作工具，数字人播报，素材，文本生成视频等
 
 [DeepFaceLive](https://github.com/iperov/DeepFaceLive) 视频直播聊天实时AI换脸
 
 [Clipchamp](https://clipchamp.com/en) 微软旗下的视频剪辑软件
-
-[万兴喵影](https://miao.wondershare.cn/) 视频剪辑
 
 [Ozone](https://www.ozone.pro/) 视频剪辑
 
@@ -628,13 +666,21 @@
 
 
 ## 视频动画
+[即梦AI](https://jimeng.jianying.com) 字节跳动旗下的视频创作平台
+
+[海螺AI](https://hailuoai.com/) 多功能的AI助手，通过提供视频创作、音乐创作、图像识别和文本写作等功能
+
 [Runway](https://runwayml.com/) 文本、图像生成视频，功能超卓
+
+[Sora](https://sora.chatgpt.com) OpenAI 推出的新一代AI音视频生成模型，Web端最长支持生成15秒视频
 
 [Lumen5](https://lumen5.com) 把文章秒变吸睛短视频, 它会自动提取核心文本，匹配视觉效果与动画元素
 
 [Pika](https://pika.art/)  生成视频
 
 [Fliki](https://fliki.ai/) 文本生成视频
+
+[CremiAI](https://cremi.ai) 将您的音乐变成视频
 
 [Kaiber](https://www.kaiber.ai/) 图片动画
 
@@ -653,6 +699,8 @@
 [StreamV2V](https://github.com/Jeff-LiangF/streamv2v) 实时视频中进行面部替换和风格转换
 
 [ToonCrafter](https://github.com/ToonCrafter/ToonCrafter) 自动生成中间的动画帧，实现平滑的过渡效果
+
+[echomimic_v3](https://github.com/antgroup/echomimic_v3)  实现统一的多模态和多任务人体动画
 
 
 ## 音频
@@ -691,6 +739,8 @@
 [Buzz](https://github.com/chidiwilliams/buzz) 在你的个人电脑上离线转录和翻译音频。由OpenAI的Whisper提供技术支持。
 
 [Whisper-jax](https://github.com/sanchit-gandhi/whisper-jax)
+
+[Hume AI](https://www.hume.ai) 专注于开发能够理解人类情感和表情的技术的AI产品，提供实时、可定制的语音智能API
 
 ## 三维化
 [Shap-E](https://github.com/openai/shap-e) 从文字或图片生成3D物体

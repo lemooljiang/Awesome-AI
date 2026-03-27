@@ -160,6 +160,7 @@ pgvector is an open-source library that can turn your Postgres DB into a vector 
 ## Supabase
 Supabase is a managed Postgresql solution that implements storing embeddings using the pgvector extension.
 [官网](https://supabase.com/)
+[中文版](https://supabase.org.cn)
 
 ## Vespa
 Vespa is a product from Yahoo. It’s available both as Open Source Download and as a managed Cloud solution.
