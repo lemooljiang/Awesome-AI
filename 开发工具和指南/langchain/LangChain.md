@@ -1,25 +1,14 @@
 # <center> LangChain  </center>
 
 ## 下载与资源
+[官网 |](https://www.langchain.com)
 [github |](https://github.com/langchain-ai/langchain) 
 [文档 |](https://docs.langchain.com/)
-[文档｜](https://python.langchain.com/docs/introduction/)
 [工具包 |](https://github.com/LangChain-OpenTutorial/LangChain-OpenTutorial)
-[中文文档｜](https://python.langchain.com.cn/docs)
-[Langchain中文教程 |](https://www.langchain.com.cn)
-[handbook |](https://www.pinecone.io/learn/langchain-intro/)
-[中文说明 ｜](https://liaokong.gitbook.io/llm-kai-fa-jiao-cheng/)
-[中文说明2 ｜](https://github.com/liaokongVFX/LangChain-Chinese-Getting-Started-Guide) 
-[自动化 ｜](https://github.com/logspace-ai/langflow)
-[基于LangChain的优秀项目资源库 |](https://mp.weixin.qq.com/s/G9aqBFzd5j8wVPTH160pZA)
+[中文文档｜](https://langchain-doc.cn)
 [SERP API |](https://serpapi.com/)
 [supabase |](https://supabase.com/)
-[LangGraph文档 |](https://docs.langchain.com/oss/python/langgraph/overview)
-[AutoGPT |](https://github.com/Dogtiti/-Next-Web)
-[chatpdf |](https://github.com/austin2035/chatpdf)
-[chat-with-documents |](https://github.com/ciocan/langchain-chat-with-documents)
 [本地知识库问答 ｜](https://juejin.cn/post/7236028062873550908)
-[js文档 ｜](https://js.langchain.com/docs/get_started/introduction/)
 
 
 ## 安装

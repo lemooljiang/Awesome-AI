@@ -43,13 +43,7 @@
 
 [ChatGPT](https://chatgpt.com) OpenAI研发的聊天机器人程序，人工智能技术驱动的自然语言处理工具。
 
-[Krea](https://www.krea.ai) 实时AI图像、视频生成和编辑平台
-
 [Legora](https://legora.com) 面向律师的人工智能平台，在与客户合作部署的过程中，会共同开发定制化功能以解决具体问题
-
-[LLaMA2 Chatbot](https://www.llama2.ai/) 基于LLaMA2的AI助手
-
-[Llama2 ChatBot](https://chinese.llama.family) 基于Llama2的在线对话机器人
 
 [NotionAI](https://www.notion.so/) 偏重工作空间，团队合作，笔记，文档
 
@@ -65,8 +59,6 @@
 
 [HuggingChat](https://huggingface.co/chat/) 开源免费的聊天助手
 
-[open-assistant](https://open-assistant.io)  开源免费的聊天助手
-
 [QuillBot](https://quillbot.com/) 主要功能是重写文章
 
 [Writesonic](https://writesonic.com/) 文案写作工具
@@ -75,11 +67,11 @@
 
 [Casetext](https://casetext.com) 法律助手
 
-[Chatbase](https://www.chatbase.co/#demo) 构建一个基于特点数据和文档的聊天机器人
+[Chatbase](https://www.chatbase.co) 构建一个基于特点数据和文档的聊天机器人
 
 [Adcreative](https://www.adcreative.ai/) 广告助手
 
-[ChatPDF](https://www.chatpdf.com/) 读PDF文档，提取关键内容
+[ChatPDF](https://www.chatpdf.com/) 和任何文件、视频或网站交互
 
 [Pandagpt](https://www.pandagpt.io/) 阅读文档
 
@@ -115,9 +107,15 @@
 
 
 ## Agent
+[OpenClaw](https://openclaw.ai) 通过自然语言控制电脑，完成自动化操作
+
+[Hermes Agent](https://github.com/nousresearch/hermes-agent) 由Nous Research开发的开源自主AI代理，其核心设计理念是一个与你共同成长的Agent
+
 [LangGraph](https://docs.langchain.com/oss/python/langgraph/overview) 专注于代理协调的非常底层的工具
 
 [Atoms](https://atoms.dev/) AI驱动的全栈开发平台，通过多智能体协作将自然语言想法快速转化为可上线的商业应用。
+
+[DeerFlow](https://github.com/bytedance/deer-flow) 开源的 super agent harness
 
 [MetaGPT](https://github.com/geekan/MetaGPT) 使 GPTs 组成软件公司，协作处理更复杂的任务
 
@@ -172,6 +170,8 @@
 [CrewAI](https://crewai.com) 多智能体协作的开源框架，专门用于编排和协调多个 AI Agent 进行协作
 
 [Pydantic AI](https://github.com/pydantic/pydantic-ai) 下一代类型安全的AI Agent框架
+
+[OpenMAIC](https://github.com/THU-MAIC/OpenMAIC) 一键生成沉浸式多智能体互动课堂
 
 
 ## 智能体平台
@@ -299,6 +299,14 @@
 [语雀](https://www.yuque.com)知识构建与分享工具
 
 [Mermaid](https://mermaid.nodejs.cn/) 使用文本生成流程图、饼状图、甘特图等图表的描述语言
+
+[World Labs](https://www.worldlabs.ai) 专注于开发空间智能（Spatial Intelligence）技术，旨在通过AI生成和交互3D世界，推动虚拟与现实空间的融合
+
+[Neo4J](https://neo4j.com) 图数据库, 通过不同知识的关联性形成一个网状的知识结构
+
+[Graphify](https://github.com/safishamsi/graphify) 一行命令把任意文件夹变成知识图谱
+
+[Zilliz Cloud](https://zilliz.com.cn) Milvus向量数据库
 
 
 ## Skills
@@ -482,6 +490,8 @@
 
 [Cursor](https://www.cursor.com/) 智能编程工具IDE，人性化的设计和简洁的用户界面
 
+[Claude Code](https://claude.com/product/claude-code) 运行在命令行终端里的AI编程助手
+
 [Antigravity](https://antigravity.google) 谷歌的Agent优先开发平台
 
 [Replit](https://replit.com) 在线集成开发环境（IDE）
@@ -632,6 +642,7 @@
 
 [腾讯智影](https://zenvideo.qq.com/) 智能视频创作工具，数字人播报，素材，文本生成视频等
 
+
 [DeepFaceLive](https://github.com/iperov/DeepFaceLive) 视频直播聊天实时AI换脸
 
 [Clipchamp](https://clipchamp.com/en) 微软旗下的视频剪辑软件
@@ -677,6 +688,8 @@
 [Lumen5](https://lumen5.com) 把文章秒变吸睛短视频, 它会自动提取核心文本，匹配视觉效果与动画元素
 
 [Pika](https://pika.art/)  生成视频
+
+[Krea](https://www.krea.ai) 实时AI图像、视频生成和编辑平台
 
 [Fliki](https://fliki.ai/) 文本生成视频
 
