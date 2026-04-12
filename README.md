@@ -315,6 +315,7 @@
 [AgentSkill](https://agentskills.io) Anthropic Skills 的开放标准
 
 [skill0](https://skill0.io) 国内特赞团队（atypica.ai）推出的 Skills 市场，目前收录了 423 个 skills
+[toprank](https://github.com/nowork-studio/toprank) 开源的Claude Code插件，提供9项SEO和Google Ads技能，连接Google Search Console、PageSpeed Insights和Google Ads API
 
 
 ## AI社区
