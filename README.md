@@ -48,6 +48,8 @@
 
 [NotionAI](https://www.notion.so/) 偏重工作空间，团队合作，笔记，文档
 
+[Remio](https://remio.ai/) 本地优先的 AI 记忆与知识库桌面应用，可解析文件、网页、录音、邮件和笔记，建立本地索引和向量，帮助用户与 Agent 更快检索个人上下文
+
 [Claude](https://claude.ai) 强劲的AI助手
 
 [Character](https://beta.character.ai/)  模拟角色对话，一众名人都在其中
