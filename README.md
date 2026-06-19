@@ -316,6 +316,8 @@
 
 [skill0](https://skill0.io) 国内特赞团队（atypica.ai）推出的 Skills 市场，目前收录了 423 个 skills
 
+[NotFair](https://github.com/nowork-studio/NotFair) 开源 Claude Code 技能集（MIT），涵盖 [SEO](https://github.com/nowork-studio/NotFair/tree/main/seo)、[Google Ads](https://github.com/nowork-studio/NotFair/tree/main/google-ads)、[Meta Ads](https://github.com/nowork-studio/NotFair/tree/main/meta-ads) 三大方向，通过 Google Ads MCP、Meta Ads MCP、Google Search Console MCP 和 Google Analytics (GA4) MCP 接入实时数据，约 2,900+ stars。
+
 
 ## AI社区
 [Hugging Face](https://huggingface.co) 机器学习的开源社区
