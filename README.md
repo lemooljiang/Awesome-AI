@@ -115,6 +115,8 @@
 
 [Atoms](https://atoms.dev/) AI驱动的全栈开发平台，通过多智能体协作将自然语言想法快速转化为可上线的商业应用。
 
+[OpenCode](https://opencode.ai)  开源的 AI Coding Agent
+
 [DeerFlow](https://github.com/bytedance/deer-flow) 开源的 super agent harness
 
 [MetaGPT](https://github.com/geekan/MetaGPT) 使 GPTs 组成软件公司，协作处理更复杂的任务
@@ -151,11 +153,7 @@
 
 [BabyAGI](https://github.com/yoheinakajima/babyagi) AI支持的任务管理系统示例，使用 OpenAI 和 PineconeAPI 创建
 
-[Ggodmode](https://godmode.space)  AutoGPT + BabyAGI
-
 [AgentGPT](https://agentgpt.reworkd.ai)
-
-[Agent Colab](https://colab.research.google.com/drive/1QpvUHQzpHPvlMgBElwd5NJQ6qpryVeWE?usp=sharing)
 
 [SuperAGI](https://github.com/TransformerOptimus/SuperAGI) 开发者优先的开源自主人工智能代理框架
 
@@ -278,8 +276,6 @@
 
 [make](https://www.make.com/en)  直观的可视化流程设计，自动化工作流
 
-[Browser-Use](https://github.com/browser-use/browser-use)  让AI自动操作浏览器的开源工具
-
 [语聚AI](https://yuju-ai.com/index.html) 集简云推出的全国第一款AI+连接器解决方案产品
 
 [Ollama](https://ollama.com) 开源的本地大语言模型运行框架，专为在本地机器上便捷部署和运行大型语言模型
@@ -302,7 +298,7 @@
 
 [MediaCrawler](https://github.com/NanmiCoder/MediaCrawler)  一个功能强大的多平台自媒体数据采集工具，支持小红书、抖音、快手、B站、微博、贴吧、知乎等
 
-[语雀](https://www.yuque.com)知识构建与分享工具
+[语雀](https://www.yuque.com) 知识构建与分享工具
 
 [Mermaid](https://mermaid.nodejs.cn/) 使用文本生成流程图、饼状图、甘特图等图表的描述语言
 
@@ -320,15 +316,37 @@
 
 [WorldRouter](https://worldclaw.ai/#world-router) 特朗普家族加密项目 WLFI 与 WorldClaw 合作推出，用户可通过单一账户访问300多个 AI 模型
 
+[9Router](https://github.com/decolua/9router) 免费和低价的AI路由
+
+[API易](https://api.apiyi.com)  企业级专业稳定的API中转站
+
+[硅基流动](https://siliconflow.cn) 国内领先的AI模型即服务（MaaS）平台
+
 [Obsidian](https://obsidian.md) Obsidian 是一款基于 Markdown 文件的个人知识库与笔记管理工具，主要用于知识整理、笔记记录和构建个人知识体系。
+
+[CC Switch](https://www.ccswitch.io) 统一管理你的 AI 编程工具工作流
+
+[Replicate](https://replicate.com) AI模型托管 + API部署平台, 容器化生产级
+
+[Figwright](https://github.com/awdr74100/figwright)  Free, two-way Figma MCP server
 
 
 ## Skills
-[ClawHub](https://clawhub.ai) OpenClaw 的公共 Skills 注册中心
-
 [AgentSkill](https://agentskills.io) Anthropic Skills 的开放标准
 
+[Anthropics Skills](https://github.com/anthropics/skills)
+
+[claude skills](https://github.com/ComposioHQ/awesome-claude-skills)
+
+[ClawHub](https://clawhub.ai) OpenClaw 的公共 Skills 注册中心
+
+[Skillsmp](https://skillsmp.com) Skills Marketplace
+
 [skill0](https://skill0.io) 国内特赞团队（atypica.ai）推出的 Skills 市场，目前收录了 423 个 skills
+
+[女娲.skill](https://github.com/alchaincyf/nuwa-skill) 女娲帮你蒸馏任何人的思维方式，让乔布斯、马斯克、芒格、费曼都给你打工
+
+[dot-skill](https://github.com/titanwings/colleague-skill) 不止同事，任何人都能蒸馏成 Skill
 
 
 ## AI社区
@@ -358,13 +376,9 @@
 ## 绘图
 [Midjourney](https://midjourney.com/) 效果极佳的AI制图工具，使用discord
 
-[Leonardo](https://leonardo.ai/) 每天150点，多个图像模型，可自定义模型
-
-[Stability AI](https://stability.ai/) 号称Stable Diffusion后面的公司
+[StabilityAI](https://stability.ai/) 号称Stable Diffusion后面的公司
 
 [Blue Willow](https://www.bluewillow.ai/) midjourney的同类产品，免费 
-
-[Stable Foundation](https://discord.com/channels/1002292111942635562/1100170312106127410) Stable Diffusion的同类产品，免费  
 
 [Astria](https://www.astria.ai) 虚拟人物，产品广告，视频制作
 
@@ -439,7 +453,7 @@
 
 [FigmaAI](https://www.figma.com) 基于文字描述或现有设计文件生成高保真可交互原型，支持React、Vue、Flutter等框架代码生成
 
-[Pixso](https://pixso.cn/) 专为数字化团队打造的产品设计协作一体化工具
+[Pixso](https://pixso.cn/) 专为数字化团队打造的产品设计协作一体化工具 
 
 [Stitch](https://stitch.withgoogle.com/) Google Labs 推出的 AI 原生设计工具 
 
@@ -466,6 +480,8 @@
 [Kickresume](http://Kickresume.com) AI简历生成器
 
 [Freepik](https://www.freepik.com/pikaso) 在线设计
+
+[Lovart](https://www.lovart.ai) LiblibAI推出的全球首个设计智能体
 
 
 ## 室内设计

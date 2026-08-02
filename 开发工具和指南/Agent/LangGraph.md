@@ -1,6 +1,18 @@
 # <center> LangGraph  </center>
 
+
+## 下载与资源
+[官网 |](https://www.langchain.com/langgraph)
+[文档 |](https://docs.langchain.com/oss/python/langgraph/overview) 
+[Github |](https://github.com/langchain-ai/langgraph)
+[参考 |](https://reference.langchain.com/python/langgraph)
+[langgraph 1.0手册 |](https://www.luochang.ink/dive-into-langgraph)
+[文档2 |](https://langgraph.com.cn/index.html)
+
+
 ## 简介
+LangGraph 是一款用于构建、管理和部署长期运行的有状态代理的底层编排框架和运行时，深受塑造代理未来的企业信赖，包括 Klarna、Uber、摩根大通等。LangGraph 属于非常底层的框架，完全专注于代理编排。在使用 LangGraph 之前，我们建议您先熟悉用于构建代理的一些组件，从模型和工具开始。LangGraph 专注于代理编排中至关重要的底层能力：持久化执行、流式处理、人机协同等。
+
 `LangGraph` 解决线性序列的局限性问题，而解决的方法就是循环图。在`LangGraph`框架中，用图来管理代理的生命周期并在其状态内将暂存器作为消息进行跟踪，增加了以循环方式跨各种计算步骤协调多个链或参与者的功能。
 
 `LangGraph`通过组合`Nodes`和`Edges`去创建复杂的循环工作流程，通过消息传递的方式串联所有的节点形成一个通路。那么维持消息能够及时的更新并向该去的地方传递，则依赖`langGraph`构建的`State`概念。 
@@ -12,38 +24,130 @@
 - **流支持**：流输出由每个节点生成（包括令牌流）。
 - **与LangChain集成**：LangGraph 与LangChain和LangSmith无缝集成。
 
-![调用示意图](https://ipfs.ilark.io/ipfs/QmQuzkAzvJLRTmb3Dgs82UEaHcf6vpgUBywFtTAmqZbLe7)
-
-## 下载与资源
-[LangGraph文档 |](https://langchain-ai.github.io/langgraph)
-[LangGraph Github |](https://github.com/langchain-ai/langgraph)
-[LangChain github |](https://github.com/langchain-ai/langchain)
-[LangChain |](https://python.langchain.com/docs/introduction/)
+![调用示意图](https://yoyo.ilark.io/0x0/https://ipfs.ilark.io/ipfs/QmQuzkAzvJLRTmb3Dgs82UEaHcf6vpgUBywFtTAmqZbLe7)
 
 
 ## 安装
 ```py
 virtualenv lang_env
 source lang_env/Scripts/activate   //windows
-pip install langgraph -i https://pypi.tuna.tsinghua.edu.cn/simple （清华镜像） 0.4.8
-pip install langchain langchain-openai -i https://pypi.tuna.tsinghua.edu.cn/simple  0.3.25 / 0.3.22
+pip install langgraph -i https://pypi.tuna.tsinghua.edu.cn/simple （清华镜像） 0.4.8 / 1.1.6
+pip install langchain-openai python-dotenv -i https://pypi.tuna.tsinghua.edu.cn/simple  
 
-pip install langchain-experimental -i https://pypi.tuna.tsinghua.edu.cn/simple
-pip install langgraph-supervisor -i https://pypi.tuna.tsinghua.edu.cn/simple
-pip install bs4 -i https://pypi.tuna.tsinghua.edu.cn/simple
+pip install langchain -i https://pypi.tuna.tsinghua.edu.cn/simple //1.2.15
+pip install -U langchain langgraph 
 ```
 
-## GraphState
-在图中提到了节点、边、状态和路由四个概念。
+## Graph基类
+[参考](https://docs.langchain.com/oss/python/langgraph/graph-api)
 
-定义图时要做的第一件事是定义图的`State`。状态表示会随着图计算的进行而维护和更新的上下文或记忆。它用来确保图中的每个步骤都可以访问先前步骤的相关信息，从而可以根据整个过程中积累的数据进行动态决策。这个过程通过状态图`StateGraph`类实现，它继承自 `Graph` 类，这意味着 `StateGraph` 会使用或扩展基类的属性和方法。
+对于任意一个简单或者复杂的图来说，都是基于`Graph`类来构建和管理图结构的。在`Graph`类中允许添加节点、边，并定义节点间的动态流转逻辑。LangGraph 将智能体的工作流建模为图。您可以通过三个关键组件来定义智能体的行为：
+- State(状态)：一种共享数据结构，代表应用程序的当前快照。它可以是任何数据类型，但通常使用共享状态模式进行定义。
+- Nodes(节点)：编码代理逻辑的函数。它们接收当前状态作为输入，执行某些计算或产生副作用，并返回更新后的状态。
+- Eeges(边)：根据当前状态决定接下来执行哪个节点的函数。它们可以是条件分支，也可以是固定转换。
+
+如下是`Graph`类的主要组成部分和功能：
 ```py
-# 构建图
-builder = StateGraph(dict) 
+from collections import defaultdict
+from typing import Any, Callable, Dict, Optional, Set, Tuple, Union, Awaitable, Hashable
+
+class Graph:
+    def __init__(self) -> None:
+        self.nodes: Dict[str, Any] = {}  # 一个字典，用于存储图中的所有节点。每个节点可以是一个字符串标识或者是一个可调用对象
+        self.edges: Set[Tuple[str, str]] = set()  # 一个集合，用来存储图中所有的边，边由一对节点名称组成，表示从一个节点到另一个节点的直接连接。
+        self.branches: defaultdict = defaultdict(dict)  # 一个默认字典，用于存储条件分支，允许从一个节点根据特定条件转移到多个不同的节点。
+        self.support_multiple_edges = False  # 一个布尔值，指示图是否支持同一对节点间的多条边。
+        self.compiled = False    #  一个布尔值，表示图是否已经被编译。编译是指图的结构已经设置完毕，准备进行执行。
+
+    @property
+    def _all_edges(self) -> Set[Tuple[str, str]]:
+        """
+        获取所有的边的信息。
+        """
+        return self.edges
+
+    def add_node(self, node: Union[str, Callable], action: Optional[Callable] = None, *, metadata: Optional[Dict[str, Any]] = None) -> 'Graph':
+        """
+        添加一个新节点到图中。节点可以有附加的元数据，这些元数据存储在节点的字典中。
+        """
+        pass
+
+    def add_edge(self, start_key: str, end_key: str) -> 'Graph':
+        """
+        在图中添加一条边，连接两个指定的节点。
+        """
+        pass
+
+    def add_conditional_edges(self, source: str, path: Callable, path_map: Optional[Dict[Hashable, str]] = None, then: Optional[str] = None) -> 'Graph':
+        """
+        添加一个条件边，允许在执行时根据某个条件从一个节点动态地转移到一个或多个节点。
+        """
+        pass
+
+    def set_entry_point(self, key: str) -> 'Graph':
+        """
+        设置图的入口点，即定义图执行的起始节点。
+        """
+        pass
+
+    def set_conditional_entry_point(self, path: Callable, path_map: Optional[Dict[Hashable, str]] = None, then: Optional[str] = None) -> 'Graph':
+        """
+        设置一个条件入口点，允许根据条件动态决定图的起始执行点。
+        """
+        pass
+
+    def set_finish_point(self, key: str) -> 'Graph':
+        """
+        设置结束点，定义图执行到此节点时将停止。
+        """
+        pass
+
+    def validate(self, interrupt: Optional[Set[str]] = None) -> 'Graph':
+        """
+        验证图的结构是否正确，确保所有节点和边的定义都符合逻辑和图的规则。
+        """
+        pass
+
+    def compile(self, checkpointer=None, interrupt_before: Optional[Set[str]] = None, interrupt_after: Optional[Set[str]] = None, debug: bool = False) -> 'Graph':
+        """
+        编译图，确认图的结构合法且可执行后，准备图以供执行。
+        """
+        pass
+```
+
+## StateGraph
+[参考](https://reference.langchain.com/python/langgraph/graph/state/StateGraph)
+
+在图中提到了节点、边、状态和路由四个概念。定义图时要做的第一件事是定义图的`State`。状态表示会随着图计算的进行而维护和更新的上下文或记忆。它用来确保图中的每个步骤都可以访问先前步骤的相关信息，从而可以根据整个过程中积累的数据进行动态决策。这个过程通过状态图`StateGraph`类实现，它继承自 `Graph` 类，这意味着 `StateGraph` 会使用或扩展基类的属性和方法。
+```py
+from typing import Any, Callable, Dict, Optional, Set, Tuple, Type, Union
+
+class StateGraph(Graph):
+    """StateGraph 是一个管理状态并通过定义的输入和输出架构支持状态转换的图。"""
+    def __init__(self, state_schema: Optional[Type[Any]] = None, config_schema: Optional[Type[Any]] = None) -> None:
+        super().__init__()
+        self.state_schema = state_schema      # 一个可选的类型参数，定义图状态的结构。这是用于定义和验证图中节点处理的状态数据的模式。
+        self.config_schema = config_schema    # 一个可选的类型参数，用于定义配置的结构。这可以用于定义和验证图的配置参数。
+        input: Optional[Type[Any]] = None,   # 消息输入
+        output: Optional[Type[Any]] = None, # 消息输出
+
+    def add_node(self, node: Union[str, Callable], action: Optional[Callable] = None, *, metadata: Optional[Dict[str, Any]] = None) -> 'StateGraph':
+        """向图中添加一个新节点。节点可以是一个具名字符串或一个可调用对象（如函数）, 如果node是字符串，则action应为与节点关联的可调用动作。"""
+        pass
+
+    def add_edge(self, start_key: str, end_key: str) -> 'StateGraph':
+        """在图中添加一条边，连接两个节点。"""
+        pass
+
+    def compile(self) -> 'CompiledStateGraph':
+        """编译图，将其转换成可运行的形式。包括验证图的完整性、预处理数据等。"""
+        pass
 ```
 
 ## Nodes
-在 `LangGraph` 中，节点是一个 `python` 函数（sync或async），接收当前`State`作为输入，执行自定义的计算，并返回更新的`State`。所以其中第一个位置参数是`state` 。
+[参考](https://docs.langchain.com/oss/python/langgraph/graph-api#nodes)
+
+在 `LangGraph` 中，节点(Nodes)是一个 `python` 函数（sync或async），接收当前`State`作为输入，执行自定义的计算，并返回更新的`State`。所以其中第一个位置参数是`state` 。
 ```py
 def agent_node(state:InputState):
     print("我是一个AI Agent。")
@@ -57,7 +161,9 @@ builder.add_node("action_node", action_node)
 ```
 
 ## Edges
-Edges（边）用来定义逻辑如何路由以及图何时开始与停止。这是代理工作以及不同节点如何相互通信的重要组成部分。有几种关键的边类型：
+[参考](https://docs.langchain.com/oss/python/langgraph/graph-api#edges)
+
+Edges（边）用来定义逻辑如何路由以及图何时开始与停止。这是智能体工作以及不同节点如何相互通信的重要组成部分。有几种关键的边类型：
 - 普通边：直接从一个节点到下一个节点。
 - 条件边：调用函数来确定下一个要转到的节点。
 - 入口点：当用户输入到达时首先调用哪个节点。
@@ -79,12 +185,47 @@ graph.invoke({"question":"hello，你好"})
 ## State
 对于`LangGraph`的底层图算法是利用消息传递机制来定义程序的运行这一结论，接下来，我们将详细探讨消息（Messages）是如何通过`State`进行传递的，其中包含了什么传递模式和内容。
 
+![state.jpg](https://img.ilark.io/img/202601/1775529988859-keofk.jpg)
+
 `State`实际上是一个共享的数据结构。如上图所示，状态表现为一个简单的字典。通过对这个字典进行读写操作，可以实现自左而右的数据流动，从而构建一个可运行的图结构。那么根据前面学习的内容，我们可以利用这个流程来复现并理解图中的动态数据交换
 
 `LangGraph`内部原理是：`State`中的每个`key`都有自己独立的`Reducer`函数，通过指定的`reducer`函数应用状态值的更新。
 `Reducer` 函数用来根据当前的状态（state）和一个操作（action）来计算并返回新的状态。它是一种设计模式，用于将业务逻辑与状态变更解耦，使得状态的变更预测性更强并且容易追踪。这样的函数通常接收两个参数：当前的状态（state）和一个描述应用了什么操作的对象（action）， 根据 `action` 类型来决定如何修改状态。比如，在一个购物车应用中，可能会有添加商品、删除商品、修改商品数量等操作。返回一个新的状态对象，而不是修改原始状态对象。简单理解，`Reducer`函数做的就是根据给定的输入（当前状态和操作）生成新的状态。
 
 掌握`State`的定义模式和消息传递是`LangGraph`中的关键，也是构建应用最核心的部分，所有的高阶功能，如工具调用、上下文记忆，人机交互等依赖`State`的管理和使用，所以大家务必理解并掌握上述相关内容。
+```py
+from langgraph.graph import StateGraph
+from langgraph.graph import START, END
+
+
+# 构建图
+builder = StateGraph(dict)
+
+def addition(state):
+    print(11, state)
+    return {"x": state["x"] + 1}
+
+def subtraction(state):
+    print(22, state)
+    return {"y": state["x"] - 2}
+
+
+# 向图中添加两个节点
+builder.add_node("addition", addition)
+builder.add_node("subtraction", subtraction)
+
+# 构建节点之间的边
+builder.add_edge(START, "addition")
+builder.add_edge("addition", "subtraction")
+builder.add_edge("subtraction", END)
+
+# 图的编译
+graph = builder.compile()
+
+# 定义一个初始化的状态，执行
+initial_state = {"x":10}
+graph.invoke(initial_state)
+```
 
 
 ## 一个完整案例
@@ -94,7 +235,6 @@ from typing_extensions import TypedDict
 from langgraph.graph import START, END
 from dotenv import dotenv_values
 from langchain_openai import ChatOpenAI
-from langchain_core.prompts import ChatPromptTemplate
 
 
 env_vars = dotenv_values('.env')
@@ -106,27 +246,13 @@ OPENAI_BASE_URL = env_vars['OPENAI_API_BASE']
 class InputState(TypedDict):
     question: str
 
-
 # 定义输出的模式
 class OutputState(TypedDict):
     answer: str
 
-
 # 将 InputState 和 OutputState 这两个 TypedDict 类型合并成一个更全面的字典类型。
 class OverallState(InputState, OutputState):
     pass
-
-
-def agent_node(state: InputState):
-    print("I am AI Agent ", InputState, state["question"])
-    return {"question": state["question"]}
-
-
-def action_node(state: InputState):
-    print("agent action", InputState, state["question"])
-    step = state["question"]
-    return {"answer": f"input question {step}，succeed！"}
-
 
 def llm_node(state: InputState):
     messages = [
@@ -140,7 +266,7 @@ def llm_node(state: InputState):
     return {"answer": response.content}
 
 # 明确指定它的输入和输出数据的结构或模式
-builder = StateGraph(OverallState, input=InputState, output=OutputState)
+builder = StateGraph(OverallState, input_schema=InputState, output_schema=OutputState)
 
 # 添加节点
 builder.add_node("llm_node", llm_node)
@@ -156,12 +282,9 @@ final_answer = graph.invoke({"question":"how are you"})
 print(final_answer["answer"])
 ```
 
+
 ## 单代理架构应用
 在代理架构模式下，大模型能通过多种方式进行操作控制。最基本的功能是在两个潜在路径之间做出选择。进而在每条路径上，如果存在多个可用工具，大模型能够自主决定调用哪一个。更复杂的情况下，它还能评估生成的答案是否满足问题的需求。如有必要进行额外工作，它将自行执行，直到得到一个充分满足条件的答案为止。`LangGraph`框架则是从这个角度出发，接入了路由代理，工具代理，自主循环代理以及多代理这四大类代理架构，以支持不同的场景需求。
-
-
-## Router Agent
-`LangGraph`中`Router`的常用使用形式，通过预定义的分支结构，可以根据用户的输入请求灵活适配不同的场景，在这个过程中，结构化输出对于路由至关重要，因为它们确保系统可以可靠地解释大模型的决定并采取行动。这种`Router Agent`（路由代理）的优势就是可以精准的控制程序链路中的每一个细节，但同时也表现出来了这是一种相对有限的控制级别的代理架构，因为大模型通常只能控制单个决策。想象一下上面的场景中，如果我们希望定义的`insert_db`不仅仅只是包含插入数据库，而是有一堆各式各样的工具，比如网络搜索，RAG等等，应该如何进一步的扩展呢？ 难道要做对每一个工具在`insert_db`节点下再通过`Router Function`做分支判断吗？虽然可行，但总归并不是高效的做法。
 
 
 ## Tool Calling Agent
@@ -196,6 +319,7 @@ tool_node.invoke({"messages": [message_with_single_tool_call]})
 
 通过`ToolNode(tools)`可以根据参数来执行函数，并返回结果。而其前一步，根据自然语言生成执行具体某个函数必要参数的过程，则由大模型决定，所以一个完整的基于大模型的工具调用过程应该是，在实例化大模型的时候，就告诉大模型你都有哪些工具可以使用。这个过程可以通过`bind_tools`函数来实现.
 
+![](https://yoyo.ilark.io/0x0/https://ipfs.ilark.io/ipfs/QmQuzkAzvJLRTmb3Dgs82UEaHcf6vpgUBywFtTAmqZbLe7)
 
 ## 案例：联网查找的代理 
 ```py
@@ -320,15 +444,9 @@ res = result["messages"][-1].content
 print(896, res)
 ```
 
-![toolcall.jpg](https://ipfs.ilark.io/ipfs/QmcyWaFj9eAbv8E6Efj9PMgbSPoaYs1p396VwUtfB4vzcm)
+![toolcall.jpg](https://img.ilark.io/img/202601/1775612631113-f6zi7.jpg)
+
 整体流程如上所示
-
-
-## Full Autonomous
-`Tool Calling Agent` 的局限性又在于：虽然它可以自主选择工具，但在其架构中，每次仅能执行一次函数调用（无论是单个外部函数还是多个外部函数）**。因此，当任务需要依次执行 A 工具、B 工具和 C 工具时，它无法支持这种自主控制的过程。因此，面对这种更复杂的需求，就需要引入了 `Full Autonomous`（自治循环代理）架构。
-`Full Autonmonous` 以两种主要的方式去扩展了`Agent`对工作流的控制，分别是：
-- 多步骤决策： `Agent`可以控制一系列决策，而不仅仅是一个决策。
-- 工具访问： `Agent`可以选择并使用多种工具来完成任务。
 
 
 ## ReAct
@@ -337,6 +455,7 @@ print(896, res)
 - tools： 工具列表、ToolExecutor 或 ToolNode 实例。
 - state_schema：图的状态模式。必须有`messages`和`is_last_step`键。默认为定义这两个键的`Agent State`。
 
+![react.jpg](https://img.ilark.io/img/202601/1775612903901-n2ckr.jpg)
 
 ## ReAct案例
 ```py
@@ -455,19 +574,235 @@ asyncio.run(main())
 ```
 
 
-##  多代理系统
-多代理系统其实就可以非常简单的理解为：将原本的应用程序拆分成多个较小的独立代理，从而组合而成的系统。这些小的独立代理可以是简单的大模型交互代理，也可以是复杂的 `ReAct` 代理。举个比较热门的案例，假设我们需要建立一个用于数据分析的`Agent`，则可以设计代理配置：`Agent 1`作为用户意图识别代理，集成大模型用来解析用户的查询和指令，理解其意图和需求，并将用户输入转化为具体的任务。`Agent 2`作为数据分析代理，集成大模型并绑定若干个处理不同数据和需求的工具，提供统计分析、趋势预测和数据可视化服务。当任务涉及到代码生成时，`Agent 3`，即代码执行代理，会接收用户输入的代码，在安全的Python环境中执行这些代码，并返回运行结果，用于代码测试、执行特定算法或自动化任务。
+## 短期记忆
+[文档](https://docs.langchain.com/oss/python/langgraph/add-memory)
 
-由此能感受到的是多智能体系统 （MAS） 是通过多个单代理之间的协作来解决复杂的任务，其中多代理系统中集成的每个单代理，都有特定的背景身份和独有的技能。其显著的优势则包含如下三个方面：
-- 专业化：当一个系统中可以创建多个专注于特定领域的专家代理，能实现处理更复杂的应用的`AI`系统。
-- 模块化：单独的代理开发模式对于开发、测试和维护完整代理系统是更加容易的。
-- 控制度：显式地控制代理的通信方式，而不仅仅是依赖函数调用。
+![memory.jpg](https://img.ilark.io/img/202601/1775614745853-u4999.jpg)
+
+大模型本身是不具备记忆能力的。AI 应用需要记忆（memory）来在多次交互中共享上下文。在 LangGraph 中，您可以添加两种类型的记忆：
+- 将短期记忆作为代理状态的一部分添加，以支持多轮对话。
+- 添加长期记忆，用于跨会话存储特定于用户或应用程序级别的数据。
+
+`Memory`会将其所实现的记忆功能分为短期记忆和长期记忆两大类，以适应不同的应用需求。对短期记忆的普遍理解是指那些存储在缓存、内存或程序运行过程中的状态信息。这类信息通常作为整个大模型或`Agent`的短期记忆，在构建过程中通过数据接口进行临时存储，并在任务完成后直接被清除，就像`LangGraph`的`State`状态机制一样。相对地，**长期记忆通常涉及将重要数据通过特定方式持久化保存在某种存储容器中，任何程序都可以在这里提取到内容，且不受时间的影响**，一般这种常规的实现方法是数据库的本地存储。
+
+`LangGraph`框架中的`checkpointer`，通过一些数据结构来存储`State`状态中产生的信息，并且在每个`task`开始时去读取全局的状态。主要通过以下四种方式来实现：
+- MemorySaver： 用于实验性质的记忆检查点。
+- SqliteSaver / AsyncSqliteSaver： 使用 `SQLite` 数据库 实现的记忆检查点，适合实验性质和本地工作流程。
+- PostgresSaver / AsyncPostgresSaver： 使用 `Postgres` 数据库实现的高级检查点，适合在生产系统中使用。
+- 支持自定义检查点。
+
+不同类型的`checkpointer`以不同的形式去管理`State`状态中记录的中间状态信息。但这还不够。为了将一系列产生的消息归属到正确的类别中，就像上面的`会话1`包含一系列的问答，而`会话2`包含另一批系列的回答，`LangGraph`框架引入`Thread`（线程）概念来充当`会话`的角色。每个线程代表一个独特的交互或对话流。而`thread_id`是与特定执行线程关联的唯一标识符。
+
+`checkpointer`是`memory`的一种特定实现，它在执行期间保存图在各个点的状态，使系统能够在中断时从该点恢复。这与 `LangGraph` 中状态的一般概念不同，后者表示应用程序在任何给定时刻的当前快照。虽然状态是动态的并且随着图形的执行而变化，但`checkpointer`提供了一种存储和检索历史状态的方法，从而促进更复杂的工作流程和人机交互。
+
+短期记忆（线程级持久化）使代理能够跟踪多轮对话。
+```py
+# 导入检查点
+from langgraph.checkpoint.memory import InMemorySaver 
+
+llm = ChatOpenAI(model="gpt-4o", api_key=key,base_url=base_url,temperature=0,)
+
+
+class State(TypedDict):
+    messages: Annotated[list, add_messages]
+
+def call_model(state: State):
+    response = llm.invoke(state["messages"])
+    return {"messages": response}
+
+def translate_message(state: State):
+    system_prompt = """
+    Please translate the received text in any language into English as output
+    """
+    messages = state['messages'][-1]
+    messages = [SystemMessage(content=system_prompt)] + [HumanMessage(content=messages.content)]
+    response = llm.invoke(messages)
+    return {"messages": response}
+
+builder = StateGraph(State)
+
+builder.add_node("call_model", call_model)
+builder.add_node("translate_message", translate_message)
+
+builder.add_edge(START, "call_model")
+builder.add_edge("call_model", "translate_message")
+builder.add_edge("translate_message", END)
+
+checkpointer = InMemorySaver()
+graph_with_memory = builder.compile(checkpointer=checkpointer)   # 在编译图的时候添加检查点
+# 当添加了`checkpointer`后，在该图执行的每个超级步骤中会自动创建检查点。即每个节点处理其输入并更新状态后，会当前状态将保存为检查点。但如果像普通图一样，仅传入输入的问题是会报错的
+
+# **当增加了`checkpointer`后，需要`Thread`来作为`checkpointer`保存图中每个检查点的唯一标识，而`Thread`（线程）又是通过`thread_id`来标识某个特定执行线程，所以在使用`checkpointer`调用图时，必须指定`thread_id`，指定的方式是作为配置`configurable`的一部分进行声明。** 正确调用的代码就如下所示：
+
+# 这个 thread_id 可以取任意数值
+config = {"configurable": {"thread_id": "1"}}
+
+for chunk in graph_with_memory.stream({"messages": ["你好，我叫西山老师"]}, config, stream_mode="values"):
+    chunk["messages"][-1].pretty_print()
+
+
+for chunk in graph_with_memory.stream({"messages": ["请问我叫什么？"]}, config, stream_mode="values"):
+    chunk["messages"][-1].pretty_print()
+```
+
+**短期记忆可让应用程序记住单个线程或对话中先前的交互，并且可以随时找到某个对话线程中继续之前的问答。**`LangGraph` 将短期记忆作为代理状态的一部分进行管理，并通过线程范围的检查点进行持久化。此状态通常可以包括对话历史记录以及其他状态数据，例如上传的文件、检索的文档或生成的工件。通过将这些存储在图的状态中，程序可以访问给定对话的完整上下文，同时保持不同线程之间的分离。这就是其现实应用价值的体现。
+
+那么接下来要考虑的是： 既然实际进行存储的是 `Checkpointer`， 那么`Checkpointer`如何去做持久化的存储呢？正如我们上面使用的 `InMemorySaver`， 虽然在当前的代码运行环境下可以去指定线程ID，获取到具体的历史信息，但是，一旦我们重启代码环境，则所有的数据都将被抹除。那么一种持久化的方法就是把每个`checkpointer`存储到本地的数据库中。
+
+
+## 长期记忆
+仅使用`checkpointer`，我们无法做到跨线程共享信息。这激发了对`Store`的需求。`LangGraph`通过`BaseStore`接口提供内置文档存储。与通过线程 ID 保存状态的`checkpointer`不同，存储使用自定义命名空间来组织数据。常见用例包括存储用户配置文件、构建知识库以及管理所有线程的全局首选项。具体的实现形式是：`LangGraph` 将长期记忆作为 `JSON` 文档存储在`Store`中，每个`memory`都组织在自定义`namespace`（类似于文件夹）和不同的`key` （例如文件名）下。命名空间通常包含用户或组织 ID 或其他标签，以便更轻松地组织信息。这种结构可以实现存储器的分层组织。然后通过内容过滤器支持跨命名空间搜索。
+
+整体而言，`LangGraph` 中的长期记忆允许系统保留不同对话或会话中的信息。与线程范围的短期记忆不同，长期记忆保存在自定义“命名空间”中。
+
+具体的实现方法，是我们可以定义一个`InMemoryStore`来跨线程存储有关用户的信息。`InMemoryStore`会与`checkpointer`协同工作：由`checkpointer`将状态保存到线程，而`InMemoryStore`允许我们存储任意信息以供跨线程访问。
+
+```py
+from langgraph.checkpoint.memory import InMemorySaver
+from langgraph.store.memory import InMemoryStore
+
+checkpointer = InMemorySaver()
+store = InMemoryStore()
+
+model = ...
+research_agent = ...
+math_agent = ...
+
+workflow = create_supervisor(
+    [research_agent, math_agent],
+    model=model,
+    prompt="You are a team supervisor managing a research expert and a math expert.",
+)
+
+# Compile with checkpointer/store
+graph = workflow.compile(
+    checkpointer=checkpointer,
+    store=store
+)
+
+config = {"configurable": {"thread_id": "111"}, "user_id": "8"}
+async for chunk in graph.astream({"messages": ["你好，介绍一个你自己"]}, config, stream_mode="values"):
+    chunk["messages"][-1].pretty_print()
+```
+
+`LangGraph` 框架中的`Memory`通过状态管理与检查点与 `thread_id` 进行绑定，从而隔离不同线程的记忆和状态，防止并发交互之间的干扰，保证每个线程独立运行。总体而言，`thread_id` 是 `LangGraph` 中组织和管理记忆的关键机制，可实现有效的状态跟踪和交互连续性。但是，**通过`thread_id`不能实现的是：跨线程的交互。**我们虽然可以通过`thread_id`去中断或者恢复某个对话，但是让不同线程间共享各自的消息，在`checkpointer`的实现机制下并不能做到，所以有了`LangGraph`的长期记忆的实现模块。
+
+有效的记忆管理可以增强代理维护上下文、从过去的经验中学习以及随着时间的推移做出更明智决策的能力。大多数`AI Agent`构建的应用程序都需要记忆来在多个交互中共享上下文。在 `LangGraph` 中，这种记忆就是通过`checkpointer` 和 `store` 来做持久性，从而添加到任何`StateGraph`中。最常见的用例之一是用它来跟踪对话历史记录，但是也有很大的优化空间，因为随着对话变得越来越长，历史记录会累积并占用越来越多的上下文窗口，导致对大模型的调用更加昂贵和耗时，并且可能会出错。为了防止这种情况发生，我们一般是需要借助一些优化手段去管理对话历史记录，同时更加适配生产环境的` PostgresSaver / AsyncPostgresSaver ）`高级检查点，我们也将随着知识点的进一步补充后，再结合实际的案例进行详细的讲解。
+
+
+## 人机协作
+人机协作，Human-in-the-loop，自主决策的基础上，对某些可以预见或计划的关键节点引入人工干预，暂时中止其自我决策过程，转而由人工介入进行审批和确认，再让其继续执行后续任务？比如以下场景：
+- **删除数据库操作**：当`Agent`决定删除数据库时，可以先中止操作，要求人工确认是否继续执行。经过人工确认后，`Agent`才继续删除数据库并执行后续操作。
+- **机票改签操作**：当`Agent`决定更改机票时，系统会向用户发出通知，等待用户确认是否同意改签，用户点击确认后，`Agent`才会继续执行改签操作。
+
+通过这种方式，既能保持`Agent`的自主性，又能避免出现意外或不可控的风险，实现人机协作的平衡。而**实现这种功能的技术，在`Agent`技术领域会被普遍称之为`Human-in-the-loop`（HIL）。**
+
+`LangGraph`底层是通过图结构来进行构建，并由状态做消息的传递，那么对于这样的结构来说，如果我们想在这样的架构中加入人工的介入流程，能操作的大致思路应该是：通过`Router Agent`去做判断，如果生成的响应触发了某种条件，就在原本要正常进入的节点之前先停止，等待人工的确认，再决定要不要执行，或者执行什么逻辑。在这个过程中，有几种常见的用户交互模式，分别是：
+
+- **批准（Approval）**：在代理的执行过程中，人工暂停代理的自主工作流，向用户展示当前的状态，并批准或者不批准执行该操作。
+- **编辑（Editing）**：在需要的时候，人工可以暂停代理，向用户展示当前的状态，并允许用户对代理的状态进行编辑。
+- **输入（Input）**：专门设计一个图节点来收集用户的输入，并将这些输入直接用于更新代理的状态。
+
+在`LangGraph`的设计思路下 `HIL`通过战略性地放置断点（`breakpoint`）来实现的。这些断点会在关键点停止图的执行。在暂停期间，`Agent`将等待用户输入，利用这段时间收集响应，将它们集成到图状态中，并顺利继续进行，从而实现用户和代理之间的协作和交互式体验。
+
+需要在定义的图结构中加入人机交互，这个图必须具备的两个核心参数正如`compile()`方法中的源码所示
+```py
+def compile(
+    self,
+    checkpointer: Checkpointer = None,    
+    *,
+    store: Optional[BaseStore] = None,
+    interrupt_before: Optional[Union[All, list[str]]] = None,
+    interrupt_after: Optional[Union[All, list[str]]] = None,
+    debug: bool = False,
+) -> "CompiledStateGraph":
+```
+`checkpointer`参数可以接收任意类型的`checkpointer`，用来保存图的状态。而`interrupt_before`和`interrupt_after`参数，接收图中某个节点的名称，将其作为`breakpoint`，起到的作用是在该节点之前/之后中断图的继续运行
+
+案例
+```py
+from typing import TypedDict
+from langgraph.graph import StateGraph, START, END
+from langgraph.checkpoint.memory import MemorySaver
+from langchain_core.tools import tool
+from langgraph.graph import MessagesState, START
+from langgraph.prebuilt import ToolNode
+from langchain_core.messages import AnyMessage, SystemMessage, HumanMessage, AIMessage
+
+# 定义状态模式
+class State(TypedDict):
+    user_input: str
+    model_response: str
+    user_approval: str
+
+# 定义用于大模型交互的节点
+def call_model(state):
+    messages = state["user_input"]
+    if '删除' in state["user_input"]:
+        state["user_approval"] = f"用户输入的指令是:{state['user_input']}, 请人工确认是否执行！"
+    else:
+        response = llm.invoke(messages)
+        state["user_approval"] = "直接运行！"
+        state["model_response"] = response
+    return state
+
+# 定义人工介入的breakpoint内部的执行逻辑
+def execute_users(state):
+    if state["user_approval"] == "是":
+        response = "您的删除请求已经获得管理员的批准并成功执行。如果您有其他问题或需要进一步的帮助，请随时联系我们。"
+        return {"model_response":AIMessage(response)}
+    elif state["user_approval"] == "否":
+        response = "对不起，您当前的请求是高风险操作，管理员不允许执行！"
+        return {"model_response":AIMessage(response)}    
+    else:
+        return state
+
+# 定义翻译节点
+def translate_message(state: State):
+    system_prompt = """
+    Please translate the received text in any language into English as output
+    """
+    messages = state['model_response']
+    messages = [SystemMessage(content=system_prompt)] + [HumanMessage(content=messages.content)]
+    response = llm.invoke(messages)
+    return {"model_response": response}
+
+# 构建状态图
+builder = StateGraph(State)
+
+# 向图中添加节点
+builder.add_node("call_model", call_model)
+builder.add_node("execute_users", execute_users)
+builder.add_node("translate_message", translate_message)
+
+# 构建边
+builder.add_edge(START, "call_model")
+builder.add_edge("call_model", "execute_users")
+builder.add_edge("execute_users", "translate_message")
+builder.add_edge("translate_message", END)
+
+# 设置 checkpointer，使用内存存储
+memory = MemorySaver()
+# 在编译图的时候，添加短期记忆，并使用interrupt_before参数 设置 在 execute_users 节点之前中止图的运行，等待人工审核
+graph = builder.compile(checkpointer=memory, interrupt_before=["execute_users"])
+# 创建一个线程
+config = {"configurable": {"thread_id": "2"}}
+# 运行图，直至到断点的节点
+async for chunk in graph.astream({"user_input": "我将在数据库中删除 id 为 user5625 的所有信息"}, config,  stream_mode="values"):
+    print(chunk)
+```
+
+
+## 多代理系统
+多代理系统其实就可以非常简单的理解为：将原本的应用程序拆分成多个较小的独立代理，从而组合而成的系统。这些小的独立代理可以是简单的大模型交互代理，也可以是复杂的 `ReAct` 代理。举个比较热门的案例，假设我们需要建立一个用于数据分析的`Agent`，则可以设计代理配置：`Agent 1`作为用户意图识别代理，集成大模型用来解析用户的查询和指令，理解其意图和需求，并将用户输入转化为具体的任务。`Agent 2`作为数据分析代理，集成大模型并绑定若干个处理不同数据和需求的工具，提供统计分析、趋势预测和数据可视化服务。当任务涉及到代码生成时，`Agent 3`，即代码执行代理，会接收用户输入的代码，在安全的Python环境中执行这些代码，并返回运行结果，用于代码测试、执行特定算法或自动化任务。
 
 `LangGraph`利用基于图的结构来定义代理并在它们之间建立连接。在此框架中，每个代理都表示为图中的一个节点，并通过边链接到其它代理。每个代理通过接收来自其他代理的输入并将控制权传递给下一个代理来执行其指定的操作。在`LangGraph` 框架的设计中，主要通过如下几种方法来建立各个子代理之间的通信连接：
 - NetWork（网络）：每个代理都可以与其他每个代理通信。任何代理都可以决定接下来要呼叫哪个其他代理。
 - Supervisor（主管）：每个代理都与一个 `Supervisor` 代理通信。由 `Supervisor` 代理决定接下来应调用哪个代理。
 - Supervisor （tool-calling）： `Supervisor` 架构的一个特例。每个代理都是一个工具。由`Supervisor`代理通过工具调用的方式来决定调用哪些子代理执行任务，以及要传递给这些代理程序的参数
 - Hierarchical（分层）：定义具有 `supervisor` 嵌套 `supervisor`多代理系统。这是 `Supervisor` 架构的一种泛化，允许更复杂的控制流。
+
+![multiagents](https://yoyo.ilark.io/0x0/https://ipfs.ilark.io/ipfs/QmdegBYTEbhcknJzYBxG6swCcJctwgLzXCNiafgf95F5tR)
 
 -- Subgraphs
 `Subgraphs`（子图）指的是能够用作另一个图中的节点的图。**简单理解就是：把一个已经编译好的图，嵌入到另一个已经编译好的图中，并且两个独立图的中的状态可以信息共享**。一个典型的应用就是构建多代理系统架构。它所做的事情是：当把每个独立的`Agent`图结构定义为一个子图时，只要遵守子图的接口（输入和输出模式）规范，那么子图中定义的共享状态就可以在父图中进行使用
@@ -482,7 +817,7 @@ asyncio.run(main())
 
 实现的思路是：将代理定义为节点，并添加一个 `supervisor` 节点来决定接下来应该调用哪些代理节点。使用条件边根据 `supervisor` 的决策将执行路由到适当的代理节点。
 
-![supervisor.jpg](https://ipfs.ilark.io/ipfs/QmdUBsWsR7R6GiuJ23PTFg4hpK2dBQcXKCg4mQ19dPtDbX)
+![supervisor.jpg](https://img.ilark.io/img/202601/1775632838069-g7zau.jpg)
 Supervisor案例示意图
 
 ```py
@@ -499,6 +834,7 @@ from langgraph.prebuilt import ToolNode
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_experimental.utilities import PythonREPL
 from langgraph.prebuilt import create_react_agent
+
 
 env_vars = dotenv_values('.env')
 OPENAI_KEY = env_vars['OPENAI_API_KEY'] 
@@ -634,6 +970,7 @@ print(569, finan_response)  # finan_response["messages"][-1].content
 
 
 ## token计算
+[跟踪聊天模型中的令牌使用情况](https://www.langchain.com.cn/docs/how_to/chat_token_usage_tracking/)
 ```py
 from langchain_community.callbacks.manager import get_openai_callback
 
@@ -666,101 +1003,154 @@ with get_openai_callback() as cb:
 Successful Requests: 6
 Total Cost (USD): $0.0006269999999999998
 569 3715
-
 ``` 
 
-## 短期记忆
-`LangGraph`框架中的`checkpointer`，通过一些数据结构来存储`State`状态中产生的信息，并且在每个`task`开始时去读取全局的状态。主要通过以下四种方式来实现：
-- MemorySaver： 用于实验性质的记忆检查点。
-- SqliteSaver / AsyncSqliteSaver： 使用 `SQLite` 数据库 实现的记忆检查点，适合实验性质和本地工作流程。
-- PostgresSaver / AsyncPostgresSaver： 使用 `Postgres` 数据库实现的高级检查点，适合在生产系统中使用。
-- 支持自定义检查点。
+## swarm
+[参考](https://reference.langchain.com/python/langgraph-swarm)
 
-`checkpointer`是`memory`的一种特定实现，它在执行期间保存图在各个点的状态，使系统能够在中断时从该点恢复。这与 `LangGraph` 中状态的一般概念不同，后者表示应用程序在任何给定时刻的当前快照。虽然状态是动态的并且随着图形的执行而变化，但`checkpointer`提供了一种存储和检索历史状态的方法，从而促进更复杂的工作流程和人机交互。
+一个用于利用 LangGraph 构建Swarm(蜂群式多智能体)系统的 Python 库。Swarm是一种多智能体架构，其中智能体会根据各自的专长动态地将控制权移交给其他智能体。该系统会记住最后一个处于活动状态的智能体，从而确保在后续交互中，对话能与该智能体继续进行。
 
-以 `MemorySaver` 这个实现`checkpointer`的方法为例，帮助大家理解这个过程。
-```py
-# 导入检查点
-from langgraph.checkpoint.memory import MemorySaver
+Swarm 是一种受自然界蚁群、蜂群等生物群体行为启发的 多智能体协作设计范式。在自然界中，单只蚂蚁或蜜蜂的智能非常有限，但成千上万只聚集在一起时，却能完成极其复杂的任务——筑巢、觅食、防御。Swarm 蜂群式正是模仿了这种 "个体简单、群体智能" 的思想。
 
-llm = ChatOpenAI(model="gpt-4o", api_key=key,base_url=base_url,temperature=0,)
-
-
-class State(TypedDict):
-    messages: Annotated[list, add_messages]
-
-def call_model(state: State):
-    response = llm.invoke(state["messages"])
-    return {"messages": response}
-
-def translate_message(state: State):
-    system_prompt = """
-    Please translate the received text in any language into English as output
-    """
-    messages = state['messages'][-1]
-    messages = [SystemMessage(content=system_prompt)] + [HumanMessage(content=messages.content)]
-    response = llm.invoke(messages)
-    return {"messages": response}
-
-builder = StateGraph(State)
-
-builder.add_node("call_model", call_model)
-builder.add_node("translate_message", translate_message)
-
-builder.add_edge(START, "call_model")
-builder.add_edge("call_model", "translate_message")
-builder.add_edge("translate_message", END)
-
-
-memory = MemorySaver()
-graph_with_memory = builder.compile(checkpointer=memory)   # 在编译图的时候添加检查点
-# 当添加了`checkpointer`后，在该图执行的每个超级步骤中会自动创建检查点。即每个节点处理其输入并更新状态后，会当前状态将保存为检查点。但如果像普通图一样，仅传入输入的问题是会报错的
-
-# **当增加了`checkpointer`后，需要`Thread`来作为`checkpointer`保存图中每个检查点的唯一标识，而`Thread`（线程）又是通过`thread_id`来标识某个特定执行线程，所以在使用`checkpointer`调用图时，必须指定`thread_id`，指定的方式是作为配置`configurable`的一部分进行声明。** 正确调用的代码就如下所示：
-
-# 这个 thread_id 可以取任意数值
-config = {"configurable": {"thread_id": "1"}}
-
-for chunk in graph_with_memory.stream({"messages": ["你好，我叫西山老师"]}, config, stream_mode="values"):
-    chunk["messages"][-1].pretty_print()
-
-
-for chunk in graph_with_memory.stream({"messages": ["请问我叫什么？"]}, config, stream_mode="values"):
-    chunk["messages"][-1].pretty_print()
-```
-
-**短期记忆可让应用程序记住单个线程或对话中先前的交互，并且可以随时找到某个对话线程中继续之前的问答。**`LangGraph` 将短期记忆作为代理状态的一部分进行管理，并通过线程范围的检查点进行持久化。此状态通常可以包括对话历史记录以及其他状态数据，例如上传的文件、检索的文档或生成的工件。通过将这些存储在图的状态中，程序可以访问给定对话的完整上下文，同时保持不同线程之间的分离。这就是其现实应用价值的体现。
-
-那么接下来要考虑的是： 既然所实际进行存储的是 `Checkpointer`， 那么`Checkpointer`如何去做持久化的存储呢？正如我们上面使用的 `MemorySaver`， 虽然在当前的代码运行环境下可以去指定线程ID，获取到具体的历史信息，但是，一旦我们重启代码环境，则所有的数据都将被抹除。那么一种持久化的方法就是把每个`checkpointer`存储到本地的数据库中。
-
-
-## 长期记忆
-有效的记忆管理可以增强代理维护上下文、从过去的经验中学习以及随着时间的推移做出更明智决策的能力。大多数`AI Agent`构建的应用程序都需要记忆来在多个交互中共享上下文。在 `LangGraph` 中，这种记忆就是通过`checkpointer` 和 `store` 来做持久性，从而添加到任何`StateGraph`中。最常见的用例之一是用它来跟踪对话历史记录，但是也有很大的优化空间，因为随着对话变得越来越长，历史记录会累积并占用越来越多的上下文窗口，导致对大模型的调用更加昂贵和耗时，并且可能会出错。为了防止这种情况发生，我们一般是需要借助一些优化手段去管理对话历史记录，同时更加适配生产环境的` PostgresSaver / AsyncPostgresSaver ）`高级检查点，我们也将随着知识点的进一步补充后，再结合实际的案例进行详细的讲解。
+每个Agent仅依据局部环境信息和简单规则进行决策，通过信息素、消息广播或状态共享等方式间接通信，最终在整体层面涌现出复杂、高效的智能行为。
+- 每只"蜜蜂"（Agent）负责采集特定区域的花蜜（子任务）
+- 蜜蜂之间通过"舞蹈"（信息传递）告诉同伴哪里花多
+- 没有一只蜜蜂知道全局计划，但整个蜂群高效完成了采蜜任务
+- 即使几只蜜蜂迷路了，蜂群整体依然正常运转
 
 ```py
+pip install langgraph-swarm -i https://pypi.tuna.tsinghua.edu.cn/simple  //0.1.0 
+
+
+from dotenv import dotenv_values
+from langchain_openai import ChatOpenAI
 from langgraph.checkpoint.memory import InMemorySaver
-from langgraph.store.memory import InMemoryStore
+from langchain.agents import create_agent
+from langgraph_swarm import create_handoff_tool, create_swarm
+
+env_vars = dotenv_values('.env')
+OPENAI_KEY = env_vars['OPENAI_API_KEY'] 
+OPENAI_BASE_URL = env_vars['OPENAI_API_BASE'] 
+
+
+llm = ChatOpenAI(model="gpt-4o-mini", api_key=OPENAI_KEY,base_url=OPENAI_BASE_URL)
+
+
+def add(a: int, b: int) -> int:
+    """Add two numbers"""
+    return a + b
+
+alice = create_agent(
+    llm,
+    tools=[
+        add,
+        create_handoff_tool(
+            agent_name="Bob",
+            description="Transfer to Bob",
+        ),
+    ],
+    system_prompt="You are Alice, an addition expert.",
+    name="Alice",
+)
+
+bob = create_agent(
+    llm,
+    tools=[
+        create_handoff_tool(
+            agent_name="Alice",
+            description="Transfer to Alice, she can help with math",
+        ),
+    ],
+    system_prompt="You are Bob, you speak like a pirate.",
+    name="Bob",
+)
 
 checkpointer = InMemorySaver()
-store = InMemoryStore()
-
-model = ...
-research_agent = ...
-math_agent = ...
-
-workflow = create_supervisor(
-    [research_agent, math_agent],
-    model=model,
-    prompt="You are a team supervisor managing a research expert and a math expert.",
+workflow = create_swarm(
+    [alice, bob],
+    default_active_agent="Alice"
 )
+app = workflow.compile(checkpointer=checkpointer)
 
-# Compile with checkpointer/store
-graph = workflow.compile(
-    checkpointer=checkpointer,
-    store=store
+config = {"configurable": {"thread_id": "1"}}
+turn_1 = app.invoke(
+    {"messages": [{"role": "user", "content": "i'd like to speak to Bob"}]},
+    config,
 )
-
-config = {"configurable": {"thread_id": "111"}, "user_id": "8"}
-async for chunk in graph.astream({"messages": ["你好，介绍一个你自己"]}, config, stream_mode="values"):
-    chunk["messages"][-1].pretty_print()
+print(11, turn_1)
+turn_2 = app.invoke(
+    {"messages": [{"role": "user", "content": "what's 5 + 7?"}]},
+    config,
+)
+print(22, turn_2)
 ```
+
+## `create_react_agent`在新版本
+LangGraph 的新版本迭代中，langgraph.prebuilt.create_react_agent 已经被正式弃用（Deprecated）。
+
+官方为了将 Agent 的创建范式进行统一，并引入更强大的中间件（Middleware）生态，将这个功能彻底收拢到了 langchain.agents 模块中，并升级为了全新的 create_agent。
+
+升级提示：升级到新版本需要确保你的核心库版本更新（推荐更新 pip install -U langchain langgraph）
+
+变化对比
+
+| 维度 | 旧版本 (LangGraph 预置) | 新版本 (LangChain 统一规范) |
+| --- | --- | --- |
+| **导包路径** | `from langgraph.prebuilt import create_react_agent` | `from langchain.agents import create_agent` |
+| **主要定位** | LangGraph 内部的快捷图生成工具 | 结合 LangGraph 图底层 + LangChain 统一生态的智能体工厂 |
+
+> **升级提示**：升级到新版本需要确保你的核心库版本更新（推荐更新 `pip install -U langchain langgraph`）。
+
+升级非常简单。核心的参数（如 model, tools, prompt 等）逻辑基本保留，你只需要改变导入路径并升级函数名为 create_agent 即可
+
+```py
+import os
+from langchain_core.tools import tool
+from langchain_openai import ChatOpenAI
+# 【核心改变】从 langchain.agents 导入统一的 create_agent
+from langchain.agents import create_agent 
+from langgraph.checkpoint.memory import InMemorySaver
+
+# 1. 配置密钥
+os.environ["OPENAI_API_KEY"] = "your-openai-api-key"
+
+# 2. 定义工具
+@tool
+def calculate_payout(base_salary: int, bonus: int) -> int:
+    """计算员工的总奖金。"""
+    return base_salary + bonus
+
+tools = [calculate_payout]
+
+# 3. 初始化支持 Tool Calling 的大模型
+llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
+
+# 4. 设置记忆体（LangGraph 原生的持久化依然完全兼容）
+memory = InMemorySaver()
+
+# 5. 【新版写法】创建 Agent
+system_prompt = "你是一个财务精算助手，请使用工具准确计算薪酬，并用中文专业回答。"
+
+# 统一使用 create_agent 替代原先的 create_react_agent
+agent_graph = create_agent(
+    model=llm,
+    tools=tools,
+    prompt=system_prompt,
+    checkpointer=memory  # 依然完美支持 LangGraph 的记忆架构
+)
+
+# 6. 测试运行
+config = {"configurable": {"thread_id": "finance_session_001"}}
+inputs = {"messages": [{"role": "user", "content": "基本工资 8000，奖金 3500，总共是多少？"}]}
+
+if __name__ == "__main__":
+    for chunk in agent_graph.stream(inputs, config=config, stream_mode="updates"):
+        for node_name, node_output in chunk.items():
+            print(f"\n[节点: {node_name}] 正在处理...")
+            for msg in node_output.get("messages", []):
+                msg.pretty_print()
+```
+
+
+
+

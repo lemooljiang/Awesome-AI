@@ -13,8 +13,9 @@
 ## Openai API
 [参数 ｜](https://platform.openai.com/docs/api-reference/chat/create)
 ```js
-npm install openai --save  //"openai": "^4.16.1"  "^4.104.0"
-// npm update openai
+npm install openai --save  //"openai": "^4.16.1"  "^6.38.0"
+// npm update openai  
+// npm install openai@latest //强制更新最新版本 
 npm install express cors --save
 
 import express from 'express'
@@ -792,3 +793,27 @@ gpt-4-turbo  US$10.00/1Mtokens (Input)  US$30.00/1M tokens(Output)
 
 GPT-3.5 Turbo
 gpt-3.5-turbo-0125  US$0.50/1Mtokens (Input)  US$1.50/1M tokens(Output)  1000000
+
+
+## Codex
+[文档](https://developers.openai.com/codex/quickstart)
+```shell
+powershell -ExecutionPolicy ByPass -c "irm https://chatgpt.com/codex/install.ps1 | iex"
+# 或者：
+npm install -g @openai/codex  #都需科学代理
+
+npm install -g codex-cli
+
+Run `codex` and sign in
+Run codex in your terminal to get started. You’ll be prompted to sign in with your ChatGPT account or an API key.
+
+Ask Codex to work in your current directory
+Once authenticated, you can ask Codex to perform tasks in the current directory.
+```
+
+## 配置Skills
+```js
+在安装的根目录中配置： /root/.codex/skills
+将skill包放入此目录即可
+```
+

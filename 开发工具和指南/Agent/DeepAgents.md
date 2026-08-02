@@ -6,9 +6,9 @@
 [文档 |](https://docs.langchain.com/oss/python/deepagents/overview) 
 [Github |](https://github.com/langchain-ai/deepagents)
 [中文手册 |](https://langchain-doc.cn/v1/python/deepagents/overview.html)
-[Deep Agents CLI](https://docs.langchain.com/oss/python/deepagents/cli/overview)
-[案例](https://github.com/langchain-ai/deepagents/tree/main/examples)
-
+[Deep Agents CLI |](https://docs.langchain.com/oss/python/deepagents/cli/overview)
+[案例 |](https://github.com/langchain-ai/deepagents/tree/main/examples)
+[Deep Agents 实战 |](https://github.com/datawhalechina/deepagents-in-action)
 
 ## 简介
 Deep Agents 是一个基于 LangChain 代理核心构建模块构建的独立库。它使用 LangGraph 运行时来实现持久化执行、流式处理、人机协同等特性。
@@ -45,9 +45,11 @@ Deep Agents 是一个基于 LangChain 代理核心构建模块构建的独立库
 ```py
 virtualenv deep_env
 source deep_env/Scripts/activate   //windows
-pip install deepagents -i https://pypi.tuna.tsinghua.edu.cn/simple  //0.5.2 
+pip install deepagents -i https://pypi.tuna.tsinghua.edu.cn/simple  // 0.5.2/0.6.12  langchain 1.2.15/ 1.3.14
 pip install langchain-openai python-dotenv -i https://pypi.tuna.tsinghua.edu.cn/simple  
 pip install tavily-python markdownify -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+pip install -U langchain deepagents -i https://pypi.tuna.tsinghua.edu.cn/simple
 ```
 
 ## 快速开始
@@ -123,4 +125,59 @@ result = agent.invoke({"messages": [{"role": "user", "content": "what is langgra
 
 # Print the agent's response
 print(111, result["messages"][-1].content)
+```
+
+## 集成skills
+在 Deep Agents 中引入 Anthropic Skills 非常简单，因为 Deep Agents 原生支持 Agent Skills 规范（由 Anthropic 提出并开源的标准）。你不需要任何适配层，直接把符合规范的 Skill 目录传给 create_deep_agent 即可。
+```py
+my_project/
+└── skillsRepo
+    └── skills/
+        └── pptx/
+            ├── SKILL.md    # 技能的核心说明与工作流定义
+            └── scripts     # 该技能配套使用的辅助脚本
+└── main.py 
+
+from dotenv import dotenv_values
+from langchain_openai import ChatOpenAI
+from deepagents import create_deep_agent
+from deepagents.backends.filesystem import FilesystemBackend
+
+env_vars = dotenv_values('.env')
+OPENAI_KEY = env_vars['OPENAI_API_KEY'] 
+OPENAI_BASE_URL = env_vars['OPENAI_API_BASE'] 
+
+llm = ChatOpenAI(model="gpt-5.4-mini", api_key=OPENAI_KEY, base_url=OPENAI_BASE_URL)
+# 创建后端（从本地文件系统加载 skills）
+backend = FilesystemBackend(root_dir="./skillsRepo") 
+agent = create_deep_agent(model=llm, backend=backend, skills=["./skills"]) 
+# 指向skills目录，或直接指定 ./skills/pptx 
+
+result = agent.invoke({"messages": [{"role": "user", "content": "有哪些skills"}]})
+print(111, result["messages"][-1].content)
+```
+
+## 文件权限
+```py
+from deepagents import create_deep_agent, FilesystemPermission
+from deepagents.backends.filesystem import FilesystemBackend
+
+backend = FilesystemBackend(root_dir="./skillsRepo")
+agent = create_deep_agent(
+    model=llm, 
+    backend=backend, 
+    skills=["./skills/frontend-design"],
+    permissions=[
+        FilesystemPermission(
+            operations=["write"],           # 限制的操作类型
+            paths=["/skills/**"],           # 限制的路径模式
+            mode="deny",                    # 模式：deny（禁止）/ interrupt（审批）
+        ),
+        FilesystemPermission(
+            operations=["write"],
+            paths=["/output/**"],
+            mode="allow",                   # 允许写入 output 目录
+        ),
+    ]
+)
 ```
