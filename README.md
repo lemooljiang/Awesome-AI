@@ -8,6 +8,7 @@
   - [智能体平台](#智能体平台)
   - [大语言模型LLMs](#大语言模型llms)
   - [AI拓展工具](#ai拓展工具)
+  - [MCP](#mcp)
   - [Skills](#skills)
   - [AI社区](#ai社区)
   - [绘图](#绘图)
@@ -272,6 +273,8 @@
 
 [Aistudio](https://aistudio.google.com) 谷歌推出的AI应用开发平台
 
+[Cherry Studio](https://cherryai.com.cn/) 集多模型对话、智能体、知识库管理、AI 绘画、翻译等功能于一体的全能AI助手平台
+
 [Zapier](https://zapier.com)  连接起超过6000+款常用应用，工作流自动化平台
 
 [make](https://www.make.com/en)  直观的可视化流程设计，自动化工作流
@@ -327,6 +330,14 @@
 [CC Switch](https://www.ccswitch.io) 统一管理你的 AI 编程工具工作流
 
 [Replicate](https://replicate.com) AI模型托管 + API部署平台, 容器化生产级
+
+
+## MCP
+[Servers](https://github.com/modelcontextprotocol/servers) 官方服务器
+
+[awesome-mcp-servers](https://github.com/punkpeye/awesome-mcp-servers) 好用的服务器
+
+[mcpservers](https://mcpservers.org/zh-CN/) 服务器集
 
 [Figwright](https://github.com/awdr74100/figwright)  Free, two-way Figma MCP server
 
