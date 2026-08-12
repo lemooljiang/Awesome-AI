@@ -110,6 +110,8 @@
 ## Agent
 [OpenClaw](https://openclaw.ai) 通过自然语言控制电脑，完成自动化操作
 
+[Orkas](https://github.com/Orkas-AI/Orkas) 开源、本地优先的 AI 团队桌面应用，由 Commander 通过一个对话规划任务并协调专业 Agent 并行或串行工作
+
 [Hermes Agent](https://github.com/nousresearch/hermes-agent) 由Nous Research开发的开源自主AI代理，其核心设计理念是一个与你共同成长的Agent
 
 [LangGraph](https://docs.langchain.com/oss/python/langgraph/overview) 专注于代理协调的非常底层的工具
