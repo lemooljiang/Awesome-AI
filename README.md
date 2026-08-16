@@ -265,6 +265,8 @@
 
 [Playwright](https://github.com/microsoft/playwright) 微软开源的自动化测试工具，原生兼容Chromium（Chrome/Edge）、Firefox、WebKit（Safari）
 
+[Agent QA](https://github.com/vostride/agent-qa) 面向 AI 辅助开发的任务式应用 QA 工具，通过 CLI 和 MCP 测试 Web 与移动应用。当前版本采用 FSL-1.1-ALv2 源码可用许可证（非 OSI 开源），每个版本在发布两年后转为 Apache-2.0；模型、浏览器或设备提供商可能另行收费
+
 [CLI-Anything](https://github.com/HKUDS/CLI-Anything) 让所有软件都能被 Agent 驱动
 
 [Replicate](https://replicate.com/) AI模型部署和运行平台
