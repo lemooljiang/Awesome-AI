@@ -695,6 +695,8 @@
 
 [Pictory](https://pictory.ai/) 文本生成视频
 
+[videos.social](https://videos.social/?utm_source=lemooljiang-awesome-ai&utm_medium=directory&utm_campaign=listing-wave-d) Turn blogs, PDFs, and prompts into editable faceless videos. Start free — 1 render included.
+
 [Genmo](https://alpha.genmo.ai/) 文本生成视频
 
 [Descript](https://www.descript.com/) 视频编辑，添加/去除视频背景，合成
