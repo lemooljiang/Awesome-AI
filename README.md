@@ -110,6 +110,8 @@
 ## Agent
 [OpenClaw](https://openclaw.ai) 通过自然语言控制电脑，完成自动化操作
 
+[Open Agent Relay](https://github.com/ShakespeareLabs/open-agent-relay) Apache-2.0 开源的本地优先 Agent 中继 CLI，可通过可信局域网共享已有 Agent 能力，同时源码、依赖、提示词与凭据保留在发布端
+
 [Hermes Agent](https://github.com/nousresearch/hermes-agent) 由Nous Research开发的开源自主AI代理，其核心设计理念是一个与你共同成长的Agent
 
 [LangGraph](https://docs.langchain.com/oss/python/langgraph/overview) 专注于代理协调的非常底层的工具
