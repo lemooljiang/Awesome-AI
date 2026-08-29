@@ -354,6 +354,7 @@
 [Skillsmp](https://skillsmp.com) Skills Marketplace
 
 [skill0](https://skill0.io) 国内特赞团队（atypica.ai）推出的 Skills 市场，目前收录了 423 个 skills
+[toprank](https://github.com/nowork-studio/toprank) 开源的Claude Code插件，提供9项SEO和Google Ads技能，连接Google Search Console、PageSpeed Insights和Google Ads API
 
 [女娲.skill](https://github.com/alchaincyf/nuwa-skill) 女娲帮你蒸馏任何人的思维方式，让乔布斯、马斯克、芒格、费曼都给你打工
 
