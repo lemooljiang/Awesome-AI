@@ -112,6 +112,8 @@
 
 [Hermes Agent](https://github.com/nousresearch/hermes-agent) 由Nous Research开发的开源自主AI代理，其核心设计理念是一个与你共同成长的Agent
 
+[rust-norion](https://github.com/yanghao1143/rust-norion) Rust AI 推理控制层原型，关注路由、记忆、证据门禁、回滚和可审计自进化
+
 [LangGraph](https://docs.langchain.com/oss/python/langgraph/overview) 专注于代理协调的非常底层的工具
 
 [Atoms](https://atoms.dev/) AI驱动的全栈开发平台，通过多智能体协作将自然语言想法快速转化为可上线的商业应用。
