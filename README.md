@@ -490,6 +490,8 @@
 
 [Kickresume](http://Kickresume.com) AI简历生成器
 
+[ResumeAI](https://withresumeai.com/) AI简历 + 免费 ATS 检查（无账号每天 3 次）
+
 [Freepik](https://www.freepik.com/pikaso) 在线设计
 
 [Lovart](https://www.lovart.ai) LiblibAI推出的全球首个设计智能体
