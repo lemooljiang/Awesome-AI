@@ -721,6 +721,7 @@
 
 [Clypra](https://github.com/AIEraDev/Clypra) 开源视频编辑器 
 
+[OrkasVideoStudio](https://github.com/Orkas-AI/Orkas-VideoStudio) MIT 开源、本地优先的 CLI/MCP 视频工具包，让编程 Agent 通过 plan.json 编排、剪辑和生成视频。
 
 ## 视频动画
 [即梦AI](https://jimeng.jianying.com) 字节跳动旗下的视频创作平台
