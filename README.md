@@ -341,6 +341,8 @@
 
 [Figwright](https://github.com/awdr74100/figwright)  Free, two-way Figma MCP server
 
+[Datacircle](https://datacircle.dev) Our MCP server is open to anyone, with no key: add api.datacircle.dev/mcp to Claude, ChatGPT or Cursor. Find the best GTM APIs.
+
 
 ## Skills
 [AgentSkill](https://agentskills.io) Anthropic Skills 的开放标准
